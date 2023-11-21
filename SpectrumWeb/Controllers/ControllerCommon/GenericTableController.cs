@@ -9,7 +9,8 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         public IActionResult GenericTableGenerator(
             List<FieldSpec> displayFieldList
             , string title
-            , List<object> classList)
+            , List<object> classList
+            , List<FieldSpec> childFieldList)
         {
             ViewBag.Title = title;
 

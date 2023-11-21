@@ -38,12 +38,26 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("AtaChap", "ATA<br/>Chap", "AtaChap", "center", 50)
         };
 
+        List<FieldSpec> childFieldList = new List<FieldSpec>()
+        {
+            new FieldSpec("Terms", "Terms", "Terms", "Left", 500)
+        };
+
         public IActionResult Warranties()
         {
             List<GuaranteeWarranty> classList = context.GuaranteeWarranties.ToList();
 
+            List<string> childRows = new List<string>()
+            {
+                "terms_terminal_nmbr"
+            };
+
+            List<object> childRowField = new List<object>();
+
             foreach (GuaranteeWarranty guaranteeWarranty in classList)
             {
+                List<object> fieldList = new List<object>();
+
                 if (guaranteeWarranty.HoursGuaranteed.HasValue)
                 {
                     guaranteeWarranty.HoursGuaranteed = Math.Round(guaranteeWarranty.HoursGuaranteed.Value, 1);
@@ -55,7 +69,11 @@ namespace SpectrumWeb.Controllers.Maintenance
                 }
             }
 
-            return (new GenericTableController()).GenericTableGenerator(displayFieldList, "Guarantees and Warranties", classList.Select(e => (object)e).ToList());
+            return (new GenericTableController()).GenericTableGenerator(
+                displayFieldList
+                , "Guarantees and Warranties"
+                , classList.Select(e => (object)e).ToList()
+                , null);
         }
     }
     
