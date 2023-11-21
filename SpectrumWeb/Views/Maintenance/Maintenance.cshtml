@@ -1,0 +1,140 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<head>
+
+<script>
+
+var topTabList = null;
+
+var secondLevelTabList = null;
+
+$(document).ready(function() {
+    topTabList = document.getElementsByClassName("topTab");
+    });
+
+function setTopButtonClass(selectedId) {
+    console.log('\n\nselectedId=' + selectedId);
+
+    for (button of topTabList) {
+
+
+        if (button.id == selectedId) {
+      
+            $(button).removeClass('unSelected');
+            $(button).addClass('Selected');
+        }
+
+        else {
+           
+            $(button).removeClass('Selected');
+            $(button).addClass('unSelected');
+        }
+    }
+}
+
+function loadPage(url) {
+    window.open(url, 'maintenance');
+}
+
+function buildButton(url, label, width=184){
+    return "<button class='secondLevelTab' style='width:'" + width + "px' onclick='loadPage(\"" + url + "\")'>" + label + "</button>\n";
+}
+
+function basicElementMenu(e) {
+
+   
+    setTopButtonClass(e.id);
+
+    var menuText =  buildButton("/AC/Aircraft", "Aircraft") +
+                    buildButton("/Warranties/Warranties", "Guarantees/Warranties") +
+                    buildButton("/Squawks/Squawks", "Squawks") +
+                    buildButton("/ADandSB/ADandSB", "AD and SB") +
+                    buildButton("/Vendors/Vendors", "Vendors") +
+                    buildButton("/Warehouses/Warehouses", "Warehouses")
+                    ;
+
+    document.getElementById('SecondLevelTabs').innerHTML = menuText;
+    document.getElementById('main_header').innerHTML = "MAINTENANCE"
+}
+
+function maintenanceMenu(e) {
+
+   
+    setTopButtonClass(e.id);
+
+    var menuText =  buildButton("/Squawks/MELCmplDue", "MEL Cmpl Due") +
+                    buildButton("/Squawks/DMIRprt", "DMI Report") +
+                    buildButton("/Squawks/MechSvcInterrupt", "Mech Svc Interrupt") +
+                    buildButton("/ADandSB/ADandSBCompliance", "AD/SB Compliance") +
+                    buildButton("/ADandSB/ADandSBComplianceWorksheet", "AD/SB Compliance Wksh", 220) +
+                    buildButton("/Parts/PartsOnGuaranteeWarranty", "Parts On Warranty") +
+                    buildButton("/Parts/M15ProjDueDateByPartNmbr", "Proj Due By Part Nmbr", 220) +
+                    buildButton("/Parts/M16ProjDueDateByTailNmbr", "Proj Due By Tail Nmbr", 220) +
+                    buildButton("/Parts/M18ProjMaintByTime", "Proj Maintenance By Time", 220) +
+                    buildButton("/Parts/M19ComponentRemovals", "Component Removals", 220) +
+                    buildButton("/Parts/M20PartsOnAcftRotable", "Parts On Acft (Rotable)", 220) +
+                    buildButton("/Parts/M21MaintHistory", "Maintenance History", 220)
+                    buildButton("/Parts/M22PartsUtilization", "Parts Utilization", 220) +
+                    buildButton("/Parts/M23ReliabilityMonitoring", "Reliability Monitoring", 220)
+                    ;
+
+    document.getElementById('SecondLevelTabs').innerHTML = menuText;
+       
+}
+
+function workOrders() {
+
+}
+
+function inspections(e) {
+
+    setTopButtonClass(e.id);
+
+    var menuText =  buildButton("/Inspections/InspectionCheckNames", "Inspection/Check Names") +
+                    buildButton("/Inspections/InspectionResets", "Inspection Resets") +
+                    buildButton("/Inspections/InspectsByTailNmbr", "Inspection By Tail Nmbr") +
+                    buildButton("/Inspections/InspectsByPartNmbr", "Inspection By PN / SN Nmbr") +
+                    buildButton("/Inspections/InspectResults", "Inspection Results")
+                    ;
+
+
+            document.getElementById('SecondLevelTabs').innerHTML = menuText;
+}
+
+function phyInventory() {
+
+}
+
+function components() {
+
+}
+
+function stores() {
+
+}
+
+</script>
+</head>
+<body>
+    <button id="ElementMenuButton" class="topTab unSelected" onclick="basicElementMenu(this)">Basic Elements</button>
+    <button id="MaintenanceMenuButton" class="topTab unSelected" onclick="maintenanceMenu(this)">Maintenance</button>
+    <button id="WorkOrdersButton" class="topTab unSelected" onclick="workOrders(this)">Work Orders</button>
+    <button id="InspectionsButton" class="topTab unSelected" onclick="inspections(this)">Inspections</button>
+    <button id="PhysInventoryButton" class="topTab unSelected" onclick="physInventory(this)">Physical Inventory</button>
+    <button id="ComponentsButton" class="topTab unSelected" onclick="components(this)">Components</button>
+    <button id="StoresButton" class="topTab unSelected" onclick="stores(this)">Stores</button>
+    <hr style="color:maroon;height:3px;margin-top:0px" />
+    <div style="height:42px"></div>
+    <div id='SecondLevelTabs'>
+
+    </div>
+    
+
+<div style="height:42px"></div>
+
+ <iframe id="maintenance" name="maintenance" style="width:100%;min-height:1000px;height:100px">
+</iframe>
+</body>

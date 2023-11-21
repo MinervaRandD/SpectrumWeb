@@ -1,0 +1,273 @@
+﻿
+@{
+}
+<h2 style="color:maroon;text-align:center">Squawks</h2>
+
+<script type="text/javascript" language="javascript" src="~/local/common.js"></script>
+<script type="text/javascript" language="javascript" src="~/local/squawk_master.js"></script>
+
+<style>
+th {
+    text-align:center;
+}
+
+tbody tr {
+    padding-left:2px;
+    padding-right:2px;
+}
+</style>
+<script>
+
+var table;
+
+document.addEventListener('DOMContentLoaded', function () {
+
+
+    initializeSquawksMasterMap();
+    buildwarrantiesTableBody();
+
+    $('#warrantiesTable tfoot th').each(function () {
+        var title = $(this).text();
+        $(this).html('<input type="text" placeholder="Filter ' + title + '" />');
+    });
+    
+    editor = new $.fn.dataTable.Editor( {
+    //ajax: "../php/staff.php",
+        table: "#warrantiesTable",
+        fields: [
+	        { label: "Squawk Number", name: "sqwkNmbr" },
+            { label: "Squawk Type", name: "type" },
+            { label: "Tail Number", name: "tailNmbr" },
+            { label: "ATA", name: "ata" },
+            { label: "Reported By", name: "rptdBy" },
+            { label: "Reported Date", name: "rptdDate" },
+            { label: "DMI Type", name: "dmiType" },
+            { label: "Flight Number", name: "flgtNmbr" },
+            { label: "Flight Log Number", name: "flgtLogNmbr" },
+            { label: "City", name: "city" },
+            { label: "Delay (Y/N)", name: "delay" },
+            { label: "Delay Minutes", name: "delayMin" },
+            { label: "Cancellation (Y/N)", name: "cnx" },
+            { label: "Svc Diff (Y/N)", name: "svcDiff" },
+            { label: "Engine Shutdown (Y/N)", name: "engShutDown" },
+            { label: "Squawk Details", name: "squawk" },
+            { label: "Cat III Significant (Y/N)", name: "catIIISignif" },
+            { label: "Verified (Y/N)", name: "verified" }
+        ]
+    } );
+
+    table = new DataTable('#warrantiesTable', {
+    
+        dom: 'Bfrtip',
+        select: true,
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print', 'searchBuilder',
+            { extend: "create", editor: editor },
+	        { extend: "edit",   editor: editor },
+	        { extend: "remove", editor: editor } 
+        ],
+
+        columns: [
+	        { data: "sqwkNmbr" },
+            { data: "type" },
+            { data: "tailNmbr" },
+            { data: "ata" },
+            { data: "rptdBy" },
+            { data: "rptdDate" },
+            { data: "dmiType" },
+            { data: "flgtNmbr" },
+            { data: "flgtLogNmbr" },
+            { data: "city" },
+            { data: "delay" },
+            { data: "delayMin" },
+            { data: "cnx" },
+            { data: "svcDiff" },
+            { data: "engShutDown" },
+            { data: "squawk" },
+            { data: "catIIISignif" },
+            { data: "verified" }
+        ],
+        initComplete: function () {
+
+            
+            console.log("init completed");
+
+            // Apply the search
+            this.api()
+                .columns()
+                .every(function () {
+                    var that = this;
+ 
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+            }
+      
+        });
+
+    });
+    
+    new $.fn.dataTable.Buttons( table, {
+        buttons:[
+        {
+            extend: 'searchBuilder',
+            config: {
+                depthLimit: 4
+            }
+        }
+        ],
+    } );
+    
+function initializeSquawksMasterMap()
+{
+    squawkMasterMap.clear();
+
+    @foreach(SquawkMaster squawkMaster in ViewBag.squawkMasterList)
+        {
+            @:var squawkMasterInstance = new SquawkMasterClass(
+                @: '@squawkMaster.PkTransactId',
+                @: '@squawkMaster.SquawkNumber',
+                @: '@squawkMaster.TypeCode',
+                @: '@squawkMaster.AtaChapCode',
+                @: '@squawkMaster.DateReceived',
+                @: '@squawkMaster.ReportedBy',
+                @: '@squawkMaster.DateDispDuDef',
+                @: '@squawkMaster.FlightLogNmbr',
+                @: '@squawkMaster.ItemNmbr',
+                @: '@squawkMaster.Flight',
+                @: '@squawkMaster.DateComp',
+                @: '@squawkMaster.WorkOrderNmbr',
+                @: '@squawkMaster.PartNumbers',
+                @: '@squawkMaster.EtopsSignific',
+                @: '@squawkMaster.EtopsConfirmed',
+                @: '@squawkMaster.ByWhom',
+                @: '@squawkMaster.EtopsVerified',
+                @: '@squawkMaster.ByWho',
+                @: '@squawkMaster.CatIiiSignif',
+                @: '@squawkMaster.CatIiiVerified',
+                @: '@squawkMaster.CatIiiApproach',
+                @: '@squawkMaster.CatIiiLndgTyp',
+                @: '@squawkMaster.TextProbAndResolu',
+                @: '@squawkMaster.EngPositionNmbr',
+                @: '@squawkMaster.TailNmbr',
+                @: '@squawkMaster.City',
+                @: '@squawkMaster.EngineShutDown',
+                @: '@squawkMaster.DelayYN',
+                @: '@squawkMaster.CancellationYN',
+                @: '@squawkMaster.ServiceDiffYN',
+                @: '@squawkMaster.AtaChapAndSub',
+                @: '@squawkMaster.AtaParagraph',
+                @: '@squawkMaster.Sqmelt',
+                @: '@squawkMaster.AirframeAtSqwk',
+                @: '@squawkMaster.AFWhenDone',
+                @: '@squawkMaster.DelayMinutes',
+                @: '@squawkMaster.DmiNumber',
+                @: '@squawkMaster.AuditPrint',
+                @: '@squawkMaster.WhoFixed',
+                @: '@squawkMaster.FirstInspector',
+                @: '@squawkMaster.SecondInspector',
+                @: '@squawkMaster.SerialNumbers'
+                @:);
+       
+            @:squawkMasterMap.set(squawkMasterInstance.squawkNumber, squawkMasterInstance);
+
+        }
+}
+</script>
+
+<div style="height:32px"></div>
+
+<table id="warrantiesTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;">
+    <thead>
+        <tr>
+            <th style='text-align:center;width:180px'>Sqwk Nmbr</th>
+            <th style='text-align:center;width:56px'>Type</th>
+            <th style='text-align:center;width:56px'>Tail Nmbr</th>
+            <th style='text-align:center;width:56px'>ATA</th>
+            <th style='text-align:center'>Rptd By</th>
+            <th style='text-align:center'>Rptd Date</th>
+            <th style='text-align:center'>DMI Type</th>
+            <th style='text-align:center'>Flgt Nmbr</th>
+            <th style='text-align:center'>Flgt Log Nmbr</th>
+            <th style='text-align:center;width:56px'>City</th>
+            <th style='text-align:center;width:56px'>Delay</th>
+            <th style='text-align:center'>Delay Min</th>
+            <th style='text-align:center;width:56px'>Cnx</th>
+            <th style='text-align:center'>Svc Diff</th>
+            <th style='text-align:center'>Eng Shut-Down</th>
+            <th style='text-align:center;width:256px'>Squawk</th>
+            <th style='text-align:center;width:56px'>Cat III Signif</th>
+            <th style='text-align:center;width:56px'>Verified</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+           <th>Sqwk Nmbr</th>
+            <th>Type</th>
+            <th>Tail#</th>
+            <th>ATA</th>
+            <th>Rptd By</th>
+            <th>Rptd Date</th>
+            <th>DMI Type</th>
+            <th>Flgt Nmbr</th>
+            <th>Flgt Log Nmbr</th>
+            <th>City</th>
+            <th>Delay</th>
+            <th>Delay Min</th>
+            <th>Cnx</th>
+            <th>Svc Diff</th>
+            <th>Eng Shut-Down</th>
+            <th>Squawk</th>
+            <th>Cat III Signif</th>
+            <th>Verified</th>
+           
+        </tr>
+
+    </tfoot>
+    <tbody id='warrantiesTableBody'>
+                        
+    </tbody>
+                
+</table>
+
+<script>
+
+function buildwarrantiesTableBody(){
+    var tableBodyHtml = '';
+
+    squawkMasterMap.forEach(function (squawkMasterInstance) {
+
+        tableBodyHtml += '<tr id="' + squawkMasterInstance.squawkNumber + '">\n';
+
+        tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.squawkNumber) + "\n";
+        tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.typeCode) + "\n";
+        tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.tailNmbr) + "\n";
+
+        var ata = squawkMasterInstance.ataChapAndSub + '-' + squawkMasterInstance.ataParagraph;
+
+        tableBodyHtml += "    " + tableRowCenter(ata) + "\n";
+        tableBodyHtml += "    " + tableRowLeft(squawkMasterInstance.reportedBy) + "\n";
+        tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.dateReceived.toISOString().slice(0,10)) + "\n";
+         tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.dmiNumber) + "\n";
+        tableBodyHtml += "    " + tableRowLeft(squawkMasterInstance.flight) + "\n";
+        tableBodyHtml += "    " + tableRowLeft(squawkMasterInstance.flightLogNmbr) + "\n";
+        tableBodyHtml += "    " + tableRowCenter(squawkMasterInstance.city) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.delayYN) + "\n";
+        tableBodyHtml += "    " + tableRowLeft(squawkMasterInstance.delayMinutes) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.cancellationYN) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.serviceDiffYN) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.engineShutDown) + "\n";
+        tableBodyHtml += "    " + tableRowLeft(squawkMasterInstance.textProbAndResolu) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.catIiiSignif) + "\n";
+        tableBodyHtml += "    " + tableRowYesOrNo(squawkMasterInstance.etopsVerified) + "\n";
+
+        tableBodyHtml += '</tr>\n';
+    });
+
+    document.getElementById('warrantiesTableBody').innerHTML = tableBodyHtml;
+}
+
+</script>

@@ -1,0 +1,74 @@
+﻿
+@{
+    @using SpectrumWeb.Controllers.ControllerCommon;
+}
+<h2 style="color:maroon;text-align:center">@ViewBag.Title</h2>
+
+<script type="text/javascript" language="javascript" src="/local/common.js"></script>
+
+@Html.Raw(@ViewBag.ClassDefnScript)
+
+<style>
+th {
+    text-align:center;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+tbody tr {
+    padding-left:2px;
+    padding-right:2px;
+}
+
+#hoursAtInstallFooter input {
+  width: 48px;
+}
+
+</style>
+
+<h4 style="text-align:center">Selection Dates</h4>
+
+<div style="height:32px"></div>
+
+<div class='row' style="margin-top:32px">
+
+    <div class="col-4"></div>
+
+    <div class='col-2'>
+
+        <div class="row">
+            <div class='col-6' style='text-align:right'>
+                Start Date
+            </div>
+
+            <div class='col-6'>
+                <input type='date' id='start_date' />
+            </div>
+        </div>
+
+    </div>
+
+    <div class='col-2'>
+
+        <div class="row">
+            <div class='col-6' style='text-align:right'>
+                End Date
+            </div>
+
+            <div class='col-6'>
+                <input type='date' id='end_date' />
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-4"></div>
+
+</div>
+
+<div style="height:32px"></div>
+
+<div style='text-align:center'>
+    <button>Generate Report</button>
+</div>
+

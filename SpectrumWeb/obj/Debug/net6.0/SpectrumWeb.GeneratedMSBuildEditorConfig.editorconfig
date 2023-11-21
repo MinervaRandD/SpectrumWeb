@@ -1,0 +1,93 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SpectrumWeb
+build_property.RootNamespace = SpectrumWeb
+build_property.ProjectDir = C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Accounting/Accounting.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWNjb3VudGluZ1xBY2NvdW50aW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Admin/Admin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Aircraft.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcQWlyY3JhZnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/GenericTable.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcR2VuZXJpY1RhYmxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2UuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M15ProjDueByPartNmbr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTE1UHJvakR1ZUJ5UGFydE5tYnIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M16ProjDueByTailNmbr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTE2UHJvakR1ZUJ5VGFpbE5tYnIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M18ProjMaintByTime.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTE4UHJvak1haW50QnlUaW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M19ComponentRemovals.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTE5Q29tcG9uZW50UmVtb3ZhbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M22PartUtilization.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTIyUGFydFV0aWxpemF0aW9uLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M23ReliabilityMonitoring.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTIzUmVsaWFiaWxpdHlNb25pdG9yaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/TestViews/TestView1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGVzdFZpZXdzXFRlc3RWaWV3MS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-ib3f2zhnpu

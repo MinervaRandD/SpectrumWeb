@@ -1,0 +1,125 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@*<meta http-equiv="Content-type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>DataTables example - Whole row child row control</title>
+	<link rel="shortcut icon" type="image/png" href="/media/images/favicon.png">
+	<link rel="alternate" type="application/rss+xml" title="RSS 2.0" href="http://www.datatables.net/rss.xml">
+	<link rel="stylesheet" type="text/css" href="/media/css/site-examples.css?_=d210504fbbab5e4e4c6f8059b1f910911">
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">*@
+	<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/responsive/2.4.0/css/responsive.dataTables.min.css">
+	@*<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=dBiLp3oOCFSW33yG2UodyPSdiRTYrJVF7v-IuNuh_wl80jXbwwo4GvQUplM_GUm2Cex3wbcZuOePRWVfYGFBuilfznMdFXZCuuCuQHiz3R3xa9hKyxlep7AXbS9kB79sPjRp5dqVuTeLpKhWxua_cQ" charset="UTF-8"></script><style type="text/css" class="init">
+	
+	</style>*@
+@*	<script type="text/javascript" src="/media/js/site.js?_=3ebd8c3a6b519f02f487d4a1894bb418" data-domain="datatables.net" data-api="https://plausible.sprymedia.co.uk/api/event"></script>
+	<script src="https://media.ethicalads.io/media/client/ethicalads.min.js"></script>
+	<script type="text/javascript" src="/media/js/dynamic.php?comments-page=extensions%2Fresponsive%2Fexamples%2Fchild-rows%2Fwhole-row-control.html" async></script>
+	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>*@
+	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/responsive/2.4.0/js/dataTables.responsive.min.js"></script>
+	@*<script type="text/javascript" language="javascript" src="../../../../examples/resources/demo.js"></script>
+	*@
+@*</script>*@
+
+<script type="text/javascript" class="init">
+
+	/* Formatting function for row details - modify as you need */
+	function format(d) {
+		// `d` is the original data object for the row
+		return '<table cellpadding="5" cellspacing="0" border="0" style="padding-left:50px;">' +
+			'<tr style="height:128px;width:100%">' +
+			'<td>Full name:</td>' +
+			'<td>' + d.name + '</td>' +
+			'</tr>' +
+			
+			'</table>';
+	}
+
+	$(document).ready(function () {
+		var table = $('#example').DataTable({
+			
+			"columns": [
+				{
+					"className": 'details-control',
+					"orderable": false,
+					//"data": null,
+					"defaultContent": ''
+				},
+				{ "data": "firstname" },
+				{ "data": "lastname" },
+				{ "data": "position" }
+
+			],
+			"order": [[1, 'asc']]
+		});
+
+		// Add event listener for opening and closing details
+		$('#example tbody').on('click', 'td.details-control', function () {
+			var tr = $(this).closest('tr');
+			var row = table.row(tr);
+
+			if (row.child.isShown()) {
+				// This row is already open - close it
+				row.child.hide();
+				tr.removeClass('shown');
+				$(this).html("<b>+</b>");
+			}
+			else {
+				// Open this row
+				row.child(format(row.data())).show();
+				tr.addClass('shown');
+				$(this).html("<b>-</b>");
+			}
+		});
+	});
+
+</script>
+
+<div class="demo-html">
+	<table id="example" class="display dt-responsive nowrap" style="width:160px">
+		<thead>
+			<tr>
+				<th></th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Position</th>
+				
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td><b>+</b></td>
+				<td>Tiger</td>
+				<td>Nixon</td>
+				<td>System Architect</td>
+				
+			</tr>
+			<tr>
+				<td><b>+</b></td>
+				<td>Garrett</td>
+				<td>Winters</td>
+				<td>Accountant</td>
+
+			</tr>
+			
+			
+			<tr>
+				<td><b>+</b></td>
+				<td>Jenette</td>
+				<td>Caldwell</td>
+				<td>Development Lead</td>
+			</tr>
+		</tbody>
+		<tfoot>
+			<tr>
+				<th></th>
+				<th>First name</th>
+				<th>Last name</th>
+				<th>Position</th>
+			</tr>
+		</tfoot>
+	</table>
+</div>

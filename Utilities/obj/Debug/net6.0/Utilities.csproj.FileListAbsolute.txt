@@ -1,0 +1,12 @@
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\bin\Debug\net6.0\Utilities.deps.json
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\bin\Debug\net6.0\Utilities.dll
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\bin\Debug\net6.0\Utilities.pdb
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.csproj.AssemblyReference.cache
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.GeneratedMSBuildEditorConfig.editorconfig
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfoInputs.cache
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.AssemblyInfo.cs
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.csproj.CoreCompileInputs.cache
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.dll
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\refint\Utilities.dll
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\Utilities.pdb
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\Utilities\obj\Debug\net6.0\ref\Utilities.dll
