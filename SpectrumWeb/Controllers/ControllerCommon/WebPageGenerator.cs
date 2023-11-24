@@ -4,31 +4,40 @@
     {
       
 
-        public static string generateTableFields(List<FieldSpec> fieldList)
+        public static string generateTableFields(List<FieldSpec> fieldList, List<string> childRowList = null)
         {
-            string rtrnValue = string.Join(",\n", fieldList.Where(f=>!string.IsNullOrEmpty(f.field)).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
+            string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))&& !isChildRow(f,childRowList)).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
            
             return rtrnValue;
         }
 
-        public static string generateTableColumns(List<FieldSpec> fieldList)
+        public static string generateTableColumns(List<FieldSpec> fieldList, List<string> childRowList = null)
         {
 
             string rtrnValue = string.Empty;
                // "{ className: 'dt-control', orderable: false,data: null, defaultContent: '' },";
 
+            if (childRowList != null)
+            {
+                rtrnValue += "{\r\n            className: 'dt-control',\r\n            orderable: false,\r\n            data: null,\r\n            defaultContent: ''\r\n        },";
+            }
 
-            rtrnValue += string.Join(",\n", fieldList.Select(f => "{ data: '" + f.label + "' }"));
+            rtrnValue += string.Join(",\n", fieldList.Where(f => !isChildRow(f, childRowList)).Select(f=>"{ data: '" + f.label + "' }"));
 
             return rtrnValue;
         }
 
-        public static string generateTableHeader(List<FieldSpec> fieldList)
+        public static string generateTableHeader(List<FieldSpec> fieldList, List<string> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
+                if (isChildRow(fieldSpec, childFieldList))
+                {
+                    continue;
+                }
+
                 string styleStr = "'text-align:center;";
 
                 if (fieldSpec.fieldWidth.HasValue)
@@ -44,12 +53,17 @@
             return rtrnValue;
         }
 
-        public static string generateTableFooter(List<FieldSpec> fieldList)
+        public static string generateTableFooter(List<FieldSpec> fieldList, List<string> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
+                if (isChildRow(fieldSpec, childFieldList))
+                {
+                    continue;
+                }
+
                 rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
             }
 
@@ -57,16 +71,22 @@
         }
 
 
-        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList)
+        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList, List<string> childFieldList = null)
         {
             string rtrnValue = string.Empty;
+            List<int> ilist = new List<int>();
 
             foreach (List<string> fieldValueList in classDisplayValueListWithRecordId)
             {
                 rtrnValue += "<tr id='" + fieldValueList[0] + "'>\n"; // item 0 is the record id.
-
+               
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
+                    //if (isChildRow(fieldSpecList[i], childFieldList))
+                    //{
+                    //    continue;
+                    //}
+
                     string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
 
                     if (fieldJustify != null)
@@ -86,7 +106,7 @@
             return rtrnValue;
         }
 
-        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId")
+        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId", List<string> childFieldList = null)
         {
             string rtrnValue = "var tableBodyHtml = '';\n\n";
 
@@ -96,6 +116,11 @@
             
             foreach (var fieldSpec in fieldList)
             {
+                if (isChildRow(fieldSpec,childFieldList))
+                {
+                    continue;
+                }
+
                 rtrnValue += "    tableBodyHtml += \"    \" + \"" + tableRow(fieldSpec) + " + \"\\n\";\n";
             }
 
@@ -119,7 +144,15 @@
 
             foreach (FieldSpec fieldSpec in displayFieldList)
             {
+                if (!fieldsDict.ContainsKey(fieldSpec.field))
+                {
+                    // This will happen if the field is a child row
+
+                    continue;
+                }
+
                 field = fieldsDict[fieldSpec.field];
+
 
                 if (fieldSpec.fieldType == "date")
                 {
@@ -214,6 +247,18 @@
             }
 
             return totalWidth;
+        }
+
+
+        private static bool isChildRow(FieldSpec fieldSpec, List<string> childFieldList)
+        {
+            if (childFieldList != null)
+            {
+                return childFieldList.Contains(fieldSpec.field);
+            }
+
+            return false;
+
         }
     }
 }

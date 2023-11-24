@@ -49,14 +49,14 @@ namespace SpectrumWeb.Controllers.Maintenance
 
             List<string> childRows = new List<string>()
             {
-                "terms_terminal_nmbr"
+                "TermsTerminalNmbr"
             };
 
             List<object> childRowField = new List<object>();
 
             foreach (GuaranteeWarranty guaranteeWarranty in classList)
             {
-                List<object> fieldList = new List<object>();
+                //List<object> fieldList = new List<object>();
 
                 if (guaranteeWarranty.HoursGuaranteed.HasValue)
                 {
@@ -73,7 +73,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                 displayFieldList
                 , "Guarantees and Warranties"
                 , classList.Select(e => (object)e).ToList()
-                , null);
+                , childRows);
         }
     }
     

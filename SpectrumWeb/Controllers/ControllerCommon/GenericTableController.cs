@@ -10,7 +10,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             List<FieldSpec> displayFieldList
             , string title
             , List<object> classList
-            , List<FieldSpec> childFieldList)
+            , List<string> childFieldList = null)
         {
             ViewBag.Title = title;
 
@@ -24,6 +24,17 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 var fieldsDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(str);
 
+                if (childFieldList != null)
+                {
+                    foreach (string childRowField in childFieldList)
+                    {
+                        if (fieldsDict.ContainsKey(childRowField))
+                        {
+                            fieldsDict.Remove(childRowField);
+                        }
+                    }
+                }
+
                 classFullValueList.Add(fieldsDict.Values.ToList());
 
                 List<string> displayFieldValueList = WebPageGenerator.generateTableFieldValueList(fieldsDict, displayFieldList);
@@ -31,27 +42,27 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 classDisplayValueListWithRecordId.Add(displayFieldValueList);
             }
 
-            string tableFields = WebPageGenerator.generateTableFields(displayFieldList);
+            string tableFields = WebPageGenerator.generateTableFields(displayFieldList, childFieldList);
 
             ViewBag.TableFields = tableFields;
 
-            string tableColumns = WebPageGenerator.generateTableColumns(displayFieldList);
+            string tableColumns = WebPageGenerator.generateTableColumns(displayFieldList, childFieldList);
 
             ViewBag.TableColumns = tableColumns;
 
-            string tableHeader = WebPageGenerator.generateTableHeader(displayFieldList);
+            string tableHeader = WebPageGenerator.generateTableHeader(displayFieldList, childFieldList);
 
             ViewBag.TableHeader = tableHeader;
 
-            string tableFooter = WebPageGenerator.generateTableFooter(displayFieldList);
+            string tableFooter = WebPageGenerator.generateTableFooter(displayFieldList, childFieldList);
 
             ViewBag.TableFooter = tableFooter;
 
-            string classTableBody = WebPageGenerator.generateTableBody(classDisplayValueListWithRecordId, displayFieldList);
+            string classTableBody = WebPageGenerator.generateTableBody(classDisplayValueListWithRecordId, displayFieldList, childFieldList);
 
             ViewBag.ClassTableBody = classTableBody;
 
-            string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList);
+            string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList, "PkRecordId", childFieldList);
 
             ViewBag.TableBodyBuilder = tableBodyBuilder;
 

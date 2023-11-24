@@ -53,7 +53,7 @@ namespace SpectrumWeb.Controllers.Maintenance
 
             ViewBag.ClassTableBody = classTableBody;
 
-            string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList);
+            string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList, "PkRecordId");
 
             ViewBag.TableBodyBuilder = tableBodyBuilder;
 
