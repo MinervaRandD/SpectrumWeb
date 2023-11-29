@@ -1,4 +1,6 @@
-﻿namespace SpectrumWeb.Controllers.ControllerCommon
+﻿using System.Runtime.InteropServices.ComTypes;
+
+namespace SpectrumWeb.Controllers.ControllerCommon
 {
     public static class WebPageGenerator
     {
@@ -31,6 +33,11 @@
         {
             string rtrnValue = string.Empty;
 
+            if (childFieldList != null)
+            {
+                rtrnValue += "<th></th>\n";
+            }
+
             foreach (FieldSpec fieldSpec in fieldList)
             {
                 if (isChildRow(fieldSpec, childFieldList))
@@ -57,6 +64,11 @@
         {
             string rtrnValue = string.Empty;
 
+            if (childFieldList != null)
+            {
+                rtrnValue += "<th></th>\n";
+            }
+
             foreach (FieldSpec fieldSpec in fieldList)
             {
                 if (isChildRow(fieldSpec, childFieldList))
@@ -79,7 +91,12 @@
             foreach (List<string> fieldValueList in classDisplayValueListWithRecordId)
             {
                 rtrnValue += "<tr id='" + fieldValueList[0] + "'>\n"; // item 0 is the record id.
-               
+
+                if (childFieldList != null)
+                {
+                    rtrnValue += "<td></td>\n";
+                }
+
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
                     //if (isChildRow(fieldSpecList[i], childFieldList))
@@ -113,7 +130,12 @@
             rtrnValue += "classMap.forEach(function(classInstance) {\n";
 
             rtrnValue += "    " + "tableBodyHtml += \"<tr id='classInstance." + keyField + "'>\\n\\n\";\n\n";
-            
+
+            if (childFieldList != null)
+            {
+                rtrnValue += "    tableBodyHtml += \"    \" + \"<td></td>\"" + " + \"\\n\";\n";
+            }
+
             foreach (var fieldSpec in fieldList)
             {
                 if (isChildRow(fieldSpec,childFieldList))
