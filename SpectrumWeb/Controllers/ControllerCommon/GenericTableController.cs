@@ -66,6 +66,9 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.TableBodyBuilder = tableBodyBuilder;
 
+            string childRows = WebPageGenerator.generateChildRows(childFieldList);
+
+            ViewBag.ChildRows = childRows;
             //string classMapInitializer = WebPageGenerator.generateClassMapInitializer(classFullValueList, className);
 
             //ViewBag.ClassMapInitializer = classMapInitializer;

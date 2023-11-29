@@ -218,6 +218,27 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
+        internal static string generateChildRows(List<FieldSpec> childFieldList)
+        {
+            string rtrnValue = string.Empty;
+
+            if (childFieldList is null)
+            {
+                return rtrnValue;
+            }
+
+            rtrnValue += "<dl>\n";
+
+            foreach (FieldSpec childField in childFieldList)
+            {
+                rtrnValue += "<dt>" + childField.description + ":</dt><dd>d." + childField.field + "</dd>\n";
+            }
+
+            rtrnValue += "</dl>";
+
+            return rtrnValue;
+        }
+
         private static string tableRow(FieldSpec fieldSpec)
         {
 
@@ -282,5 +303,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return childFieldList.Any(x => x.field == fieldSpec.field);
 
         }
+
     }
 }
