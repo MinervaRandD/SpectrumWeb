@@ -10,7 +10,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             List<FieldSpec> displayFieldList
             , string title
             , List<object> classList
-            , List<string> childFieldList = null)
+            , List<FieldSpec> childFieldList = null)
         {
             ViewBag.Title = title;
 
@@ -26,11 +26,11 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 if (childFieldList != null)
                 {
-                    foreach (string childRowField in childFieldList)
+                    foreach (FieldSpec childRowField in childFieldList)
                     {
-                        if (fieldsDict.ContainsKey(childRowField))
+                        if (fieldsDict.ContainsKey(childRowField.field))
                         {
-                            fieldsDict.Remove(childRowField);
+                            fieldsDict.Remove(childRowField.field);
                         }
                     }
                 }

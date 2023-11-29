@@ -6,14 +6,14 @@ namespace SpectrumWeb.Controllers.ControllerCommon
     {
       
 
-        public static string generateTableFields(List<FieldSpec> fieldList, List<string> childRowList = null)
+        public static string generateTableFields(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
             string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))&& !isChildRow(f,childRowList)).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
            
             return rtrnValue;
         }
 
-        public static string generateTableColumns(List<FieldSpec> fieldList, List<string> childRowList = null)
+        public static string generateTableColumns(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
 
             string rtrnValue = string.Empty;
@@ -29,7 +29,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        public static string generateTableHeader(List<FieldSpec> fieldList, List<string> childFieldList = null)
+        public static string generateTableHeader(List<FieldSpec> fieldList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
@@ -60,7 +60,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        public static string generateTableFooter(List<FieldSpec> fieldList, List<string> childFieldList = null)
+        public static string generateTableFooter(List<FieldSpec> fieldList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
@@ -83,7 +83,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         }
 
 
-        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList, List<string> childFieldList = null)
+        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
             List<int> ilist = new List<int>();
@@ -123,7 +123,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId", List<string> childFieldList = null)
+        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId", List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = "var tableBodyHtml = '';\n\n";
 
@@ -272,14 +272,14 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         }
 
 
-        private static bool isChildRow(FieldSpec fieldSpec, List<string> childFieldList)
+        private static bool isChildRow(FieldSpec fieldSpec, List<FieldSpec> childFieldList)
         {
-            if (childFieldList != null)
+            if (childFieldList is null)
             {
-                return childFieldList.Contains(fieldSpec.field);
+                return false;   
             }
 
-            return false;
+            return childFieldList.Any(x => x.field == fieldSpec.field);
 
         }
     }

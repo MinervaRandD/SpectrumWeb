@@ -30,8 +30,8 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("HoursAtInstall", "Hours At<br/>Install", "HoursAtInstall", "right", 80)
             ,new FieldSpec("CyclesAtInstall", "Cycles At<br/>Install", "CyclsAtInstall", "right", 80)
             ,new FieldSpec("WeeksAtInstall", "Weeks At<br/>Install", "WeeksAtInstall", "right", 80)
-            ,new FieldSpec("TermsTerminalNmbr", "Terms<br/>Terminal", "TermsTerminalNmbr", "center",120)
-            ,new FieldSpec("Notes", "Notes", "Notes", "left", 120)
+            //,new FieldSpec("TermsTerminalNmbr", "Terms<br/>Terminal", "TermsTerminalNmbr", "center",120)
+            //,new FieldSpec("Notes", "Notes", "Notes", "left", 120)
             ,new FieldSpec("ExchangedSerNmbr", "Exchanged<br/>Serial<br/>Number","ExchangedSerNmbr", "center", 120)
             ,new FieldSpec("ControlTag", "Control<br/>Tag", "ControlTag", "center", 120)
             ,new FieldSpec("VendorNumber", "Vendor<br/>Number", "VendorNumber", "center", 120)
@@ -41,16 +41,12 @@ namespace SpectrumWeb.Controllers.Maintenance
         List<FieldSpec> childFieldList = new List<FieldSpec>()
         {
             new FieldSpec("Terms", "Terms", "Terms", "Left", 500)
+            ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500)
         };
 
         public IActionResult Warranties()
         {
             List<GuaranteeWarranty> classList = context.GuaranteeWarranties.ToList();
-
-            List<string> childRows = new List<string>()
-            {
-                "TermsTerminalNmbr"
-            };
 
             List<object> childRowField = new List<object>();
 
@@ -73,7 +69,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                 displayFieldList
                 , "Guarantees and Warranties"
                 , classList.Select(e => (object)e).ToList()
-                , childRows);
+                , childFieldList);
         }
     }
     
