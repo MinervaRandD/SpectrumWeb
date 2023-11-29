@@ -29,7 +29,7 @@ public partial class GuaranteeWarranty
 
     public short? WeeksAtInstall { get; set; }
 
-    public string? TermsTerminalNmbr { get; set; }
+    public string? Terms { get; set; }
 
     public string? Notes { get; set; }
 

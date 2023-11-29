@@ -39,7 +39,7 @@ const classMap = new Map();
 
 //$(document).ready(window.alert("Table = " + table));
 
-$(document).ready( function () {
+document.addEventListener('DOMContentLoaded', function () {
     initializeClassMap();
     //buildclassTableBody();
    
@@ -57,7 +57,7 @@ $(document).ready( function () {
         ]
     } );
 
-    let table1 = new DataTable('#classTable', {
+    let table = new DataTable('#classTable', {
     
         dom: 'Bfrtip',
         select: true,
@@ -91,6 +91,38 @@ $(document).ready( function () {
 
             }
         });
+
+    table.on('click', 'td.dt-control', function (e) {
+        let tr = e.target.closest('tr');
+        let row = table.row(tr);
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+        }
+    });
+
+        function format(d) {
+            // `d` is the original data object for the row
+            return (
+                '<dl>' +
+                '<dt>Full name:</dt>' +
+                '<dd>' +
+                d.name +
+                '</dd>' +
+                '<dt>Extension number:</dt>' +
+                '<dd>' +
+                d.extn +
+                '</dd>' +
+                '<dt>Extra info:</dt>' +
+                '<dd>And any further details here (images etc)...</dd>' +
+                '</dl>'
+            );
+        }
+
     });
     
    alert("table = " + table1);
