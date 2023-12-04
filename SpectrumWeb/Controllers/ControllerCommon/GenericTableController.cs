@@ -1,11 +1,19 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SpectrumWeb.Models;
 using Newtonsoft.Json;
+using Microsoft.EntityFrameworkCore;
 
 namespace SpectrumWeb.Controllers.ControllerCommon
 {
     public class GenericTableController : Controller
     {
+
+        [HttpPost]
+        public string GenericUpdater(string action, string data)
+        {
+            return "success";
+        }
+
         public IActionResult GenericTableGenerator(
             List<FieldSpec> displayFieldList
             , string title
@@ -24,16 +32,16 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 var fieldsDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(str);
 
-                if (childFieldList != null)
-                {
-                    foreach (FieldSpec childRowField in childFieldList)
-                    {
-                        if (fieldsDict.ContainsKey(childRowField.field))
-                        {
-                            fieldsDict.Remove(childRowField.field);
-                        }
-                    }
-                }
+                //if (childFieldList != null)
+                //{
+                //    foreach (FieldSpec childRowField in childFieldList)
+                //    {
+                //        if (fieldsDict.ContainsKey(childRowField.field))
+                //        {
+                //            fieldsDict.Remove(childRowField.field);
+                //        }
+                //    }
+                //}
 
                 classFullValueList.Add(fieldsDict.Values.ToList());
 
@@ -73,7 +81,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             //ViewBag.ClassMapInitializer = classMapInitializer;
 
-            int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList);
+            int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
 
             if (totalTableWidth != null)
             {

@@ -8,7 +8,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
         public static string generateTableFields(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
-            string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))&& !isChildRow(f,childRowList)).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
+            string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
            
             return rtrnValue;
         }
@@ -24,8 +24,31 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 rtrnValue += "{\r\n            className: 'dt-control',\r\n            orderable: false,\r\n            data: null,\r\n            defaultContent: ''\r\n        },";
             }
 
-            rtrnValue += string.Join(",\n", fieldList.Where(f => !isChildRow(f, childRowList)).Select(f=>"{ data: '" + f.label + "' }"));
+            //rtrnValue += string.Join(",\n", fieldList.Where(f => !isChildRow(f, childRowList)).Select(f=>"{ data: '" + f.label + "' }"));
 
+            List<string> tableColumnSpecs = new List<string>();
+
+            foreach (FieldSpec fieldSpec in fieldList)
+            {
+                if (isChildRow(fieldSpec,childRowList))
+                {
+                    tableColumnSpecs.Add("{ data: '" + fieldSpec.label + "', visible: false }");
+                }
+
+                else
+                {
+                    tableColumnSpecs.Add("{ data: '" + fieldSpec.label + "' }");
+                }
+            }
+
+            rtrnValue += string.Join(",\n", tableColumnSpecs);
+            
+           // rtrnValue += string.Join(",\n", fieldList.Select(f => "{ data: '" + f.label + "' }"));
+
+            //if (childRowList != null)
+            //{
+            //    rtrnValue += ",\n" + string.Join(",\n", childRowList.Select(f => "{ data: '" + f.label + "' }"));
+            //}
             return rtrnValue;
         }
 
@@ -40,10 +63,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec, childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec, childFieldList))
+                //{
+                //    continue;
+                //}
 
                 string styleStr = "'text-align:center;";
 
@@ -56,6 +79,23 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
             }
+
+            //if (childFieldList != null)
+            //{
+            //    foreach (FieldSpec fieldSpec in childFieldList)
+            //    {
+            //        string styleStr = "'text-align:center;";
+
+            //        if (fieldSpec.fieldWidth.HasValue)
+            //        {
+            //            styleStr += "width:" + fieldSpec.fieldWidth.Value.ToString() + "px;";
+            //        }
+
+            //        styleStr += "'";
+
+            //        rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
+            //    }
+            //}
 
             return rtrnValue;
         }
@@ -71,13 +111,21 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec, childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec, childFieldList))
+                //{
+                //    continue;
+                //}
 
                 rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
             }
+
+            //if (childFieldList != null)
+            //{
+            //    foreach (FieldSpec fieldSpec in childFieldList)
+            //    {
+            //        rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
+            //    }
+            //}
 
             return rtrnValue;
         }
@@ -99,11 +147,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
-                    //if (isChildRow(fieldSpecList[i], childFieldList))
-                    //{
-                    //    continue;
-                    //}
-
                     string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
 
                     if (fieldJustify != null)
@@ -138,10 +181,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (var fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec,childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec,childFieldList))
+                //{
+                //    continue;
+                //}
 
                 rtrnValue += "    tableBodyHtml += \"    \" + \"" + tableRow(fieldSpec) + " + \"\\n\";\n";
             }
@@ -275,7 +318,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        internal static int? generateTableWidth(List<FieldSpec> displayFieldList)
+        internal static int? generateTableWidth(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList = null)
         {
             int totalWidth = 0;
 
@@ -284,6 +327,11 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 if (field.fieldWidth == null)
                 {
                     return null;
+                }
+
+                if (isChildRow(field, childFieldList))
+                {
+                    continue;
                 }
 
                 totalWidth += field.fieldWidth.Value;

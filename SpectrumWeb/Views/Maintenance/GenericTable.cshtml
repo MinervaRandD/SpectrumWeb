@@ -60,6 +60,24 @@ document.addEventListener('DOMContentLoaded', function () {
     editor.on('preSubmit', function (e, data, action) {
         console.log('preSubmit, action = ' + action);
         console.log('preSubmit, data=' + data.data);
+
+        let request = new XMLHttpRequest;
+
+        request.open('POST', '/GenericTable/GenericUpdater', false);
+
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        let jdata=JSON.stringify(data.data);
+
+        console.log('preSubmit, jdata=' + jdata);
+
+        request.send('action=' + action + '&data=' + jdata);
+
+        let response = request.responseText;
+
+        console.log('preSubmit, response=' + response);
+
+        return true;
     });
 
     let table = new DataTable('#classTable', {
