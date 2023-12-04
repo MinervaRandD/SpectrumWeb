@@ -50,12 +50,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     editor = new $.fn.dataTable.Editor( {
-    ajax: "../php/staff.php",
-    table: "#classTable",
-        fields: [
-           @Html.Raw(@ViewBag.TableFields)
-        ]
+    
+        table: "#classTable",
+            fields: [
+                @Html.Raw(@ViewBag.TableFields)
+            ]
     } );
+
+    editor.on('preSubmit', function (e, data, action) {
+        console.log('preSubmit, action = ' + action);
+        console.log('preSubmit, data=' + data.data);
+    });
 
     let table = new DataTable('#classTable', {
     
@@ -91,6 +96,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             }
         });
+
 
     table.on('click', 'td.dt-control', function (e) {
         let tr = e.target.closest('tr');
