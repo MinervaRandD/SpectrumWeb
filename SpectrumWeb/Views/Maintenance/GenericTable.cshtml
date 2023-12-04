@@ -130,21 +130,40 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
         function format(d) {
-            // `d` is the original data object for the row
-            return (
-                '<dl>' +
-                '<dt>Full name:</dt>' +
-                '<dd>' +
-                d.name +
-                '</dd>' +
-                '<dt>Extension number:</dt>' +
-                '<dd>' +
-                d.extn +
-                '</dd>' +
-                '<dt>Extra info:</dt>' +
-                '<dd>And any further details here (images etc)...</dd>' +
-                '</dl>'
-            );
+            //console.log("format=" + JSON.stringify(d));
+            let childElements =  @Html.Raw(ViewBag.ChildRows);
+
+            //console.log("format.type="+typeof(childElements));
+           // console.log("format='" + @Html.Raw(ViewBag.ChildRows) + "'");
+            //console.log("format=" + childElements);
+            //console.log("childElements[0]=" + childElements[0]);
+
+            //let fieldValue1 = d['Notes'];
+
+
+            let rtrnValu = '<dl>'
+           
+            for (let i = 0; i < childElements.length; i++) {
+
+                rtrnValu += '<dt>' + childElements[i][0] + '</dt>';
+                rtrnValu += '<dd style="height:' + childElements[i][2] + 'px">' + d[childElements[i][1]] + '</dd>';
+            }
+
+            rtrnValu += '</dl>';
+            
+
+           console.log(rtrnValu);
+
+            return(rtrnValu);
+
+            //return (
+            //    '<dl>' +
+            //    '<dt>' + childElements[1][0] + '</dt>' +
+            //    '<dd style="height:120px">' +
+            //    d[childElements[1][1]] +
+            //    '</dd>' +
+            //    '</dl>'
+            //);
         }
 
     });

@@ -40,8 +40,8 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> childFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Terms", "Terms", "Terms", "Left", 500)
-            ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500)
+            new FieldSpec("Terms", "Terms", "Terms", "Left", 500, "text", 24)
+            ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, "text", 128)
         };
 
         public IActionResult Warranties()

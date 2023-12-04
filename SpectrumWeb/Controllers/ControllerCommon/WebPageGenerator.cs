@@ -1,4 +1,5 @@
-﻿using System.Runtime.InteropServices.ComTypes;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System.Runtime.InteropServices.ComTypes;
 
 namespace SpectrumWeb.Controllers.ControllerCommon
 {
@@ -270,14 +271,25 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 return rtrnValue;
             }
 
-            rtrnValue += "<dl>\n";
+            rtrnValue = "[\n";
+
+            List<string> childTuples = new List<string>();
 
             foreach (FieldSpec childField in childFieldList)
             {
-                rtrnValue += "<dt>" + childField.description + ":</dt><dd>d." + childField.field + "</dd>\n";
+                short fieldHeight = 16;
+
+                if (childField.fieldHeight != null)
+                {
+                    fieldHeight = childField.fieldHeight.Value;
+                }
+
+                childTuples.Add("    [ '" + childField.description + "', '" + childField.field + "', " + fieldHeight + " ]");
             }
 
-            rtrnValue += "</dl>";
+            rtrnValue += string.Join(",\n", childTuples);
+
+            rtrnValue += "\n]";
 
             return rtrnValue;
         }
