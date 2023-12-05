@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata;
 using System.Runtime.InteropServices.ComTypes;
+using SpectrumWeb.Controllers.ControllerCommon;
 
 namespace SpectrumWeb.Controllers.ControllerCommon
 {
@@ -31,7 +32,8 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec,childRowList))
+        
+                if (ControllerCommon.isChildRow(fieldSpec,childRowList))
                 {
                     tableColumnSpecs.Add("{ data: '" + fieldSpec.label + "', visible: false }");
                 }
@@ -268,7 +270,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             if (childFieldList is null)
             {
-                return rtrnValue;
+                return "null";
             }
 
             rtrnValue = "[\n";
@@ -341,7 +343,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     return null;
                 }
 
-                if (isChildRow(field, childFieldList))
+                if (ControllerCommon.isChildRow(field, childFieldList))
                 {
                     continue;
                 }
@@ -352,17 +354,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return totalWidth;
         }
 
-
-        private static bool isChildRow(FieldSpec fieldSpec, List<FieldSpec> childFieldList)
-        {
-            if (childFieldList is null)
-            {
-                return false;   
-            }
-
-            return childFieldList.Any(x => x.field == fieldSpec.field);
-
-        }
 
     }
 }

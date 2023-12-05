@@ -9,6 +9,8 @@ public partial class GuaranteeWarranty
 
     public string PkTransactionId { get; set; } = null!;
 
+    public int Revision { get; set; }
+
     public string? Number { get; set; }
 
     public string? PartNumber { get; set; }

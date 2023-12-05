@@ -21,14 +21,12 @@ tbody tr {
 }
  .dataTables_wrapper
  {
-     margin-left:64px;
-     text-align:left;
+     margin:auto;
+     text-align:center;
      float:none;
  }
 
-#hoursAtInstallFooter input {
-  width: 48px;
-}
+
 
 </style>
 <script>
@@ -50,11 +48,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     
     editor = new $.fn.dataTable.Editor( {
-    
+
+
+        @Html.Raw(ViewBag.TemplateSpec)
+
         table: "#classTable",
-            fields: [
+        
+        fields:
+            [
                 @Html.Raw(@ViewBag.TableFields)
-            ]
+            ],
+
     } );
 
     editor.on('preSubmit', function (e, data, action) {
@@ -82,7 +86,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let table = new DataTable('#classTable', {
     
-        dom: 'Bfrtip',
+        //dom: 'Bfrtip',
+        dom: "<'row'<'col-sm-4'><'col-sm-4 text-center'lB><'col-sm-4'f>>" +
+            "<'row'<'col-sm-12'tr>>" +
+            "<'row'<'col-sm-4'>'row'<'col-sm-4'i><'col-sm-4'p>>",
         select: true,
         buttons: [
             'copy', 'csv', 'excel',
@@ -112,9 +119,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     });
                 });
 
-            }
+            },
+
+    //        scrollY:        500,
+    scrollX:        false,
+    //scrollCollapse: true,
+    //paging:         true,
+    //fixedColumns:   true,
+    //select: true 
         });
 
+
+    table.buttons(0, null).containers().css('float:right');
 
     table.on('click', 'td.dt-control', function (e) {
         let tr = e.target.closest('tr');
@@ -134,11 +150,11 @@ document.addEventListener('DOMContentLoaded', function () {
             let childElements =  @Html.Raw(ViewBag.ChildRows);
 
             //console.log("format.type="+typeof(childElements));
-           // console.log("format='" + @Html.Raw(ViewBag.ChildRows) + "'");
+           
             //console.log("format=" + childElements);
             //console.log("childElements[0]=" + childElements[0]);
 
-            //let fieldValue1 = d['Notes'];
+           // let fieldValue1 = d['Notes'];
 
 
             let rtrnValu = '<dl>'
@@ -152,7 +168,7 @@ document.addEventListener('DOMContentLoaded', function () {
             rtrnValu += '</dl>';
             
 
-           console.log(rtrnValu);
+           //console.log(rtrnValu);
 
             return(rtrnValu);
 
@@ -191,7 +207,9 @@ function initializeClassMap()
 
 <div style="height:32px"></div>
 
-<table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
+@Html.Raw(ViewBag.TemplateDiv)
+
+<table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;@ViewBag.TableWidth">
     <thead>
         <tr>
             @Html.Raw(@ViewBag.TableHeader)

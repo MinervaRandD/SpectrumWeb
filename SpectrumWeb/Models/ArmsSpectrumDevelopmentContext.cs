@@ -41,6 +41,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
 
     public virtual DbSet<GuaranteeWarranty> GuaranteeWarranties { get; set; }
 
+    public virtual DbSet<GuaranteeWarrantyBaseView> GuaranteeWarrantyBaseViews { get; set; }
+
     public virtual DbSet<Inspection> Inspections { get; set; }
 
     public virtual DbSet<InspectionPart> InspectionParts { get; set; }
@@ -813,7 +815,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
 
         modelBuilder.Entity<GuaranteeWarranty>(entity =>
         {
-            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__guarante__4ADA2B4366C5EBCB");
+            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__guarante__4ADA2B4302CD95EF");
 
             entity.ToTable("guarantee_warranty", "maint");
 
@@ -849,6 +851,62 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(41)
                 .IsUnicode(false)
                 .HasColumnName("part_number");
+            entity.Property(e => e.Revision).HasColumnName("revision");
+            entity.Property(e => e.SerialNmbr)
+                .HasMaxLength(16)
+                .IsUnicode(false)
+                .HasColumnName("serial_nmbr");
+            entity.Property(e => e.Terms)
+                .HasMaxLength(72)
+                .IsUnicode(false)
+                .HasColumnName("terms");
+            entity.Property(e => e.VendorNumber)
+                .HasMaxLength(9)
+                .IsUnicode(false)
+                .HasColumnName("vendor_number");
+            entity.Property(e => e.WeeksAtInstall).HasColumnName("weeks_at_install");
+            entity.Property(e => e.WeeksGuaranteed).HasColumnName("weeks_guaranteed");
+        });
+
+        modelBuilder.Entity<GuaranteeWarrantyBaseView>(entity =>
+        {
+            entity
+                .HasNoKey()
+                .ToView("guarantee_warranty_base_view", "maint");
+
+            entity.Property(e => e.AtaChap).HasColumnName("ata_chap");
+            entity.Property(e => e.ControlTag).HasColumnName("control_tag");
+            entity.Property(e => e.CyclesGuaranteed).HasColumnName("cycles_guaranteed");
+            entity.Property(e => e.CyclsAtInstall).HasColumnName("cycls_at_install");
+            entity.Property(e => e.DateReceived)
+                .HasColumnType("date")
+                .HasColumnName("date_received");
+            entity.Property(e => e.ExchangedSerNmbr)
+                .HasMaxLength(20)
+                .IsUnicode(false)
+                .HasColumnName("exchanged_ser_nmbr");
+            entity.Property(e => e.HoursAtInstall).HasColumnName("hours_at_install");
+            entity.Property(e => e.HoursGuaranteed).HasColumnName("hours_guaranteed");
+            entity.Property(e => e.Notes)
+                .HasColumnType("ntext")
+                .HasColumnName("notes");
+            entity.Property(e => e.Number)
+                .HasMaxLength(14)
+                .IsUnicode(false)
+                .HasColumnName("number");
+            entity.Property(e => e.PartNumber)
+                .HasMaxLength(41)
+                .IsUnicode(false)
+                .HasColumnName("part_number");
+            entity.Property(e => e.PkRecordId)
+                .HasMaxLength(36)
+                .IsUnicode(false)
+                .HasColumnName("pk_record_id");
+            entity.Property(e => e.PkTransactionId)
+                .HasMaxLength(36)
+                .IsUnicode(false)
+                .HasColumnName("pk_transaction_id");
+            entity.Property(e => e.Revision).HasColumnName("revision");
             entity.Property(e => e.SerialNmbr)
                 .HasMaxLength(16)
                 .IsUnicode(false)
@@ -2770,7 +2828,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
 
         modelBuilder.Entity<Transaction>(entity =>
         {
-            entity.HasKey(e => e.PkTransactionId).HasName("PK__transact__2B807A3E28B92F92");
+            entity.HasKey(e => e.PkTransactionId).HasName("PK__transact__2B807A3E705A911B");
 
             entity.ToTable("transactions", "common");
 
@@ -2789,6 +2847,10 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.TransactDate)
                 .HasColumnType("datetime")
                 .HasColumnName("transact_date");
+            entity.Property(e => e.TransactType)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasColumnName("transact_type");
             entity.Property(e => e.UserId)
                 .HasMaxLength(36)
                 .IsUnicode(false)

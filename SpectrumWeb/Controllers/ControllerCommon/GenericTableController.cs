@@ -2,6 +2,7 @@
 using SpectrumWeb.Models;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace SpectrumWeb.Controllers.ControllerCommon
 {
@@ -14,11 +15,30 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return "success";
         }
 
+
         public IActionResult GenericTableGenerator(
             List<FieldSpec> displayFieldList
             , string title
             , List<object> classList
-            , List<FieldSpec> childFieldList = null)
+            , List<FieldSpec> childFieldList = null
+            , string customForm = null)
+        {
+            return GenericTableGenerator(
+                "/GenericTable/GenericUpdater"
+                , displayFieldList
+                , title
+                , classList
+                , childFieldList
+                , customForm);
+        }
+
+        public IActionResult GenericTableGenerator(
+        string updaterURL
+        , List<FieldSpec> displayFieldList
+        , string title
+        , List<object> classList
+        , List<FieldSpec> childFieldList = null
+        , string customForm = null)
         {
             ViewBag.Title = title;
 
@@ -77,6 +97,19 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             string childRows = WebPageGenerator.generateChildRows(childFieldList);
 
             ViewBag.ChildRows = childRows;
+
+            if (customForm!= null)
+            {
+                ViewBag.TemplateSpec = "template: '#customForm',";
+                ViewBag.TemplateDiv = customForm;
+            }
+
+            else
+            {
+                ViewBag.TemplateSpec = string.Empty;
+                ViewBag.TemplateDiv = string.Empty;
+            }
+
             //string classMapInitializer = WebPageGenerator.generateClassMapInitializer(classFullValueList, className);
 
             //ViewBag.ClassMapInitializer = classMapInitializer;

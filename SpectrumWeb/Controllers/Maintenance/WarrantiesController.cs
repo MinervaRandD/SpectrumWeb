@@ -4,6 +4,7 @@ using SpectrumWeb.Controllers.ControllerCommon;
 using Newtonsoft.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using SpectrumWeb.Controllers.Admin;
 
 namespace SpectrumWeb.Controllers.Maintenance
 {
@@ -18,9 +19,10 @@ namespace SpectrumWeb.Controllers.Maintenance
         }
 
 
-        List<FieldSpec> displayFieldList = new List<FieldSpec>()
+        private static List<FieldSpec> displayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Number", "Number", "Number", "center", 120)
+            new FieldSpec("Revision", "Revision", "Revision", "right", 60)
+            ,new FieldSpec("Number", "Number", "Number", "center", 120)
             ,new FieldSpec("PartNumber", "Part<br/>Number", "PartNumber", "center", 120)
             ,new FieldSpec("SerialNmbr", "Serial<br/>Number", "SerialNmbr", "center", 120)
             ,new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, "date")
@@ -38,19 +40,21 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("AtaChap", "ATA<br/>Chap", "AtaChap", "center", 50)
         };
 
-        List<FieldSpec> childFieldList = new List<FieldSpec>()
+        private static List<FieldSpec> childFieldList = new List<FieldSpec>()
         {
             new FieldSpec("Terms", "Terms", "Terms", "Left", 500, "text", 24)
             ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, "text", 128)
         };
 
+        private string customForm = ControllerCommon.ControllerCommon.TwoPartCustomForm(displayFieldList.GetRange(1, displayFieldList.Count-1), childFieldList);
+
         public IActionResult Warranties()
         {
-            List<GuaranteeWarranty> classList = context.GuaranteeWarranties.ToList();
+            List<GuaranteeWarrantyBaseView> classList = context.GuaranteeWarrantyBaseViews.ToList();
 
             List<object> childRowField = new List<object>();
 
-            foreach (GuaranteeWarranty guaranteeWarranty in classList)
+            foreach (GuaranteeWarrantyBaseView guaranteeWarranty in classList)
             {
                 //List<object> fieldList = new List<object>();
 
@@ -69,7 +73,8 @@ namespace SpectrumWeb.Controllers.Maintenance
                 displayFieldList
                 , "Guarantees and Warranties"
                 , classList.Select(e => (object)e).ToList()
-                , childFieldList);
+                , childFieldList
+                , customForm);
         }
     }
     
