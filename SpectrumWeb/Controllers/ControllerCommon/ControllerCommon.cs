@@ -5,9 +5,11 @@
     {
         public static string TwoPartCustomForm(List<FieldSpec> fieldList, List<FieldSpec> childFieldList)
         {
-            string rtrnValue = "<div id='customForm' class='row'>\n";
+            //string rtrnValue = "<div id='customForm' class='row'>\n";
+            string rtrnValue = "<div id='customForm'>\n";
+            //rtrnValue += "    <div class='col'>\n";
 
-            rtrnValue += "    <div class='col'>\n";
+            rtrnValue += "    <fieldset>\n";
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
@@ -19,13 +21,15 @@
                 rtrnValue += "         <editor-field name='" + fieldSpec.field + "'></editor-field>\n";
             }
 
-            rtrnValue += "    </div>\n";
+            // rtrnValue += "    </div>\n";
 
-            rtrnValue += "    <div class='col'>\n";
+            rtrnValue += "    </fieldset>\n";
+
+            rtrnValue += "    <fieldset>\n";
 
             foreach (FieldSpec fieldSpec in childFieldList)
             {
-                rtrnValue += "         <editor-field name='" + fieldSpec.field + "'";
+                rtrnValue += "         <editor-field name='" + fieldSpec.field + "' type='textarea' ";
                 
                 if (fieldSpec.fieldHeight != null)
                 {
@@ -35,7 +39,9 @@
                 rtrnValue += "></editor-field>\n";
             }
 
-            rtrnValue += "    </div>\n";
+            rtrnValue += "    </fieldset>\n";
+
+            // rtrnValue += "    </div>\n";
 
             rtrnValue += "</div>";
 

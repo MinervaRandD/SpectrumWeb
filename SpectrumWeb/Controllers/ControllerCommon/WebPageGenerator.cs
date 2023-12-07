@@ -10,7 +10,21 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
         public static string generateTableFields(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
-            string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
+            List<string> tableFields = new List<string>();
+
+            foreach (FieldSpec field in fieldList)
+            {
+                if (ControllerCommon.isChildRow(field, childRowList))
+                {
+                    tableFields.Add("{ label: '" + field.description + "', name: '" + field.field + "', type:'textarea', className:'largeTextArea'}");
+                }
+                else
+                {
+                    tableFields.Add("{ label: '" + field.description + "', name: '" + field.field + "'}");
+                }
+            }
+
+            string rtrnValue = string.Join(",\n", tableFields);
            
             return rtrnValue;
         }

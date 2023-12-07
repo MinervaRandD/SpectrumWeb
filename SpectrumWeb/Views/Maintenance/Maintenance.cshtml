@@ -56,7 +56,7 @@ function basicElementMenu(e) {
                     buildButton("/Warehouses/Warehouses", "Warehouses")
                     ;
 
-    document.getElementById('SecondLevelTabs').innerHTML = menuText;
+    document.getElementById('TabLevel2').innerHTML = menuText;
     document.getElementById('main_header').innerHTML = "MAINTENANCE"
 }
 
@@ -81,7 +81,7 @@ function maintenanceMenu(e) {
                     buildButton("/Parts/M23ReliabilityMonitoring", "Reliability Monitoring", 220)
                     ;
 
-    document.getElementById('SecondLevelTabs').innerHTML = menuText;
+            document.getElementById('TabLevel2').innerHTML = menuText;
        
 }
 
@@ -101,7 +101,7 @@ function inspections(e) {
                     ;
 
 
-            document.getElementById('SecondLevelTabs').innerHTML = menuText;
+            document.getElementById('TabLevel2').innerHTML = menuText;
 }
 
 function phyInventory() {
@@ -119,22 +119,28 @@ function stores() {
 </script>
 </head>
 <body>
-    <button id="ElementMenuButton" class="topTab unSelected" onclick="basicElementMenu(this)">Basic Elements</button>
-    <button id="MaintenanceMenuButton" class="topTab unSelected" onclick="maintenanceMenu(this)">Maintenance</button>
-    <button id="WorkOrdersButton" class="topTab unSelected" onclick="workOrders(this)">Work Orders</button>
-    <button id="InspectionsButton" class="topTab unSelected" onclick="inspections(this)">Inspections</button>
-    <button id="PhysInventoryButton" class="topTab unSelected" onclick="physInventory(this)">Physical Inventory</button>
-    <button id="ComponentsButton" class="topTab unSelected" onclick="components(this)">Components</button>
-    <button id="StoresButton" class="topTab unSelected" onclick="stores(this)">Stores</button>
-    <hr style="color:maroon;height:3px;margin-top:0px" />
-    <div style="height:42px"></div>
-    <div id='SecondLevelTabs'>
+    <div style="position:center;height:128px">
 
+        <button id="ElementMenuButton" class="topTab unSelected" onclick="basicElementMenu(this)">Basic Elements</button>
+        <button id="MaintenanceMenuButton" class="topTab unSelected" onclick="maintenanceMenu(this)">Maintenance</button>
+        <button id="WorkOrdersButton" class="topTab unSelected" onclick="workOrders(this)">Work Orders</button>
+        <button id="InspectionsButton" class="topTab unSelected" onclick="inspections(this)">Inspections</button>
+        <button id="PhysInventoryButton" class="topTab unSelected" onclick="physInventory(this)">Physical Inventory</button>
+        <button id="ComponentsButton" class="topTab unSelected" onclick="components(this)">Components</button>
+        <button id="StoresButton" class="topTab unSelected" onclick="stores(this)">Stores</button>
+        <hr style="color:maroon;height:3px;margin-top:0px" />
+        <div style="height:42px"></div>
+        <div id='SecondLevelTabs'>
+
+        </div>
+        <div id="TabLevel1" style="width:100%"></div>
+        <div id="TabLevel2" style="width:100%"></div>
+        <div style="height:128px"></div>
+        
     </div>
-    
 
-<div style="height:42px"></div>
+    <iframe id="maintenance" name="maintenance" style="width:100%;min-height:1000px;height:100px;position:center;">
+    </iframe>
 
- <iframe id="maintenance" name="maintenance" style="width:100%;min-height:1000px;height:100px">
-</iframe>
+    @*</div>*@
 </body>

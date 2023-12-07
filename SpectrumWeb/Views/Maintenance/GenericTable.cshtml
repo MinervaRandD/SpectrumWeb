@@ -19,15 +19,42 @@ tbody tr {
     padding-left:2px;
     padding-right:2px;
 }
- .dataTables_wrapper
+ /*.dataTables_wrapper
  {
      margin:auto;
      text-align:center;
      float:none;
  }
+*/
+    .testFieldName {
+        background-color: azure;
+        height: 64px;
+    }
+    .DTE_FieldInput {
+        background-color: yellow;
+        height:64px;
+    }
+    .FixedRow {
+        position:fixed;
+    }
 
+    div.DTE_Field_Type_textarea textarea  {
+        padding: 3px;
+        width: 200px;
+        height: 120px;
+        float:left;
+    }
 
+    #customForm {
+        display: flex;
+        flex-flow: row wrap;
+    }
 
+    #customForm fieldset {
+        flex: 1;
+           
+        margin: 0.5em;
+    }
 </style>
 <script>
 
@@ -87,7 +114,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let table = new DataTable('#classTable', {
     
         //dom: 'Bfrtip',
-        dom: "<'row'<'col-sm-4'><'col-sm-4 text-center'lB><'col-sm-4'f>>" +
+        dom: "<'row'<'col-sm-2'><'col-sm-2'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-4'>'row'<'col-sm-4'i><'col-sm-4'p>>",
         select: true,
