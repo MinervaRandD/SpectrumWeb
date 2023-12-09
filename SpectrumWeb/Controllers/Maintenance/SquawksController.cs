@@ -19,47 +19,105 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> squawksMasterDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "right", 64),
-            new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 40),
+            new FieldSpec("Rev", "Rev", "Revision", "center", 20),
+            new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "right", 60),
+            new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 30),
             new FieldSpec("Description", "Description", "Description", "left", 240),
-            new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 64),
-            new FieldSpec("AtaChapCode", "Ata<br/>Chap<br/>Code", "AtaChapCode", "center", 50),
-            new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, "date"),
+            new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 60),
+            new FieldSpec("AtaChapAndSub", "Ata", "AtaChapAndSub", "center", 50),
+            new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 72, "date"),
             new FieldSpec("ReportedBy", "Report By", "ReportedBy", "right", 64),
-            new FieldSpec("DateDispDuDef", "Date<br/>Reported", "DateDispDuDef", "center", 80, "date"),
-            new FieldSpec("Flight", "Flight", "Flight", "center", 60),
+            new FieldSpec("DateDeferred", "Date<br>Deferred To", "DateDeferred", "center", 72, "date"),
+            new FieldSpec("DateCompleted", "Date<br>Completed", "DateComp", "center", 72, "date"),
+            new FieldSpec("Flightt", "Flight<br/>Nmbr", "Flight", "center", 60),
             new FieldSpec("AcType", "A/C<br/>Type", "AcType", "center", 60),
+            new FieldSpec("MinEqpList", "Min<br/>Equip<br/>List", "MinEquipList", "center", 60),
+            new FieldSpec("AFAtSqwk", "Airframe<br/>At Squawk", "AirframeAtSqwk", "center", 60),
             new FieldSpec("FlightLogNmbr", "Flight<br/>Log<br/>Nmbr", "FlightLogNmbr", "center", 80),
-            new FieldSpec("City", "City", "City", "center", 60),
-            new FieldSpec("MinEquipList", "Min<br/>Equip<br/>List", "MinEquipList", "center", 60),
-            new FieldSpec("DmiYN", "DMI<br/>Item<br/>(Y/N)", "DmiYN", "center", 50, "bool"),
-            new FieldSpec("DmiType", "DMI<br/>Type", "DmiType", "center", 60),
+            new FieldSpec("LogItemNmbr", "Log<br/>Item Nmbr", "ItemNmbr", "center", 80),
+            new FieldSpec("City", "City", "City", "center", 40),
+            new FieldSpec("DmiYN", "DMI<br/>Item<br/>(Y/N)", "DmiYN", "center", 40, "bool"),
+            new FieldSpec("DmiType", "DMI<br/>Type", "DmiType", "center", 50),
             new FieldSpec("DmiNumber", "DMI<br/>Nmbr", "DmiNumber", "right", 60),
-            new FieldSpec("EngPositionNmbr", "Eng<br/>Posn<br/>Nmbr", "EngPositionNmbr", "right", 40),
-            new FieldSpec("DelayYN", "Delay<br/>(Y/N)", "DelayYN", "center", 50, "bool"),
-            new FieldSpec("DelayMinutes", "Delay<br/>Minutes", "DelayMinutes", "right", 80),
-            new FieldSpec("CancellationYN", "Cancel<br/>(Y/N)", "CancellationYN", "center", 50, "bool"),
-            new FieldSpec("ServiceDiffYN", "Svc<br/>Diff<br/>(Y/N)", "ServiceDiffYN", "center", 50, "bool"),
-            new FieldSpec("EngineShutDown", "Engine<br/>Shut<br/>Down", "EngineShutDown", "center", 50, "bool"),
-            new FieldSpec("Approach", "Aprch", "Approach", "center", 50, "bool"),
-            new FieldSpec("Landing", "Land", "Landing", "center", 50, "bool"),
-            new FieldSpec("CatIiiSignif", "Cat<br/>III<br/>Signif", "CatIiiSignif", "center", 50, "bool"),
-            new FieldSpec("CatIiiVerified", "Cat<br/>III<br/>Verified", "CatIiiVerified", "center", 50, "bool"),
-            new FieldSpec("EtopsSignificant", "Etops<br/>Signif", "EtopsSignificant", "center", 50, "bool"),
-            new FieldSpec("EtopsConfirmed", "Etops<br/>Conf", "EtopsConfirmed", "center", 50, "bool"),
+            new FieldSpec("EngPositionNmbr", "Eng<br/>Posn<br/>Nmbr", "EngPositionNmbr", "right", 30),
+            new FieldSpec("DelayYN", "Delay<br/>(Y/N)", "DelayYN", "center", 40, "bool"),
+            new FieldSpec("DelayMinutes", "Delay<br/>Mins", "DelayMinutes", "right", 40),
+            new FieldSpec("CancellationYN", "Cancel<br/>(Y/N)", "CancellationYN", "center", 40, "bool"),
+            new FieldSpec("ServiceDiffYN", "Svc<br/>Diff<br/>(Y/N)", "ServiceDiffYN", "center", 40, "bool"),
+            new FieldSpec("EngineShutDown", "Engine<br/>Shut<br/>Down", "EngineShutDown", "center", 40, "bool"),
+            new FieldSpec("Approach", "Aprch", "Approach", "center", 40, "bool"),
+            new FieldSpec("Landing", "Land", "Landing", "center", 40, "bool"),
+            new FieldSpec("CatIiiSignif", "Cat<br/>III<br/>Signif", "CatIiiSignif", "center", 40, "bool"),
+            new FieldSpec("CatIiiVerified", "Cat<br/>III<br/>Verified", "CatIiiVerified", "center", 40, "bool"),
+            new FieldSpec("CatIiiApproach", "Cat<br/>III<br/>Approach", "CatIiiApproach", "center", 40, "bool"),
+            new FieldSpec("CatIiiLanding", "Cat<br/>III<br/>Landing", "CatIiiLndgTyp", "center", 40, "bool"),
+            new FieldSpec("EtopsSignificant", "Etops<br/>Signif", "EtopsSignificant", "center", 40, "bool"),
+            new FieldSpec("EtopsConfirmed", "Etops<br/>Conf", "EtopsConfirmed", "center", 40, "bool"),
             new FieldSpec("EtopsConfirmedBy", "Etops<br/>Conf<br/>By", "EtopsConfirmedBy", "right", 60),
-            new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 50, "bool"),
+            new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 40, "bool"),
             new FieldSpec("EtopsVerifiedBy", "Etops<br/>Verified<br/>By", "EtopsVerifiedBy", "right", 60),
-            new FieldSpec("Resolution", "Resolution", "Resolution", "left", 240)
+             new FieldSpec("AuditPrint", "Audit<br/>Print", "AuditPrint", "center", 40, "bool")
         };
 
+        List<FieldSpec> squawkMasterChildRows = new List<FieldSpec>()
+        {
+            new FieldSpec("Description", "Description", "Description", "left", 240),
+        };
 
         public IActionResult Squawks()
         {
-            
-            List < SquawkMaster > classList = _context.SquawkMasters.ToList();
+            var classList =
+                (from s in _context.SquawkMasters
+                        select new
+                        {
+                            s.PkRecordId,
+                            s.Revision,
+                            s.SquawkNumber,
+                            s.TypeCode,
+                            s.Description,
+                            s.TailNmbr,
+                            s.AtaChapAndSub,
+                            s.DateReceived,
+                            s.ReportedBy,
+                            s.DateDeferred,
+                            s.DateComp,
+                            s.Flight,
+                            s.AcType,
+                            s.MinEquipList,
+                            s.AirframeAtSqwk,
+                            s.FlightLogNmbr,
+                            s.ItemNmbr,
+                            s.City,
+                            s.DmiYN,
+                            s.DmiType,
+                            s.DmiNumber,
+                            s.EngPositionNmbr,
+                            s.DelayYN,
+                            s.DelayMinutes,
+                            s.CancellationYN,
+                            s.ServiceDiffYN,
+                            s.EngineShutDown,
+                            s.Approach,
+                            s.Landing,
+                            s.CatIiiSignif,
+                            s.CatIiiVerified,
+                            s.CatIiiApproach,
+                            s.CatIiiLndgTyp,
+                            s.EtopsSignificant,
+                            s.EtopsConfirmed,
+                            s.EtopsConfirmedBy,
+                            s.EtopsVerified,
+                            s.EtopsVerifiedBy,
+                            s.AuditPrint
 
-            return (new GenericTableController()).GenericTableGenerator(squawksMasterDisplayFieldList, "Squawks", classList.Select(e => (object)e).ToList());
+                        }).ToList();
+
+
+            return (new GenericTableController()).GenericTableGenerator(
+                squawksMasterDisplayFieldList
+                , "Squawks"
+                , classList.Select(e => (object)e).ToList()
+                , squawkMasterChildRows);
         }
 
 
@@ -110,10 +168,10 @@ namespace SpectrumWeb.Controllers.Maintenance
                                 ,s.SquawkNumber
                                 ,s.TailNmbr
                                 ,s.TypeCode
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.ReportedBy
                                 ,s.DateReceived
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 ,s.DateComp
                                 ,s.FlightLogNmbr
                                 ,s.ItemNmbr
@@ -187,13 +245,13 @@ namespace SpectrumWeb.Controllers.Maintenance
                            
                              select new {
                                  s.PkRecordId
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 ,s.TailNmbr
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.City
                                 ,s.TypeCode
-                                ,s.PartNumbers
-                                ,s.SerialNumbers
+                                ,s.PartNumber01
+                                ,s.SerialNumber01
                                 ,s.WhoFixed
                                 ,s.FirstInspector
                                 ,s.EtopsSignificant
@@ -265,7 +323,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                                  ,s.SquawkNumber
                                 ,s.DateReceived
                                 ,s.TailNmbr
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.Flight
                                 ,s.DelayYN
                                 ,s.CancellationYN
@@ -274,7 +332,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                                 ,s.Description
                                 ,s.Resolution
                                 ,s.DateComp
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 , a.AircraftType }).ToList();
 
 

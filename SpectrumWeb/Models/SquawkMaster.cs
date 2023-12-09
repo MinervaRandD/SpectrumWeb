@@ -9,21 +9,21 @@ public partial class SquawkMaster
 
     public string PkTransactionId { get; set; } = null!;
 
+    public int? Revision { get; set; }
+
     public string? SquawkNumber { get; set; }
 
     public string? TypeCode { get; set; }
 
     public string? Description { get; set; }
 
-    public string? Resolution { get; set; }
-
-    public short? AtaChapCode { get; set; }
-
     public DateTime? DateReceived { get; set; }
 
     public int? ReportedBy { get; set; }
 
-    public DateTime? DateDispDuDef { get; set; }
+    public DateTime? DateDeferred { get; set; }
+
+    public DateTime? DateComp { get; set; }
 
     public short? FlightLogNmbr { get; set; }
 
@@ -32,12 +32,6 @@ public partial class SquawkMaster
     public short? Flight { get; set; }
 
     public string? AcType { get; set; }
-
-    public DateTime? DateComp { get; set; }
-
-    public int? WorkOrderNmbr { get; set; }
-
-    public string? PartNumbers { get; set; }
 
     public bool? EtopsSignificant { get; set; }
 
@@ -56,8 +50,6 @@ public partial class SquawkMaster
     public bool? CatIiiApproach { get; set; }
 
     public bool? CatIiiLndgTyp { get; set; }
-
-    public string? TextProbAndResolu { get; set; }
 
     public short? EngPositionNmbr { get; set; }
 
@@ -83,9 +75,9 @@ public partial class SquawkMaster
 
     public string? MinEquipList { get; set; }
 
-    public double? AirframeAtSqwk { get; set; }
+    public string? AirframeAtSqwk { get; set; }
 
-    public double? AFWhenDone { get; set; }
+    public string? AFWhenDone { get; set; }
 
     public short? DelayMinutes { get; set; }
 
@@ -99,9 +91,41 @@ public partial class SquawkMaster
 
     public int? WhoFixed { get; set; }
 
+    public int? WorkOrderNmbr { get; set; }
+
     public int? FirstInspector { get; set; }
 
     public int? SecondInspector { get; set; }
 
-    public string? SerialNumbers { get; set; }
+    public string? PartNumber01 { get; set; }
+
+    public string? PartNumber02 { get; set; }
+
+    public string? PartNumber03 { get; set; }
+
+    public string? PartNumber04 { get; set; }
+
+    public string? PartNumber05 { get; set; }
+
+    public string? Warehouse01 { get; set; }
+
+    public string? Warehouse02 { get; set; }
+
+    public string? Warehouse03 { get; set; }
+
+    public string? Warehouse04 { get; set; }
+
+    public string? Warehouse05 { get; set; }
+
+    public string? SerialNumber01 { get; set; }
+
+    public string? SerialNumber02 { get; set; }
+
+    public string? SerialNumber03 { get; set; }
+
+    public string? SerialNumber04 { get; set; }
+
+    public string? SerialNumber05 { get; set; }
+
+    public string? Resolution { get; set; }
 }
