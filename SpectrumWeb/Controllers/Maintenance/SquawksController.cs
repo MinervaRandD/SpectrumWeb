@@ -67,7 +67,7 @@ namespace SpectrumWeb.Controllers.Maintenance
         private string squawkChildFieldFormatter =
             @"'<table>
                  <tr>
-                    <td>' + d.discription '</td>
+                    <td>' + d.discription + '</td>
                  </tr>
               </table>'
             ";

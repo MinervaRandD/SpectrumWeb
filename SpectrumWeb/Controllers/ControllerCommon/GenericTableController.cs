@@ -123,7 +123,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             //ViewBag.ClassMapInitializer = classMapInitializer;
 
-            ////int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
+            int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
 
             if (totalTableWidth != null)
             {
