@@ -173,40 +173,13 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
         function format(d) {
-            //console.log("format=" + JSON.stringify(d));
-            let childElements =  @Html.Raw(ViewBag.ChildRows);
-
-            //console.log("format.type="+typeof(childElements));
            
-            //console.log("format=" + childElements);
-            //console.log("childElements[0]=" + childElements[0]);
+            let rtrnValu = @Html.Raw(ViewBag.ChildFieldFormatter);
 
-           // let fieldValue1 = d['Notes'];
-
-
-            let rtrnValu = '<dl>'
-           
-            for (let i = 0; i < childElements.length; i++) {
-
-                rtrnValu += '<dt>' + childElements[i][0] + '</dt>';
-                rtrnValu += '<dd style="height:' + childElements[i][2] + 'px">' + d[childElements[i][1]] + '</dd>';
-            }
-
-            rtrnValu += '</dl>';
-            
-
-           //console.log(rtrnValu);
+            console.log(rtrnValu);
 
             return(rtrnValu);
 
-            //return (
-            //    '<dl>' +
-            //    '<dt>' + childElements[1][0] + '</dt>' +
-            //    '<dd style="height:120px">' +
-            //    d[childElements[1][1]] +
-            //    '</dd>' +
-            //    '</dl>'
-            //);
         }
 
     });

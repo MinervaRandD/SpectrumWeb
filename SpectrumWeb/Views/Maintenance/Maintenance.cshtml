@@ -5,6 +5,50 @@
 }
 <head>
 
+<style>
+    
+.level1Tab {
+    border:solid;
+    padding-bottom:40px;
+    margin:1px;
+    color:maroon;
+    /*border-radius:25px;*/
+    text-align:center;
+    font-size:large;
+    width:200px;
+    height:32px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;
+}
+
+.level1Tab:hover {
+    background-color:maroon;
+}
+
+.level1TabActive {
+    background-color:maroon;
+    color:white;
+}
+   
+.level2Tab {
+    border:solid;
+    padding-bottom:40px;
+    margin:1px;
+    color:maroon;
+    /*border-radius:25px;*/
+    text-align:center;
+    font-size:large;
+    width:200px;
+    height:32px;
+    border-top-left-radius:20px;
+    border-top-right-radius:20px;        
+}
+
+.level2TabActive {
+    background-color:maroon;
+    color:white;
+}
+</style>
 <script>
 
 var topTabList = null;
@@ -15,38 +59,31 @@ $(document).ready(function() {
     topTabList = document.getElementsByClassName("topTab");
     });
 
-function setTopButtonClass(selectedId) {
-    console.log('\n\nselectedId=' + selectedId);
 
-    for (button of topTabList) {
-
-
-        if (button.id == selectedId) {
-      
-            $(button).removeClass('unSelected');
-            $(button).addClass('Selected');
-        }
-
-        else {
-           
-            $(button).removeClass('Selected');
-            $(button).addClass('unSelected');
-        }
-    }
-}
-
-function loadPage(url) {
+function loadPage(e, url) {
+    setLevel2TabState(e);
     window.open(url, 'maintenance');
 }
 
 function buildButton(url, label, width=184){
-    return "<button class='secondLevelTab' style='width:'" + width + "px' onclick='loadPage(\"" + url + "\")'>" + label + "</button>\n";
+    return "<button class='level2Tab' style='width:'" + width + "px' onclick='loadPage(this, \"" + url + "\")'>" + label + "</button>\n";
+}
+
+function setLevel1TabState(e)
+{
+    $(".level1Tab").removeClass("level1TabActive");
+    $(e).addClass("level1TabActive");
+}
+
+function setLevel2TabState(e)
+{
+    $(".level2Tab").removeClass("level2TabActive");
+    $(e).addClass("level2TabActive");
 }
 
 function basicElementMenu(e) {
 
-   
-    setTopButtonClass(e.id);
+    setLevel1TabState(e);
 
     var menuText =  buildButton("/AC/Aircraft", "Aircraft") +
                     buildButton("/Warranties/Warranties", "Guarantees/Warranties") +
@@ -62,8 +99,7 @@ function basicElementMenu(e) {
 
 function maintenanceMenu(e) {
 
-   
-    setTopButtonClass(e.id);
+    setLevel1TabState(e);
 
     var menuText =  buildButton("/Squawks/MELCmplDue", "MEL Cmpl Due") +
                     buildButton("/Squawks/DMIRprt", "DMI Report") +
@@ -76,7 +112,7 @@ function maintenanceMenu(e) {
                     buildButton("/Parts/M18ProjMaintByTime", "Proj Maintenance By Time", 220) +
                     buildButton("/Parts/M19ComponentRemovals", "Component Removals", 220) +
                     buildButton("/Parts/M20PartsOnAcftRotable", "Parts On Acft (Rotable)", 220) +
-                    buildButton("/Parts/M21MaintHistory", "Maintenance History", 220)
+                    buildButton("/Parts/M21MaintHistory", "Maintenance History", 220) +
                     buildButton("/Parts/M22PartsUtilization", "Parts Utilization", 220) +
                     buildButton("/Parts/M23ReliabilityMonitoring", "Reliability Monitoring", 220)
                     ;
@@ -86,12 +122,12 @@ function maintenanceMenu(e) {
 }
 
 function workOrders() {
-
+    setLevel1TabState(e);
 }
 
 function inspections(e) {
 
-    setTopButtonClass(e.id);
+    setLevel1TabState(e);
 
     var menuText =  buildButton("/Inspections/InspectionCheckNames", "Inspection/Check Names") +
                     buildButton("/Inspections/InspectionResets", "Inspection Resets") +
@@ -106,38 +142,41 @@ function inspections(e) {
 
 function phyInventory() {
 
+    setLevel1TabState(e);
+
 }
 
 function components() {
 
+    setLevel1TabState(e);
+
 }
 
 function stores() {
+
+    setLevel1TabState(e);
 
 }
 
 </script>
 </head>
 <body>
-    <div style="position:center;height:128px">
+    <div style="position:center;border-bottom:4px solid maroon">
 
-        <button id="ElementMenuButton" class="topTab unSelected" onclick="basicElementMenu(this)">Basic Elements</button>
-        <button id="MaintenanceMenuButton" class="topTab unSelected" onclick="maintenanceMenu(this)">Maintenance</button>
-        <button id="WorkOrdersButton" class="topTab unSelected" onclick="workOrders(this)">Work Orders</button>
-        <button id="InspectionsButton" class="topTab unSelected" onclick="inspections(this)">Inspections</button>
-        <button id="PhysInventoryButton" class="topTab unSelected" onclick="physInventory(this)">Physical Inventory</button>
-        <button id="ComponentsButton" class="topTab unSelected" onclick="components(this)">Components</button>
-        <button id="StoresButton" class="topTab unSelected" onclick="stores(this)">Stores</button>
-        <hr style="color:maroon;height:3px;margin-top:0px" />
-        <div style="height:42px"></div>
-        <div id='SecondLevelTabs'>
+        <button id="ElementMenuButton" class="level1Tab" onclick="basicElementMenu(this)">Basic Elements</button>
+        <button id="MaintenanceMenuButton" class="level1Tab" onclick="maintenanceMenu(this)">Maintenance</button>
+        <button id="WorkOrdersButton" class="level1Tab" onclick="workOrders(this)">Work Orders</button>
+        <button id="InspectionsButton" class="level1Tab" onclick="inspections(this)">Inspections</button>
+        <button id="PhysInventoryButton" class="level1Tab" onclick="physInventory(this)">Physical Inventory</button>
+        <button id="ComponentsButton" class="level1Tab" onclick="components(this)">Components</button>
+        <button id="StoresButton" class="level1Tab" onclick="stores(this)">Stores</button>
 
-        </div>
-        <div id="TabLevel1" style="width:100%"></div>
-        <div id="TabLevel2" style="width:100%"></div>
-        <div style="height:128px"></div>
-        
     </div>
+  
+   <div id="TabLevel2" style="width:100%;margin-top:32px"></div>
+   
+   <div style="height:128px;position:fixed"></div>
+    
 
     <iframe id="maintenance" name="maintenance" style="width:100%;min-height:1000px;height:100px;position:center;">
     </iframe>

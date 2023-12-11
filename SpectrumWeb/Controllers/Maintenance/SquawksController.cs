@@ -64,60 +64,26 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Description", "Description", "Description", "left", 240),
         };
 
+        private string squawkChildFieldFormatter =
+            @"'<table>
+                 <tr>
+                    <td>' + d.discription '</td>
+                 </tr>
+              </table>'
+            ";
+
         public IActionResult Squawks()
         {
-            var classList =
-                (from s in _context.SquawkMasters
-                        select new
-                        {
-                            s.PkRecordId,
-                            s.Revision,
-                            s.SquawkNumber,
-                            s.TypeCode,
-                            s.Description,
-                            s.TailNmbr,
-                            s.AtaChapAndSub,
-                            s.DateReceived,
-                            s.ReportedBy,
-                            s.DateDeferred,
-                            s.DateComp,
-                            s.Flight,
-                            s.AcType,
-                            s.MinEquipList,
-                            s.AirframeAtSqwk,
-                            s.FlightLogNmbr,
-                            s.ItemNmbr,
-                            s.City,
-                            s.DmiYN,
-                            s.DmiType,
-                            s.DmiNumber,
-                            s.EngPositionNmbr,
-                            s.DelayYN,
-                            s.DelayMinutes,
-                            s.CancellationYN,
-                            s.ServiceDiffYN,
-                            s.EngineShutDown,
-                            s.Approach,
-                            s.Landing,
-                            s.CatIiiSignif,
-                            s.CatIiiVerified,
-                            s.CatIiiApproach,
-                            s.CatIiiLndgTyp,
-                            s.EtopsSignificant,
-                            s.EtopsConfirmed,
-                            s.EtopsConfirmedBy,
-                            s.EtopsVerified,
-                            s.EtopsVerifiedBy,
-                            s.AuditPrint
-
-                        }).ToList();
+            var classList = _context.SquawkMasters.ToList();
 
 
             return (new GenericTableController()).GenericTableGenerator(
                 squawksMasterDisplayFieldList
                 , "Squawks"
                 , classList.Select(e => (object)e).ToList()
-                , squawkMasterChildRows);
+                , squawkMasterChildRows
+                , squawkChildFieldFormatter
+                );
         }
 
 

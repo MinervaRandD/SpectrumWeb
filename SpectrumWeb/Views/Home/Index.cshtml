@@ -7,12 +7,29 @@ function loadIFrame(src){
     console.log(src);
     $('main').attr('src', src);
 }
+
+function setSideTabFormat(navBtn)
+{
+    $(".nav-vert").removeClass("sideTabActive");
+    $(navBtn).addClass("sideTabActive");
+}
 </script>
 
 <style>
-   
+   .sideTabActive {
+       background-color: maroon;
+       color:white;
+   }
+
+    .sideTab {
+        background-color: white
+        color: maroon;
+        border:solid;
+        border-color:maroon;
+    }
 </style>
-<h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">WELCOME TO SPECTRUM-WEB</h2>
+
+<h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
 <div class="row" style="margin-top:80px">
     <div class="col-1" style="width:90px;border-right:4px solid maroon;position:fixed;margin-top:60px">
          @*<div class="dropdown" style="display:inline">
@@ -30,7 +47,17 @@ function loadIFrame(src){
               </div>
          </div>@*@
 
-        <ul style="float:right;margin-right:-26px">
+        <ul style="float:right;margin-right:-20px">
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Accounting</a></li>
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Maintenance/Maintenance" target="main">Maint &amp; Eng</a></li>
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Flight Ops</a></li>
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Cargo</a></li>
+            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Reservations</a></li>
+            <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" onclick="setSideTabFormat(this)" href="#">Revenue</a></li>
+        </ul>
+
+       @* <ul style="float:right;margin-right:-26px">
             <li style="transform:rotate(270deg);"><a class="nav-vert" href="/Admin/Admin" target="main">Admin</a></li>
             <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Accounting</a></li>
             <li style="transform:rotate(270deg);"><a class="nav-vert" href="/Maintenance/Maintenance" target="main">Maintenance</a></li>
@@ -38,7 +65,7 @@ function loadIFrame(src){
             <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Cargo</a></li>
             <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Reservations</a></li>
             <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" href="#">Revenue</a></li>
-        </ul>
+        </ul>*@
          @*<ul>
              <li>
                  <button class="vertnav" onclick="">Admin</button>

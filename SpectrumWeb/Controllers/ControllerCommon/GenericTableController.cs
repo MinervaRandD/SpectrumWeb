@@ -21,6 +21,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             , string title
             , List<object> classList
             , List<FieldSpec> childFieldList = null
+            , string childFieldFormater = null
             , string customForm = null)
         {
             return GenericTableGenerator(
@@ -29,6 +30,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 , title
                 , classList
                 , childFieldList
+                , childFieldFormater
                 , customForm);
         }
 
@@ -38,6 +40,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         , string title
         , List<object> classList
         , List<FieldSpec> childFieldList = null
+        , string childFieldFormatter = null
         , string customForm = null)
         {
             ViewBag.Title = title;
@@ -110,11 +113,17 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 ViewBag.TemplateDiv = string.Empty;
             }
 
+            ViewBag.ChildFieldFormatter = "''";
+
+            if (!string.IsNullOrEmpty(childFieldFormatter))
+            {
+                ViewBag.ChildFieldFormatter = childFieldFormatter;
+            }
             //string classMapInitializer = WebPageGenerator.generateClassMapInitializer(classFullValueList, className);
 
             //ViewBag.ClassMapInitializer = classMapInitializer;
 
-            int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
+            ////int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
 
             if (totalTableWidth != null)
             {
