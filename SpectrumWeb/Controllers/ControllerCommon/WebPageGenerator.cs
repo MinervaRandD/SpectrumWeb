@@ -193,7 +193,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             if (childFieldList != null)
             {
-                rtrnValue += "    tableBodyHtml += \"    \" + \"<td></td>\"" + " + \"\\n\";\n";
+                rtrnValue += "    tableBodyHtml += \"    \" + \"<td style='width:16px'></td>\"" + " + \"\\n\";\n";
             }
 
             foreach (var fieldSpec in fieldList)

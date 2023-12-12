@@ -131,6 +131,9 @@ document.addEventListener('DOMContentLoaded', function () {
         columns: [
            @Html.Raw(@ViewBag.TableColumns)
         ],
+        columnDefs: [
+            { "width": "16px", "targets": 0 }
+        ],
         initComplete: function () {
             
             // Apply the search
@@ -174,25 +177,46 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function format(d) {
            
-            let rtrnValu = "<table><tr><td>" + d.Description + "</td></tr></table>"; // @Html.Raw(ViewBag.ChildFieldFormatter);
-            rtrnValu += "<hr/>";
-            rtrnValu += "<table>";
-            rtrnValu += "    <tr>";
-            rtrnValu += "        <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>";
-            rtrnValu += "    </tr>";
-            rtrnValu += "    <tr>";
-            rtrnValu += "        <td>" + d.PartNumber01 + "</td><td>" + d.Warehouse01 + "</td><td>" + d.SerialNumber01 + "</td>";
-            rtrnValu += "    </tr>";
-            rtrnValu += "    <tr>";
-            rtrnValu += "        <td>" + d.PartNumber02 + "</td><td>" + d.Warehouse02 + "</td><td>" + d.SerialNumber02 + "</td>";
-            rtrnValu += "    </tr>";
-            rtrnValu += "    <tr>";
-            rtrnValu += "        <td>" + d.PartNumber03 + "</td><td>" + d.Warehouse03 + "</td><td>" + d.SerialNumber03 + "</td>";
-            rtrnValu += "    </tr>";
-            rtrnValu += "    <tr>";
-            rtrnValu += "        <td>" + d.PartNumber04 + "</td><td>" + d.Warehouse04 + "</td><td>" + d.SerialNumber04 + "</td>";
-            rtrnValu += "    </tr>";
-            rtrnValu += "</table>";
+            rtrnValu=@Html.Raw(ViewBag.ChildFieldFormatter);
+            //rtrnValu += "<hr/>";
+            //rtrnValu += "<table>";
+            //rtrnValu += "    <tr>";
+            //rtrnValu += "        <th></th><th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>";
+            //rtrnValu += "    </tr>";
+            //rtrnValu += "    <tr>";
+            //rtrnValu += "        <td></td><td>" + d.PartNumber01 + "</td><td>" + d.Warehouse01 + "</td><td>" + d.SerialNumber01 + "</td>";
+            //rtrnValu += "    </tr>";
+            //rtrnValu += "    <tr>";
+            //rtrnValu += "        <td></td><td>" + d.PartNumber02 + "</td><td>" + d.Warehouse02 + "</td><td>" + d.SerialNumber02 + "</td>";
+            //rtrnValu += "    </tr>";
+            //rtrnValu += "    <tr>";
+            //rtrnValu += "        <td></td><td>" + d.PartNumber03 + "</td><td>" + d.Warehouse03 + "</td><td>" + d.SerialNumber03 + "</td>";
+            //rtrnValu += "    </tr>";
+            //rtrnValu += "    <tr>";
+            //rtrnValu += "        <td></td><td>" + d.PartNumber04 + "</td><td>" + d.Warehouse04 + "</td><td>" + d.SerialNumber04 + "</td>";
+            //rtrnValu += "    </tr>";
+            //rtrnValu += "</table>";
+
+       //let rtrnValu = "<h6 style='color:maroon'>Description</h6>" + "<tr><td>" + d.Description + "</td></tr>"; // @Html.Raw(ViewBag.ChildFieldFormatter);
+        //rtrnValu += "<hr style='width:4px;color:maroon;margin-top:16px;margin-bottom:16px;width:100%'/>";
+        //rtrnValu += "<h6 style='color:maroon'>Resolution</h6>"
+        //rtrnValu += "<table>";
+        //rtrnValu += "    <tr style='height:16px'>";
+        //rtrnValu += "        <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>";
+        //rtrnValu += "    </tr>";
+        //rtrnValu += "    <tr>";
+        //rtrnValu += "        <td>" + d.PartNumber01 + "</td><td>" + d.Warehouse01 + "</td><td>" + d.SerialNumber01 + "</td>";
+        //rtrnValu += "    </tr>";
+        //rtrnValu += "    <tr>";
+        //rtrnValu += "        <td>" + d.PartNumber02 + "</td><td>" + d.Warehouse02 + "</td><td>" + d.SerialNumber02 + "</td>";
+        //rtrnValu += "    </tr>";
+        //rtrnValu += "    <tr>";
+        //rtrnValu += "        <td>" + d.PartNumber03 + "</td><td>" + d.Warehouse03 + "</td><td>" + d.SerialNumber03 + "</td>";
+        //rtrnValu += "    </tr>";
+        //rtrnValu += "    <tr>";
+        //rtrnValu += "        <td>" + d.PartNumber04 + "</td><td>" + d.Warehouse04 + "</td><td>" + d.SerialNumber04 + "</td>";
+        //rtrnValu += "    </tr>";
+        //rtrnValu += "</table>";
 
             console.log(rtrnValu);
 

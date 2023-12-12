@@ -28,7 +28,6 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 72, "date"),
             new FieldSpec("ReportedBy", "Report By", "ReportedBy", "right", 64),
             new FieldSpec("DateDeferred", "Date<br>Deferred To", "DateDeferred", "center", 72, "date"),
-            new FieldSpec("DateCompleted", "Date<br>Completed", "DateComp", "center", 72, "date"),
             new FieldSpec("Flightt", "Flight<br/>Nmbr", "Flight", "center", 60),
             new FieldSpec("AcType", "A/C<br/>Type", "AcType", "center", 60),
             new FieldSpec("MinEqpList", "Min<br/>Equip<br/>List", "MinEquipList", "center", 60),
@@ -57,12 +56,12 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 40, "bool"),
             new FieldSpec("EtopsVerifiedBy", "Etops<br/>Verified<br/>By", "EtopsVerifiedBy", "right", 60),
             new FieldSpec("AuditPrint", "Audit<br/>Print", "AuditPrint", "center", 40, "bool"),
-            // new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center", 72),
-            //new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center", 80),
-            //new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
-            //new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
-            //new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
-            //new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center", 72),
+            new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center", 80),
+            new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
             new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
             new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
             new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
@@ -84,11 +83,11 @@ namespace SpectrumWeb.Controllers.Maintenance
         List<FieldSpec> squawkMasterChildRows = new List<FieldSpec>()
         {
             new FieldSpec("Description", "Description", "Description", "left", 240),
-            //new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center"),
-            //new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
-            //new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
-            //new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
-            //new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center"),
+            new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
             new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
             new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
             new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
@@ -107,13 +106,33 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center")
         };
 
-        private string squawkChildFieldFormatter = "d.description";
-            //@"'<table>
-            //     <tr>
-            //        <td>' + d.discription + '</td>
-            //     </tr>
-            //  </table>'
-            //";
+        private string squawkChildFieldFormatter =
+            "\"<h6 style='color:maroon'>Description</h6>\"\n"
+            + "+ \"<tr><td>\" + d.Description + \"</td></tr>\"\n"
+            + "+ \"<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>\"\n"
+            + "+ \"<h6 style='color:maroon'>Resolution</h6>\"\n"
+            + "+ \"<div style='width:100%'>\" + d.resolution + \"</div>\"\n" 
+            + "+ \"<table>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <td>\" + d.PartNumber01 + \"</td><td>\" + d.Warehouse01 + \"</td><td>\" + d.SerialNumber01 + \"</td>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <td>\" + d.PartNumber02 + \"</td><td>\" + d.Warehouse02 + \"</td><td>\" + d.SerialNumber02 + \"</td>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <td>\" + d.PartNumber03 + \"</td><td>\" + d.Warehouse03 + \"</td><td>\" + d.SerialNumber03 + \"</td>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <td>\" + d.PartNumber04 + \"</td><td>\" + d.Warehouse04 + \"</td><td>\" + d.SerialNumber04 + \"</td>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"    <tr style='height:12px'>\"\n"
+            + "+ \"        <td>\" + d.PartNumber05 + \"</td><td>\" + d.Warehouse05 + \"</td><td>\" + d.SerialNumber05 + \"</td>\"\n"
+            + "+ \"    </tr>\"\n"
+            + "+ \"</table>\"\n"
+            ;
 
         public IActionResult Squawks()
         {
