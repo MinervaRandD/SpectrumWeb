@@ -56,21 +56,64 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("EtopsConfirmedBy", "Etops<br/>Conf<br/>By", "EtopsConfirmedBy", "right", 60),
             new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 40, "bool"),
             new FieldSpec("EtopsVerifiedBy", "Etops<br/>Verified<br/>By", "EtopsVerifiedBy", "right", 60),
-             new FieldSpec("AuditPrint", "Audit<br/>Print", "AuditPrint", "center", 40, "bool")
+            new FieldSpec("AuditPrint", "Audit<br/>Print", "AuditPrint", "center", 40, "bool"),
+            // new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center", 72),
+            //new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center", 80),
+            //new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            //new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            //new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            //new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
+            new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
+            new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
+            new FieldSpec("PartNumber04", "Part<br/>Nmbr 4", "PartNumber04", "center", 60),
+            new FieldSpec("PartNumber05", "Part<br/>Nmbr 5", "PartNumber05", "center", 60),
+            new FieldSpec("Warehouse01", "Warehouse<br/>1", "Warehouse01", "center", 40),
+            new FieldSpec("Warehouse02", "Warehouse<br/>2", "Warehouse02", "center", 40),
+            new FieldSpec("Warehouse03", "Warehouse<br/>3", "Warehouse03", "center", 40),
+            new FieldSpec("Warehouse04", "Warehouse<br/>4", "Warehouse04", "center", 40),
+            new FieldSpec("Warehouse05", "Warehouse<br/>1", "Warehouse05", "center", 40),
+            new FieldSpec("SerialNumber01", "Serial<br/>Nmbr<br/>1", "SerialNumber01", "center"),
+            new FieldSpec("SerialNumber02", "Serial<br/>Nmbr<br/>2", "SerialNumber02", "center"),
+            new FieldSpec("SerialNumber03", "Serial<br/>Nmbr<br/>3", "SerialNumber03", "center"),
+            new FieldSpec("SerialNumber04", "Serial<br/>Nmbr<br/>4", "SerialNumber04", "center"),
+            new FieldSpec("SerialNumber05", "Serial<br/>Nmbr<br/>5", "SerialNumber05", "center"),
+           
         };
 
         List<FieldSpec> squawkMasterChildRows = new List<FieldSpec>()
         {
             new FieldSpec("Description", "Description", "Description", "left", 240),
+            //new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center"),
+            //new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            //new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            //new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            //new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
+            new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
+            new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
+            new FieldSpec("PartNumber04", "Part<br/>Nmbr 4", "PartNumber04", "center", 60),
+            new FieldSpec("PartNumber05", "Part<br/>Nmbr 5", "PartNumber05", "center", 60),
+            new FieldSpec("Warehouse01", "Warehouse<br/>1", "Warehouse01", "center", 40),
+            new FieldSpec("Warehouse02", "Warehouse<br/>2", "Warehouse02", "center", 40),
+            new FieldSpec("Warehouse03", "Warehouse<br/>3", "Warehouse03", "center", 40),
+            new FieldSpec("Warehouse04", "Warehouse<br/>4", "Warehouse04", "center", 40),
+            new FieldSpec("Warehouse05", "Warehouse<br/>1", "Warehouse05", "center", 40),
+            new FieldSpec("SerialNumber01", "Serial<br/>Nmbr<br/>1", "SerialNumber01", "center"),
+            new FieldSpec("SerialNumber02", "Serial<br/>Nmbr<br/>2", "SerialNumber02", "center"),
+            new FieldSpec("SerialNumber03", "Serial<br/>Nmbr<br/>3", "SerialNumber03", "center"),
+            new FieldSpec("SerialNumber04", "Serial<br/>Nmbr<br/>4", "SerialNumber04", "center"),
+            new FieldSpec("SerialNumber05", "Serial<br/>Nmbr<br/>5", "SerialNumber05", "center"),
+            new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center")
         };
 
-        private string squawkChildFieldFormatter =
-            @"'<table>
-                 <tr>
-                    <td>' + d.discription + '</td>
-                 </tr>
-              </table>'
-            ";
+        private string squawkChildFieldFormatter = "d.description";
+            //@"'<table>
+            //     <tr>
+            //        <td>' + d.discription + '</td>
+            //     </tr>
+            //  </table>'
+            //";
 
         public IActionResult Squawks()
         {
