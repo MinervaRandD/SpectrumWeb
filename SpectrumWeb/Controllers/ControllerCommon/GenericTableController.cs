@@ -119,6 +119,16 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             {
                 ViewBag.ChildFieldFormatter = childFieldFormatter;
             }
+
+            if (childFieldList != null)
+            {
+                ViewBag.ColumnDefs = " columnDefs: [ { \"width\": \"16px\", \"targets\": 0 } ],";
+            }
+
+            else
+            {
+                ViewBag.ColumnDefs = "";
+            }
             //string classMapInitializer = WebPageGenerator.generateClassMapInitializer(classFullValueList, className);
 
             //ViewBag.ClassMapInitializer = classMapInitializer;

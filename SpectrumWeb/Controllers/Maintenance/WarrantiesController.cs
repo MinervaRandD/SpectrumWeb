@@ -46,6 +46,16 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, "text", 128)
         };
 
+
+
+        private string warrantiesChildFieldFormatter =
+            "\"<h6 style='color:maroon'>Terms</h6>\"\n"
+            + "+ \"<div style='height:40px;width:25%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Terms + \"</div>\"\n"
+            + "+ \"<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>\"\n"
+            + "+ \"<h6 style='color:maroon'>Notes</h6>\"\n"
+            + "+ \"<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Notes + \"</div>\"\n"
+            ;
+
         private string customForm = ControllerCommon.ControllerCommon.TwoPartCustomForm(displayFieldList.GetRange(1, displayFieldList.Count-1), childFieldList);
 
         public IActionResult Warranties()
@@ -74,7 +84,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                 , "Guarantees and Warranties"
                 , classList.Select(e => (object)e).ToList()
                 , childFieldList
-                , customForm);
+                , warrantiesChildFieldFormatter);
         }
     }
     

@@ -15,9 +15,13 @@ th {
     margin-bottom:auto;
 }
 
-tbody tr {
+tbody {
     padding-left:2px;
     padding-right:2px;
+}
+
+.row_selected td {
+    background-color: black; !important;
 }
  /*.dataTables_wrapper
  {
@@ -57,7 +61,7 @@ tbody tr {
     }
 </style>
 <script>
-
+    
 var table;
 
 const classMap = new Map();
@@ -131,9 +135,9 @@ document.addEventListener('DOMContentLoaded', function () {
         columns: [
            @Html.Raw(@ViewBag.TableColumns)
         ],
-        columnDefs: [
-            { "width": "16px", "targets": 0 }
-        ],
+
+        @Html.Raw(ViewBag.ColumnDefs)
+
         initComplete: function () {
             
             // Apply the search
@@ -161,6 +165,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
     table.buttons(0, null).containers().css('float:right');
+
+    table.on('dblclick', 'tbody tr', function () {
+
+        let data = table.row(this).data();
+ 
+        alert('You clicked on ' + data[0] + "'s row");
+    });
 
     table.on('click', 'td.dt-control', function (e) {
         let tr = e.target.closest('tr');
