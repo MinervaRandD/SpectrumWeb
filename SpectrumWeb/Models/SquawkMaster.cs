@@ -93,6 +93,8 @@ public partial class SquawkMaster
 
     public int? WorkOrderNmbr { get; set; }
 
+    public string? MaintTaskCode { get; set; }
+
     public int? FirstInspector { get; set; }
 
     public int? SecondInspector { get; set; }

@@ -2721,7 +2721,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
 
         modelBuilder.Entity<SquawkMaster>(entity =>
         {
-            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__squawk_m__4ADA2B43565A624B");
+            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__squawk_m__4ADA2B4384902486");
 
             entity.ToTable("squawk_master", "maint");
 
@@ -2793,6 +2793,10 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.FlightLogNmbr).HasColumnName("flight_log_nmbr");
             entity.Property(e => e.ItemNmbr).HasColumnName("item_nmbr");
             entity.Property(e => e.Landing).HasColumnName("landing");
+            entity.Property(e => e.MaintTaskCode)
+                .HasMaxLength(64)
+                .IsUnicode(false)
+                .HasColumnName("maint_task_code");
             entity.Property(e => e.MinEquipList)
                 .HasMaxLength(4)
                 .IsUnicode(false)
