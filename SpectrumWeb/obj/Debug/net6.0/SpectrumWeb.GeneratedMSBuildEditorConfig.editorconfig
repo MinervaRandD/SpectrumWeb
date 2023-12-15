@@ -40,6 +40,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcR2VuZXJpY1RhYmxlLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2UuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -66,6 +70,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M23ReliabilityMonitoring.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTIzUmVsaWFiaWxpdHlNb25pdG9yaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/TaskCardDetailView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcVGFza0NhcmREZXRhaWxWaWV3LmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Shared/Error.cshtml]

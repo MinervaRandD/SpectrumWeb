@@ -120,6 +120,8 @@ namespace SpectrumWeb.Controllers.Maintenance
             + "+ \"<div class='row'>\"\n"
             + "+ \"    <div class='col-1'></div>\"\n"
             + "+ \"    <div class='col-2'>\"\n"
+
+
             + "+ \"        <table style='border:2px solid maroon'>\"\n"
             + "+ \"            <tr><th style='text-align:right'>Fixed By:</th><td>\" + d.WhoFixed + \"</td></tr>\"\n"
             + "+ \"            <tr><th style='text-align:right'>Date Completed:</th><td>\" + d.DateComp + \"</td></tr>\"\n"

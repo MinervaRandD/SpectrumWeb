@@ -9,15 +9,13 @@ public partial class AdAndSb
 
     public string PkTransactionId { get; set; } = null!;
 
+    public int? Revision { get; set; }
+
     public int? Number { get; set; }
 
     public int? ModNmbr { get; set; }
 
     public string? AircraftType { get; set; }
-
-    public string? Adact1 { get; set; }
-
-    public string? Adact2 { get; set; }
 
     public string? PartNumber { get; set; }
 
@@ -31,25 +29,23 @@ public partial class AdAndSb
 
     public DateTime? DateEntered { get; set; }
 
-    public DateTime? DateComp { get; set; }
+    public DateTime? DateComplete { get; set; }
 
     public string? Description { get; set; }
 
     public string? Resolution { get; set; }
 
-    public string? TailNmbrs { get; set; }
-
     public DateTime? ComplianceDate { get; set; }
-
-    public string? ACModNmbr { get; set; }
 
     public string? AtaChap { get; set; }
 
-    public double? ThresholdHrs { get; set; }
+    public double? ThresholdHours { get; set; }
 
-    public int? ThresholdCyc { get; set; }
+    public int? ThresholdCycles { get; set; }
 
-    public int? ThresholdWks { get; set; }
+    public int? ThresholdDays { get; set; }
+
+    public int? ThresholdWeeks { get; set; }
 
     public bool? BridgeToInspec { get; set; }
 
@@ -57,23 +53,21 @@ public partial class AdAndSb
 
     public bool? OneTimeInspec { get; set; }
 
-    public string? RevisionNmbr { get; set; }
+    public string? ComplyChain1 { get; set; }
 
-    public string? AlsoComplyNmbr1 { get; set; }
+    public string? ComplyChain2 { get; set; }
 
-    public string? AlsoComplyNmbr2 { get; set; }
-
-    public string? AlsoComplyNmbr3 { get; set; }
-
-    public string? AlsoComplyNmbr4 { get; set; }
+    public string? ComplyChain3 { get; set; }
 
     public DateTime? DateIssued { get; set; }
 
-    public double? PerformEveryHr { get; set; }
+    public double? PerformEveryHour { get; set; }
 
-    public short? PerformEveryCy { get; set; }
+    public short? PerformEveryCycle { get; set; }
 
-    public short? PerformEveryWk { get; set; }
+    public short? PerformEveryDay { get; set; }
+
+    public short? PerformEveryWeek { get; set; }
 
     public string? ApplyToSerNmbr { get; set; }
 

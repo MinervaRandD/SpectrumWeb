@@ -23,11 +23,11 @@ tbody {
 .row_selected td {
     background-color: black; !important;
 }
- /*.dataTables_wrapper
+ .dataTables_wrapper
  {
-     margin:auto;
-     text-align:center;
-     float:none;
+     margin-left:32px;
+     text-align:left;
+     float:left;
  }
 */
     .testFieldName {
@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
     let table = new DataTable('#classTable', {
     
         //dom: 'Bfrtip',
-        dom: "<'row'<'col-sm-2'><'col-sm-2'l><'col-sm-4 text-center'B><'col-sm-4'f>>" +
+        dom: "<'row'<'col-sm-2'l><'col-sm-1'><'col-sm-4'B><'col-sm-4'f><'col-sm-1'>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-4'>'row'<'col-sm-4'i><'col-sm-4'p>>",
         select: true,
@@ -168,9 +168,21 @@ document.addEventListener('DOMContentLoaded', function () {
 
     table.on('dblclick', 'tbody tr', function () {
 
-        let data = table.row(this).data();
+        console.log("at point 1");
+
+        let dblClickUrl =  @Html.Raw(ViewBag.DblClickUrl) ;
+
+        console.log("at point 2");
+
+        console.log(dblClickUrl);
+
+        if (dblClickUrl)
+        {
+            
+            let data = table.row(this).data();
  
-        alert('You clicked on ' + data[0] + "'s row");
+            window.open(dblClickUrl)
+        }
     });
 
     table.on('click', 'td.dt-control', function (e) {
@@ -189,46 +201,7 @@ document.addEventListener('DOMContentLoaded', function () {
         function format(d) {
            
             rtrnValu=@Html.Raw(ViewBag.ChildFieldFormatter);
-            //rtrnValu += "<hr/>";
-            //rtrnValu += "<table>";
-            //rtrnValu += "    <tr>";
-            //rtrnValu += "        <th></th><th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>";
-            //rtrnValu += "    </tr>";
-            //rtrnValu += "    <tr>";
-            //rtrnValu += "        <td></td><td>" + d.PartNumber01 + "</td><td>" + d.Warehouse01 + "</td><td>" + d.SerialNumber01 + "</td>";
-            //rtrnValu += "    </tr>";
-            //rtrnValu += "    <tr>";
-            //rtrnValu += "        <td></td><td>" + d.PartNumber02 + "</td><td>" + d.Warehouse02 + "</td><td>" + d.SerialNumber02 + "</td>";
-            //rtrnValu += "    </tr>";
-            //rtrnValu += "    <tr>";
-            //rtrnValu += "        <td></td><td>" + d.PartNumber03 + "</td><td>" + d.Warehouse03 + "</td><td>" + d.SerialNumber03 + "</td>";
-            //rtrnValu += "    </tr>";
-            //rtrnValu += "    <tr>";
-            //rtrnValu += "        <td></td><td>" + d.PartNumber04 + "</td><td>" + d.Warehouse04 + "</td><td>" + d.SerialNumber04 + "</td>";
-            //rtrnValu += "    </tr>";
-            //rtrnValu += "</table>";
-
-       //let rtrnValu = "<h6 style='color:maroon'>Description</h6>" + "<tr><td>" + d.Description + "</td></tr>"; // @Html.Raw(ViewBag.ChildFieldFormatter);
-        //rtrnValu += "<hr style='width:4px;color:maroon;margin-top:16px;margin-bottom:16px;width:100%'/>";
-        //rtrnValu += "<h6 style='color:maroon'>Resolution</h6>"
-        //rtrnValu += "<table>";
-        //rtrnValu += "    <tr style='height:16px'>";
-        //rtrnValu += "        <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>";
-        //rtrnValu += "    </tr>";
-        //rtrnValu += "    <tr>";
-        //rtrnValu += "        <td>" + d.PartNumber01 + "</td><td>" + d.Warehouse01 + "</td><td>" + d.SerialNumber01 + "</td>";
-        //rtrnValu += "    </tr>";
-        //rtrnValu += "    <tr>";
-        //rtrnValu += "        <td>" + d.PartNumber02 + "</td><td>" + d.Warehouse02 + "</td><td>" + d.SerialNumber02 + "</td>";
-        //rtrnValu += "    </tr>";
-        //rtrnValu += "    <tr>";
-        //rtrnValu += "        <td>" + d.PartNumber03 + "</td><td>" + d.Warehouse03 + "</td><td>" + d.SerialNumber03 + "</td>";
-        //rtrnValu += "    </tr>";
-        //rtrnValu += "    <tr>";
-        //rtrnValu += "        <td>" + d.PartNumber04 + "</td><td>" + d.Warehouse04 + "</td><td>" + d.SerialNumber04 + "</td>";
-        //rtrnValu += "    </tr>";
-        //rtrnValu += "</table>";
-
+           
             console.log(rtrnValu);
 
             return(rtrnValu);

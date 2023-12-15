@@ -41,6 +41,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         , List<object> classList
         , List<FieldSpec> childFieldList = null
         , string childFieldFormatter = null
+        , string dblClickUrl = null
         , string customForm = null)
         {
             ViewBag.Title = title;
@@ -101,7 +102,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.ChildRows = childRows;
 
-            if (customForm!= null)
+            if (customForm != null)
             {
                 ViewBag.TemplateSpec = "template: '#customForm',";
                 ViewBag.TemplateDiv = customForm;
@@ -144,6 +145,16 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             {
                 ViewBag.TableWidth = string.Empty;
             }
+
+            string dblClickUrlStr = "null";
+
+            if (dblClickUrl != null)
+            {
+
+                dblClickUrlStr = "'" + dblClickUrl + "'";
+            }
+
+            ViewBag.DblClickUrl = dblClickUrlStr;
 
             //ViewBag.ClassDefnScript = "<script type='text/javascript' language='javascript' src='/local/" + classDefnFileName + ".js'></script >";
 
