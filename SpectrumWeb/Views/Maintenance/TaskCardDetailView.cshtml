@@ -6,6 +6,267 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <h2>Task Card Details</h2>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
+    
+    <style>
+        .labelTd {
+            width:180px;
+        }
+
+        tr {
+            height:48px;
+        }
+
+        label {
+            color:maroon;
+            font:large;
+            font-weight:bold;
+        }
+
+        input {
+            color:maroon;
+            border:solid;
+            border-color:maroon;
+            border-width:2px;
+        }
+
+        td{
+            color:maroon;
+            font:large;
+        }
+
+        .tableContainer {
+            display:flex;
+            align-items:center;
+            font-size:16px;
+            color:maroon;
+        }
+    </style>
+
+    <script>
+
+        $(document).ready(function()
+            {
+                let id = @Html.Raw(ViewBag.Id);
+                let data = @Html.Raw(ViewBag.Data);
+
+                let revision = data['Revision'];
+                let taskId = data['TaskId'];
+                let packageNmbr = data['PackageNmbr'];
+                let oneTimeCard = data['OneTimeCard']
+                let seqNmbr = data['SeqNmbr'];
+                let issueDate = data['IssueDate'];
+                let revisionDate = data['RevisionDate'];
+                let acftType = data['AcftType'];
+                let airframeNmbr = data['AirframeNmbr'];
+                let srcRef = data['SrcRef'];
+                let category = data['Category'];
+                let checkName = data['CheckName'];
+                let priority = data['Priority'];
+                let maintManRef = data['MaintManRef'];
+                let ata = data['Ata'];
+                let signatureMode = data['SignatureMode'];
+                let workZone = data['WorkZone'];
+                let section = data['Section'];
+                let station = data['Station'];
+                let jobSummary = data['JobSummary'];
+                let task = data['Task'];
+                let interval = data['Interval'];
+                let instructions = data['Instructions'];
+                let remarks = data['Remarks'];
+              
+
+                $("#taskId").attr("value", taskId);
+                $("#packageNmbr").attr("value", packageNmbr);
+
+                const oneTimeCardSelect = document.getElementById('oneTimeCard');
+
+                oneTimeCard = oneTimeCard.toLowerCase();
+
+                if (oneTimeCard == 'y' || oneTimeCard == 'yes' || oneTimeCard == 'true' || oneTimeCard == 't')
+                {
+                    oneTimeCardSelect.selectedIndex = 0;
+                }
+
+                else
+                {
+                    oneTimeCardSelect.selectedIndex = 1;
+                }
+
+                $("#seqNmbr").attr("value", seqNmbr);
+                $("#issueDate").attr("value", issueDate);
+                $("revisionDate").attr("value", revisionDate);
+                $("#acftType").attr("value", acftType);
+                $("#srcRef").attr("value", srcRef);
+                $("#category").attr("value", category);
+                $("#checkName").attr("value", checkName);
+                $("#priority").attr("value", priority);
+                $("#maintManRef").attr("value", maintManRef);
+                $("#ata").attr("value", ata);
+
+                $("#SignatureMode").attr("value", signatureMode);
+
+                $("#workZone").attr("value", workZone);
+                $("#section").attr("value", section);
+                $("#station").attr("value", station);
+                $("#jobSummary").attr("value", jobSummary);
+                $("#task").attr("value", task);
+                $("#interval").attr("value", interval);
+                $("#instructions").attr("value", instructions);
+                $("#remarks").attr("value", remarks);
+                document.getElementById("taskCardHeader").innerHTML= "Task " + taskId + "-" + taskIdSub + " Details";
+                document.title = "Task " + taskId + "-" + taskIdSub + " Details";
+            }
+        );
+
+    </script>
+
 </head>
+<body>
+     <h2 id="taskCardHeader" style="color:maroon;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">Task Card Details</h2>
+    <div style="height:16px"> </div>
+
+    <form method="post">
+        
+        <div style="width:100%;margin:auto;display:block;text-align:center;">
+            <label for="taskId" style="width:64px;">Task Id: </label><input type="text" id="taskId" name="taskId" style="width:64px;" />-<input type="text" id="taskIdSub" name="taskIdSub" style="width:48px" />
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div class="tableContainer row" style="width:100%;margin:auto;vertical-align:top;">
+            <div class="col-1"></div>
+            <div class="col-2" style="vertical-align:top">
+                <table style="color:maroon;font-size:16px;">
+                    <tr>
+                        <td><label for="packageNmbr">Package Nmbr: </label></td>
+                        <td><input type="text" id="packageNmbr" name="packageNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td style="width:160px"><label for="oneTimeCard">One Time Card (Y/N): </label></td>
+                        <td><select id="oneTimeCard" name="oneTimeCard">
+                                <option value="Y">Y</option>
+                                <option value="N">N</option>
+                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label for="seqNmbr">Sequence Nmbr: </label></td>
+                        <td><input type="text" id="seqNmbr" name="seqNmbr" /></td>
+                    </tr>
+                    <tr>
+                       <td> <label for="issueDate">Issue Date: </label></td>
+                       <td> <input type="date" id="issueDate" name="issueDate" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="revisionDate">Revision Date: </label></td>
+                        <td> <input type="date" id="revisionDate" name="revisionDate" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="acftType">Aircraft Type: </label></td>
+                        <td> <input type="text" id="acftType" name="acftType" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="airframeNmbr">Airframe Nmbr: </label></td>
+                        <td> <input type="text" id="airframeNmbr" name="airframeNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="srcRef">Source Ref: </label></td>
+                        <td> <input type="text" id="srcRef" name="srcRef" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="category">Check Name: </label></td>
+                        <td> <input type="text" id="checkName" name="checkName" /></td>
+                    </tr>
+                  
+                </table>
+            </div>
+            <div class="col-2">
+                <table style="color:maroon;font-size:16px;">
+                    <tr>
+                        <td style="width:160px"> <label for="checkName">Check Name: </label></td>
+                        <td> <input type="text" id="checkName" name="checkDate" /></td>
+                    </tr>
+                     <tr>
+                        <td> <label for="priority">Priority: </label></td>
+                        <td> <input type="text" id="priority" name="priority" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="maintManRef">Maint Manual Ref: </label></td>
+                        <td> <input type="text" id="maintManRef" name="maintManRef" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td> <label for="ata">ATA: </label></td>
+                        <td> <input type="text" id="ata" name="ata" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="signatureMode">SignatureMode: </label></td>
+                        <td><select id="signatureMode" name="signatureMode">
+                                <option value="none"> </option>
+                                <option value="L">L</option>
+                                <option value="R">R</option>
+                                <option value="B">B</option>
+                             </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td> <label for="workZone">Work Zone: </label></td>
+                        <td> <input type="text" id="workZone" name="workZone" /></td>
+                    </tr>
+                    <tr>
+                        <td ><label for="section">Section: </label></td>
+                        <td><input type="text" id="section" name="section" style="width:64px;" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="station">Station: </label></td>
+                        <td><input type="text" id="station" name="section" style="width:64px;" /></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div class="col-7">
+                <h6 style="width:100%;color:maroon;" align="center">-- Job Summary --</h6>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-5">
+                        <label for="jobSummary">Job Summary:</label><br />
+                        <input type="text" style="width:100%;" id="jobSummary" name="jobSummary" />
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-2">
+                        <label for="task">Task:</label><br />
+                        <input type="text" style="width:100%;" id="task" name="task" />
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-1">
+                        <label for="interval">Interval:</label><br />
+                        <input type="text" style="width:100%;" id="interval" name="interval" />
+                    </div>
+                </div>
+                <div style="height:16px"></div>
+                <h6 style="width:100%;color:maroon;" align="center">-- Instructions --</h6>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-10">
+                        <label for="instructions">Instructions:</label><br />
+                        <textarea style="width:100%;" id="instructions" rows="8" name="instructions"></textarea>
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-1"></div>
+                    <div class="col-8">
+                        <label for="remarks">Remarks:</label><br />
+                        <input type="text" style="width:100%;" id="remarks" name="remarks" />
+                    </div>
+                    <div class="col-1"></div>
+                </div>
+             </div>
+        </div>
+        <div style="height:16px"></div>
+    </form>
+</body>
 </html>

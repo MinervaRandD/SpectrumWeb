@@ -2868,7 +2868,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
 
         modelBuilder.Entity<TaskCard>(entity =>
         {
-            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__task_car__4ADA2B431D811F95");
+            entity.HasKey(e => new { e.PkRecordId, e.PkTransactionId }).HasName("PK__task_car__4ADA2B43EA25C3B3");
 
             entity.ToTable("task_card", "maint");
 
@@ -2884,10 +2884,22 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(16)
                 .IsUnicode(false)
                 .HasColumnName("acft_type");
+            entity.Property(e => e.AirframeNmbr)
+                .HasMaxLength(6)
+                .IsUnicode(false)
+                .HasColumnName("airframe_nmbr");
+            entity.Property(e => e.Ata)
+                .HasMaxLength(16)
+                .IsUnicode(false)
+                .HasColumnName("ata");
             entity.Property(e => e.Category)
                 .HasMaxLength(4)
                 .IsUnicode(false)
                 .HasColumnName("category");
+            entity.Property(e => e.CheckName)
+                .HasMaxLength(21)
+                .IsUnicode(false)
+                .HasColumnName("check_name");
             entity.Property(e => e.Instructions)
                 .HasColumnType("text")
                 .HasColumnName("instructions");
@@ -2907,6 +2919,10 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("maint_man_ref");
             entity.Property(e => e.OneTimeCard).HasColumnName("one_time_card");
+            entity.Property(e => e.PackageNmbr)
+                .HasMaxLength(30)
+                .IsUnicode(false)
+                .HasColumnName("package_nmbr");
             entity.Property(e => e.Priority)
                 .HasMaxLength(2)
                 .IsUnicode(false)
@@ -2915,36 +2931,38 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("remarks");
             entity.Property(e => e.Revision).HasColumnName("revision");
-            entity.Property(e => e.Section1)
-                .HasMaxLength(4)
+            entity.Property(e => e.RevisionDate)
+                .HasColumnType("date")
+                .HasColumnName("revision_date");
+            entity.Property(e => e.Section)
+                .HasMaxLength(7)
                 .IsUnicode(false)
-                .HasColumnName("section1");
-            entity.Property(e => e.Section2)
-                .HasMaxLength(4)
-                .IsUnicode(false)
-                .HasColumnName("section2");
+                .HasColumnName("section");
             entity.Property(e => e.SeqNmbr)
                 .HasMaxLength(10)
                 .IsUnicode(false)
                 .HasColumnName("seq_nmbr");
+            entity.Property(e => e.SignatureMode)
+                .HasMaxLength(1)
+                .IsUnicode(false)
+                .IsFixedLength()
+                .HasColumnName("signature_mode");
             entity.Property(e => e.SrcRef)
                 .HasMaxLength(64)
                 .IsUnicode(false)
                 .HasColumnName("src_ref");
-            entity.Property(e => e.Station1)
-                .HasMaxLength(5)
+            entity.Property(e => e.Station)
+                .HasMaxLength(7)
                 .IsUnicode(false)
-                .HasColumnName("station1");
-            entity.Property(e => e.Station2)
-                .HasMaxLength(5)
-                .IsUnicode(false)
-                .HasColumnName("station2");
+                .HasColumnName("station");
             entity.Property(e => e.Task)
                 .HasMaxLength(14)
                 .IsUnicode(false)
                 .HasColumnName("task");
-            entity.Property(e => e.TaskId).HasColumnName("task_id");
-            entity.Property(e => e.TaskIdSub).HasColumnName("task_id_sub");
+            entity.Property(e => e.TaskId)
+                .HasMaxLength(32)
+                .IsUnicode(false)
+                .HasColumnName("task_id");
             entity.Property(e => e.WorkZone)
                 .HasMaxLength(4)
                 .IsUnicode(false)

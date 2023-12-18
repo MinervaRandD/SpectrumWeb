@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchbuilder/1.4.0/css/searchBuilder.dataTables.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/datetime/1.2.0/css/dataTables.dateTime.min.css">
     <link rel="stylesheet" type="text/css" href="~/css/editor.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/print.min.css">
 	<style type="text/css" class="init"></style>
 
 	<script type="text/javascript" language="javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -30,7 +31,9 @@
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/searchbuilder/1.4.0/js/dataTables.searchBuilder.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/datetime/1.2.0/js/dataTables.dateTime.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/select/1.5.0/js/dataTables.select.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/fixedheader/3.4.0/js/dataTables.fixedHeader.min.js"></script>
     <script type="text/javascript" language="javascript" src="~/Editor-2.0.10/js/dataTables.editor.min.js"></script>
+    <script type="text/javascript" language="javascript" src="~/lib/print/print.min.js"></script>
 	<script type="text/javascript" class="init"></script>
     <style>
         
@@ -139,6 +142,18 @@
             background-color: none;
         }
     </style>
+    <script>
+        function printRawHtml(html, style) {
+            
+            printJS({
+                printable: html,
+                type: 'raw-html',
+                header: 'JSON Print Header',
+                footer: 'JSON Print Footer',
+                style: style
+              })
+        }
+    </script>
 </head>
 <body>
     

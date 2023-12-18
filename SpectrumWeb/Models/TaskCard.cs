@@ -11,9 +11,9 @@ public partial class TaskCard
 
     public int? Revision { get; set; }
 
-    public int? TaskId { get; set; }
+    public string? TaskId { get; set; }
 
-    public int? TaskIdSub { get; set; }
+    public string? PackageNmbr { get; set; }
 
     public bool? OneTimeCard { get; set; }
 
@@ -21,9 +21,15 @@ public partial class TaskCard
 
     public DateTime? IssueDate { get; set; }
 
+    public DateTime? RevisionDate { get; set; }
+
     public string? AcftType { get; set; }
 
+    public string? AirframeNmbr { get; set; }
+
     public string? SrcRef { get; set; }
+
+    public string? CheckName { get; set; }
 
     public string? Category { get; set; }
 
@@ -33,13 +39,13 @@ public partial class TaskCard
 
     public string? WorkZone { get; set; }
 
-    public string? Section1 { get; set; }
+    public string? Ata { get; set; }
 
-    public string? Section2 { get; set; }
+    public string? SignatureMode { get; set; }
 
-    public string? Station1 { get; set; }
+    public string? Section { get; set; }
 
-    public string? Station2 { get; set; }
+    public string? Station { get; set; }
 
     public string? JobSummary { get; set; }
 

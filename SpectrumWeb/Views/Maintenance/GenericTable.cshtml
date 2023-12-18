@@ -29,7 +29,7 @@ tbody {
      text-align:left;
      float:left;
  }
-*/
+
     .testFieldName {
         background-color: azure;
         height: 64px;
@@ -58,6 +58,10 @@ tbody {
         flex: 1;
            
         margin: 0.5em;
+    }
+
+    .dt-buttons.btn-group {
+        position: fixed;
     }
 </style>
 <script>
@@ -117,13 +121,13 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let table = new DataTable('#classTable', {
     
-        //dom: 'Bfrtip',
-        dom: "<'row'<'col-sm-2'l><'col-sm-1'><'col-sm-4'B><'col-sm-4'f><'col-sm-1'>" +
-            "<'row'<'col-sm-12'tr>>" +
-            "<'row'<'col-sm-4'>'row'<'col-sm-4'i><'col-sm-4'p>>",
+        dom: 'Blfrtip',
+        //dom: "<'row'<'col-sm-12'Bfr>" +
+        //    "<'row'<'col-sm-12'tr>>" +
+        //    "<'row'<'col-sm-12'ip>>",
         select: true,
         buttons: [
-            'copy', 'csv', 'excel',
+          
             { extend: 'pdf',
               orientation: 'landscape'},
             'print', 'searchBuilder',
@@ -131,6 +135,13 @@ document.addEventListener('DOMContentLoaded', function () {
 	        { extend: "edit",   editor: editor },
 	        { extend: "remove", editor: editor } 
         ],
+       
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+
+        "pageLength": 16,
 
         columns: [
            @Html.Raw(@ViewBag.TableColumns)
@@ -168,20 +179,23 @@ document.addEventListener('DOMContentLoaded', function () {
 
     table.on('dblclick', 'tbody tr', function () {
 
-        console.log("at point 1");
+       // console.log("at point 1");
 
         let dblClickUrl =  @Html.Raw(ViewBag.DblClickUrl) ;
 
-        console.log("at point 2");
+        //console.log("at point 2");
 
-        console.log(dblClickUrl);
+        //console.log(dblClickUrl);
 
         if (dblClickUrl)
         {
             
             let data = table.row(this).data();
  
-            window.open(dblClickUrl)
+            let id = table.row(this).id();
+
+            let newWindow = window.open(dblClickUrl + '?id=' + id + '&data=' + JSON.stringify(data));
+
         }
     });
 
@@ -198,11 +212,15 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    //table.on('click', 'tbody tr', function (e) {
+    //    e.currentTarget.classList.toggle('selected');
+    //});
+
         function format(d) {
            
             rtrnValu=@Html.Raw(ViewBag.ChildFieldFormatter);
            
-            console.log(rtrnValu);
+            //console.log(rtrnValu);
 
             return(rtrnValu);
 
@@ -235,10 +253,14 @@ function initializeClassMap()
 
 @Html.Raw(ViewBag.TemplateDiv)
 
-<table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;@ViewBag.TableWidth">
+<div class="row">
+<div class="col-1" style="width:32px"></div>
+
+<div class="col-11">
+<table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
     <thead>
-        <tr>
-            @Html.Raw(@ViewBag.TableHeader)
+        <tr style="color:maroon">
+                @Html.Raw(@ViewBag.TableHeader)
         </tr>
     </thead>
     <tfoot>
@@ -252,7 +274,8 @@ function initializeClassMap()
     </tbody>
                 
 </table>
-
+    </div>
+</div>
 <script>
 
 function buildclassTableBody(){
