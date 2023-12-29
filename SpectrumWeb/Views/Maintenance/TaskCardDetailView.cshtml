@@ -116,8 +116,8 @@
                 $("#interval").attr("value", interval);
                 $("#instructions").attr("value", instructions);
                 $("#remarks").attr("value", remarks);
-                document.getElementById("taskCardHeader").innerHTML= "Task " + taskId + "-" + taskIdSub + " Details";
-                document.title = "Task " + taskId + "-" + taskIdSub + " Details";
+                document.getElementById("taskCardHeader").innerHTML= "Task " + taskId  + " Details";
+                document.title = "Task " + taskId + " Details";
             }
         );
 
@@ -136,9 +136,9 @@
 
         <div style="height:16px"></div>
 
-        <div class="tableContainer row" style="width:100%;margin:auto;vertical-align:top;">
+        <div class="row" style="width:100%;margin:auto;vertical-align:top;">
             <div class="col-1"></div>
-            <div class="col-2" style="vertical-align:top">
+            <div class="col-3" style="vertical-align:top">
                 <table style="color:maroon;font-size:16px;">
                     <tr>
                         <td><label for="packageNmbr">Package Nmbr: </label></td>
@@ -183,7 +183,7 @@
                   
                 </table>
             </div>
-            <div class="col-2">
+            <div class="col-3" style="float:left">
                 <table style="color:maroon;font-size:16px;">
                     <tr>
                         <td style="width:160px"> <label for="checkName">Check Name: </label></td>
@@ -227,7 +227,7 @@
 
                 </table>
             </div>
-            <div class="col-7">
+            <div class="col-5">
                 <h6 style="width:100%;color:maroon;" align="center">-- Job Summary --</h6>
                 <div class="row">
                     <div class="col-1"></div>

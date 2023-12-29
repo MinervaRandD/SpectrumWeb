@@ -63,6 +63,17 @@ tbody {
     .dt-buttons.btn-group {
         position: fixed;
     }
+
+    .revisionCell:hover {
+        cursor:pointer;
+        border-top:solid;
+        border-bottom:solid;
+        border-color:maroon;
+        border-width:thick;
+        border-radius:16px;
+        margin:4px;
+        
+    }
 </style>
 <script>
     
@@ -127,10 +138,30 @@ document.addEventListener('DOMContentLoaded', function () {
         //    "<'row'<'col-sm-12'ip>>",
         select: true,
         buttons: [
-          
-            { extend: 'pdf',
-              orientation: 'landscape'},
-            'print', 'searchBuilder',
+
+            {
+                extend: 'print',
+                action: function () {
+                    let count = table.rows({ selected: true }).count();
+                    if (count <= 0)
+                    {
+                        window.alert("No items selected to print.");
+                    }
+
+                    else
+                    {
+                        let selectedRows = table.rows({ selected: true });
+
+                        for (let i = 0 ; i < count ; i++)
+                        {
+                            console.log(JSON.stringify(selectedRows.data()[i]));
+                        }
+                       
+                    }
+                }
+            },
+            
+            'searchBuilder',
             { extend: "create", editor: editor },
 	        { extend: "edit",   editor: editor },
 	        { extend: "remove", editor: editor } 
@@ -177,9 +208,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     table.buttons(0, null).containers().css('float:right');
 
-    table.on('dblclick', 'tbody tr', function () {
+    table.on('dblclick', 'tbody tr td', function () {
 
        // console.log("at point 1");
+
+       console.log(this);
 
         let dblClickUrl =  @Html.Raw(ViewBag.DblClickUrl) ;
 

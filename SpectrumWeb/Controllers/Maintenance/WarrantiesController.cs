@@ -37,7 +37,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("ExchangedSerNmbr", "Exchanged<br/>Serial<br/>Number","ExchangedSerNmbr", "center", 120)
             ,new FieldSpec("ControlTag", "Control<br/>Tag", "ControlTag", "center", 120)
             ,new FieldSpec("VendorNumber", "Vendor<br/>Number", "VendorNumber", "center", 120)
-            ,new FieldSpec("AtaChap", "ATA<br/>Chap", "AtaChap", "center", 50)
+            ,new FieldSpec("AtaChap", "ATA<br/>Chap", "AtaChap", "center", 50)   
         };
 
         private static List<FieldSpec> childFieldList = new List<FieldSpec>()
@@ -49,11 +49,28 @@ namespace SpectrumWeb.Controllers.Maintenance
 
 
         private string warrantiesChildFieldFormatter =
-            "\"<h6 style='color:maroon'>Terms</h6>\"\n"
-            + "+ \"<div style='height:40px;width:25%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Terms + \"</div>\"\n"
-            + "+ \"<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>\"\n"
-            + "+ \"<h6 style='color:maroon'>Notes</h6>\"\n"
-            + "+ \"<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Notes + \"</div>\"\n"
+            "\"<style>\"\n"
+            + "+ \"  table.childTable td, table.childTable th {\"\n"
+            + "+ \"    border:solid;\"\n"
+            + "+ \"    border-color:maroon;\"\n"
+            + "+ \"    border-width:2px;\"\n"
+            + "+ \"  }\"\n"
+            + "+ \"  table.childTable th {\"\n"
+            + "+ \"    background-color:#EFEFEF;\"\n"
+            + "+ \"  }\"\n"
+            + "+ \"</style>\"\n"
+            + "+ \"<table class='childTable'>\"\n"
+            + "+ \"    <thead>\"\n"
+            + "+ \"        <tr>\"\n"
+            + "+ \"            <th style='width:48px'>Terms</th><th style='width:80%'>Notes</th>\"\n"
+            + "+ \"        </tr>\"\n"
+            + "+ \"    </thead>\"\n"
+            + "+ \"    <tbody>\"\n"
+            + "+ \"        <tr>\"\n"
+            + "+ \"            <td>\" + d.Terms + \"</td><td>\" + d.Notes + \"</td>\"\n"
+            + "+ \"        </tr>\"\n"
+            + "+ \"    </tbody>\"\n"
+            + "+ \"</table>\"\n"
             ;
 
         private string customForm = ControllerCommon.ControllerCommon.TwoPartCustomForm(displayFieldList.GetRange(1, displayFieldList.Count-1), childFieldList);

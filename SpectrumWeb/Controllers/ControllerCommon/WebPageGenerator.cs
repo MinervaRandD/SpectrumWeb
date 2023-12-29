@@ -164,16 +164,34 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
+                   
                     string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
 
-                    if (fieldJustify != null)
+
+                    if (fieldSpecList[i - 1].field == "Revision")
                     {
-                        rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>" + fieldValueList[i] + "</td>\n";
+                        if (fieldJustify != null)
+                        {
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='revisionCell'>" + fieldValueList[i] + "</td>\n";
+                        }
+
+                        else
+                        {
+                            rtrnValue += "    <td class='revisionCell'>" + fieldValueList[i] + "</td>\n";
+                        }
                     }
 
                     else
                     {
-                        rtrnValue += "    <td>" + fieldValueList[i] + "</td>\n";
+                        if (fieldJustify != null)
+                        {
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>" + fieldValueList[i] + "</td>\n";
+                        }
+
+                        else
+                        {
+                            rtrnValue += "    <td>" + fieldValueList[i] + "</td>\n";
+                        }
                     }
                 }
 
