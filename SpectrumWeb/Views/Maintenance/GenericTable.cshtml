@@ -64,7 +64,7 @@ tbody {
         position: fixed;
     }
 
-    .revisionCell:hover {
+    .detailsCell:hover {
         cursor:pointer;
         border-top:solid;
         border-bottom:solid;
@@ -208,29 +208,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
     table.buttons(0, null).containers().css('float:right');
 
-    table.on('dblclick', 'tbody tr td', function () {
+    //table.on('dblclick', 'tbody tr td', function () {
 
-       // console.log("at point 1");
+    //   // console.log("at point 1");
 
-       console.log(this);
+    //   console.log(this);
+        
+    //   //if ($(this).hasClass("detailsCell"))
+    //   //{
+    //   //     let detailsUrl =  @Html.Raw(ViewBag.DetailsUrl) ;
 
-        let dblClickUrl =  @Html.Raw(ViewBag.DblClickUrl) ;
+    //   //     if (detailsUrl) {
 
-        //console.log("at point 2");
-
-        //console.log(dblClickUrl);
-
-        if (dblClickUrl)
-        {
-            
-            let data = table.row(this).data();
+    //   //         let data = table.row(this).data();
  
-            let id = table.row(this).id();
+    //   //         let id = table.row(this).id();
 
-            let newWindow = window.open(dblClickUrl + '?id=' + id + '&data=' + JSON.stringify(data));
+    //   //         let newWindow = window.open(detailsUrl + '?id=' + id + '&data=' + JSON.stringify(data));
 
-        }
-    });
+    //   //     }
+
+    //   //     return;
+    //   //}
+    //});
 
     table.on('click', 'td.dt-control', function (e) {
         let tr = e.target.closest('tr');

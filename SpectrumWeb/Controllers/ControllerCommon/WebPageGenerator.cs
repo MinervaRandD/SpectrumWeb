@@ -168,16 +168,16 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
 
 
-                    if (fieldSpecList[i - 1].field == "Revision")
+                    if (fieldSpecList[i - 1].fieldType == "details")
                     {
                         if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='revisionCell'>" + fieldValueList[i] + "</td>\n";
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'>&rarrhk;</td>\n";
                         }
 
                         else
                         {
-                            rtrnValue += "    <td class='revisionCell'>" + fieldValueList[i] + "</td>\n";
+                            rtrnValue += "    <td class='detailsCell'>&rarrhk;</td>\n";
                         }
                     }
 
@@ -244,49 +244,56 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in displayFieldList)
             {
-                if (!fieldsDict.ContainsKey(fieldSpec.field))
-                {
-                    // This will happen if the field is a child row
+                //if (!fieldsDict.ContainsKey(fieldSpec.field))
+                //{
+                //    // This will happen if the field is a child row
 
-                    continue;
+                //    continue;
+                //}
+
+                if (fieldSpec.fieldType == "details")
+                {
+                    field = @"&rarrhk;";
                 }
 
-                field = fieldsDict[fieldSpec.field];
-
-
-                if (fieldSpec.fieldType == "date")
+                else
                 {
-                    if (!string.IsNullOrEmpty(field))
-                    {
-                        field = field.Substring(0, 10);
-                    }
-                }
+                    field = fieldsDict[fieldSpec.field];
 
-                else if (fieldSpec.fieldType == "bool")
-                {
-                    if (field == "true")
+                    if (fieldSpec.fieldType == "date")
                     {
-                        field = "Y";
+                        if (!string.IsNullOrEmpty(field))
+                        {
+                            field = field.Substring(0, 10);
+                        }
                     }
 
-                    else if (field == "false")
+                    else if (fieldSpec.fieldType == "bool")
                     {
-                        field = "N";
-                    }
-                }
+                        if (field == "true")
+                        {
+                            field = "Y";
+                        }
 
-                else if (fieldSpec.fieldType == "fixed")
-                {
-                    int dotIndx = field.LastIndexOf('.');
-
-                    if (dotIndx == 0)
-                    {
-                        field = "0";
+                        else if (field == "false")
+                        {
+                            field = "N";
+                        }
                     }
 
-                    else if (dotIndx > 0)
+                    else if (fieldSpec.fieldType == "fixed")
                     {
-                        field = field.Substring(0, dotIndx);
+                        int dotIndx = field.LastIndexOf('.');
+
+                        if (dotIndx == 0)
+                        {
+                            field = "0";
+                        }
+
+                        else if (dotIndx > 0)
+                        {
+                            field = field.Substring(0, dotIndx);
+                        }
                     }
                 }
 
