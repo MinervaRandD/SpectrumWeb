@@ -19,7 +19,7 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> taskCardsDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Details", "DET", "Details", "center", 20, "details"),
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details"),
             new FieldSpec("Revision", "Rev", "Revision", "center", 20),
             new FieldSpec("TaskId", "Task<br/>Id", "TaskId", "left", 60),
             new FieldSpec("PackageNmbr", "Pkg<br/>Nmbr", "PackageNmbr", "center", 60),
@@ -57,24 +57,48 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Remarks", "Remarks", "Remarks", "left", 120),
         };
 
+        //private string taskCardsChildFieldFormatter =
+        //    "\"<style>\"\n"
+        //    + "+ \"  table.childTable td, table.childTable th {\"\n"
+        //    + "+ \"    border:solid;\"\n"
+        //    + "+ \"    border-color:maroon;\"\n"
+        //    + "+ \"    border-width:2px;\"\n"
+        //    + "+ \"  }\"\n"
+        //    + "+ \"</style>\"\n"
+        //    + "+ \"<div style='height:16px'></div>\"\n"
+        //    + "+ \"        <table class='childTable' style='border:solid;border-color:maroon;border-width:2px;margin:auto'>\"\n"
+        //    + "+ \"            <tr style='background-color:#E9E9E9'><th style='width:400px'>Job Summary</th><th style='width:128px'>Task</th><th style='width:128px'>Interval</th><th style='width:128px'>Remarks</th></tr>\"\n"
+        //    + "+ \"            <tr><td>\" + d.JobSummary + \"</td><td>\" + d.Task + \"</td><td>\" + d.Interval + \"</td><td>\" + d.Remarks + \"</td></tr>\"\n"
+        //    + "+ \"        </table>\"\n"
+        //    + "+ \"<div style='height:24px'></div>\"\n"
+        //    + "+ \"<h6 align='center'>Instructions</h6>\"\n"
+        //    + "+ \"<div style='height:128px;width:260px:margin:auto;border:solid;border-color:maroon;border-width:2px'>\" + d.Instructions + \"</div>\"\n"
+        //    + "+ \"<div style='height:16px'></div>\"\n"
+        //    ;
+
+        static List<string> childField = new List<string>()
+        {
+            "<style>"
+            , "  table.childTable td, table.childTable th {"
+            , "    border:solid;"
+            , "    border-color:maroon;"
+            , "    border-width:2px;"
+            , "  }"
+            , "</style>"
+            , "<div style='height:16px'></div>"
+            , "        <table class='childTable' style='border:solid;border-color:maroon;border-width:2px;margin:auto'>"
+            , "            <tr style='background-color:#E9E9E9'><th style='width:400px'>Job Summary</th><th style='width:128px'>Task</th><th style='width:128px'>Interval</th><th style='width:128px'>Remarks</th></tr>"
+            , "            <tr><td>\" + d.JobSummary + \"</td><td>\" + d.Task + \"</td><td>\" + d.Interval + \"</td><td>\" + d.Remarks + \"</td></tr>"
+            , "        </table>"
+            , "<div style='height:24px'></div>"
+            , "<h6 align='center'>Instructions</h6>"
+            , "<div style='height:128px;width:260px:margin:auto;border:solid;border-color:maroon;border-width:2px'>\" + d.Instructions + \"</div>"
+            , "<div style='height:16px'></div>"
+        };
+
         private string taskCardsChildFieldFormatter =
-            "\"<style>\"\n"
-            + "+ \"  table.childTable td, table.childTable th {\"\n"
-            + "+ \"    border:solid;\"\n"
-            + "+ \"    border-color:maroon;\"\n"
-            + "+ \"    border-width:2px;\"\n"
-            + "+ \"  }\"\n"
-            + "+ \"</style>\"\n"
-            + "+ \"<div style='height:16px'></div>\"\n"
-            + "+ \"        <table class='childTable' style='border:solid;border-color:maroon;border-width:2px;margin:auto'>\"\n"
-            + "+ \"            <tr style='background-color:#E9E9E9'><th style='width:400px'>Job Summary</th><th style='width:128px'>Task</th><th style='width:128px'>Interval</th><th style='width:128px'>Remarks</th></tr>\"\n"
-            + "+ \"            <tr><td>\" + d.JobSummary + \"</td><td>\" + d.Task + \"</td><td>\" + d.Interval + \"</td><td>\" + d.Remarks + \"</td></tr>\"\n"
-            + "+ \"        </table>\"\n"
-            + "+ \"<div style='height:24px'></div>\"\n"
-            + "+ \"<h6 align='center'>Instructions</h6>\"\n"
-            + "+ \"<div style='height:128px;width:260px:margin:auto;border:solid;border-color:maroon;border-width:2px'>\" + d.Instructions + \"</div>\"\n"
-            + "+ \"<div style='height:16px'></div>\"\n"
-            ;
+             "\"" + string.Join("\"\n + \"", childField) + "\"";
+
 
         public IActionResult TaskCards()
         {

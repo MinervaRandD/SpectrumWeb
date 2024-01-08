@@ -35,7 +35,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         }
 
         public IActionResult GenericTableGenerator(
-        string updaterURL
+          string updaterURL
         , List<FieldSpec> displayFieldList
         , string title
         , List<object> classList

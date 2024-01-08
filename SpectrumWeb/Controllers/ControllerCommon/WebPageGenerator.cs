@@ -172,12 +172,12 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     {
                         if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'>&rarrhk;</td>\n";
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><img src='~/Img/EditIcon.png'/></td>\n";
                         }
 
                         else
                         {
-                            rtrnValue += "    <td class='detailsCell'>&rarrhk;</td>\n";
+                            rtrnValue += "    <td class='detailsCell'><img src='~/Img/EditIcon.png'/></td>\n";
                         }
                     }
 
