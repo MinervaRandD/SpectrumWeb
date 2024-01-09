@@ -10,11 +10,11 @@ namespace SpectrumWeb.Controllers.Maintenance
 {
     public class TaskCardsController : Controller
     {
-        private readonly ArmsSpectrumDevelopmentContext _context;
+        private readonly ArmsSpectrumDevelopmentContext context;
 
         public TaskCardsController(ArmsSpectrumDevelopmentContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         List<FieldSpec> taskCardsDisplayFieldList = new List<FieldSpec>()
@@ -57,26 +57,8 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Remarks", "Remarks", "Remarks", "left", 120),
         };
 
-        //private string taskCardsChildFieldFormatter =
-        //    "\"<style>\"\n"
-        //    + "+ \"  table.childTable td, table.childTable th {\"\n"
-        //    + "+ \"    border:solid;\"\n"
-        //    + "+ \"    border-color:maroon;\"\n"
-        //    + "+ \"    border-width:2px;\"\n"
-        //    + "+ \"  }\"\n"
-        //    + "+ \"</style>\"\n"
-        //    + "+ \"<div style='height:16px'></div>\"\n"
-        //    + "+ \"        <table class='childTable' style='border:solid;border-color:maroon;border-width:2px;margin:auto'>\"\n"
-        //    + "+ \"            <tr style='background-color:#E9E9E9'><th style='width:400px'>Job Summary</th><th style='width:128px'>Task</th><th style='width:128px'>Interval</th><th style='width:128px'>Remarks</th></tr>\"\n"
-        //    + "+ \"            <tr><td>\" + d.JobSummary + \"</td><td>\" + d.Task + \"</td><td>\" + d.Interval + \"</td><td>\" + d.Remarks + \"</td></tr>\"\n"
-        //    + "+ \"        </table>\"\n"
-        //    + "+ \"<div style='height:24px'></div>\"\n"
-        //    + "+ \"<h6 align='center'>Instructions</h6>\"\n"
-        //    + "+ \"<div style='height:128px;width:260px:margin:auto;border:solid;border-color:maroon;border-width:2px'>\" + d.Instructions + \"</div>\"\n"
-        //    + "+ \"<div style='height:16px'></div>\"\n"
-        //    ;
-
-        static List<string> childField = new List<string>()
+        
+        static List<string> taskCardChildField = new List<string>()
         {
             "<style>"
             , "  table.childTable td, table.childTable th {"
@@ -96,13 +78,13 @@ namespace SpectrumWeb.Controllers.Maintenance
             , "<div style='height:16px'></div>"
         };
 
-        private string taskCardsChildFieldFormatter =
-             "\"" + string.Join("\"\n + \"", childField) + "\"";
+        static private string taskCardsChildFieldFormatter =
+             "\"" + string.Join("\"\n + \"", taskCardChildField) + "\"";
 
 
         public IActionResult TaskCards()
         {
-            List<TaskCard> classList = _context.TaskCards.ToList();
+            List<TaskCard> classList = context.TaskCards.ToList();
 
             return (new GenericTableController()).GenericTableGenerator(
                 taskCardsDisplayFieldList
@@ -115,8 +97,10 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         }
 
-        public IActionResult TaskCardDetailView(string id, string data)
+        public IActionResult TaskCardDetailView(string id, string data1)
         {
+            var data = context.TaskCards.Where(t => t.PkRecordId == id).FirstOrDefault();
+
             ViewBag.Id = "'" + id + "'";
             ViewBag.Data = data;
 

@@ -21,7 +21,8 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         private static List<FieldSpec> displayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Revision", "Revision", "Revision", "right", 60)
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details")
+           , new FieldSpec("Revision", "Rev", "Revision", "right", 20)
             ,new FieldSpec("Number", "Number", "Number", "center", 120)
             ,new FieldSpec("PartNumber", "Part<br/>Number", "PartNumber", "center", 120)
             ,new FieldSpec("SerialNmbr", "Serial<br/>Number", "SerialNmbr", "center", 120)
@@ -46,32 +47,46 @@ namespace SpectrumWeb.Controllers.Maintenance
             ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, "text", 128)
         };
 
+        static List<string> warrantiesChildDisplayFieldList = new List<string>()
+        {
+            "<style>"
+            , "  table.childTable td, table.childTable th {"
+            , "    border:solid;"
+            , "    border-color:maroon;"
+            , "    border-width:2px;"
+            , "  }"
+            , "  table.childTable th {"
+            , "    background-color:#EFEFEF;"
+            , "  }"
+            , "</style>"
+            , "<table class='childTable' style='width:100%'>"
+
+            , "        <tr>"
+            , "            <th style='width:256px'>Terms</th>"
+            , "        </tr>"
 
 
-        private string warrantiesChildFieldFormatter =
-            "\"<style>\"\n"
-            + "+ \"  table.childTable td, table.childTable th {\"\n"
-            + "+ \"    border:solid;\"\n"
-            + "+ \"    border-color:maroon;\"\n"
-            + "+ \"    border-width:2px;\"\n"
-            + "+ \"  }\"\n"
-            + "+ \"  table.childTable th {\"\n"
-            + "+ \"    background-color:#EFEFEF;\"\n"
-            + "+ \"  }\"\n"
-            + "+ \"</style>\"\n"
-            + "+ \"<table class='childTable'>\"\n"
-            + "+ \"    <thead>\"\n"
-            + "+ \"        <tr>\"\n"
-            + "+ \"            <th style='width:48px'>Terms</th><th style='width:80%'>Notes</th>\"\n"
-            + "+ \"        </tr>\"\n"
-            + "+ \"    </thead>\"\n"
-            + "+ \"    <tbody>\"\n"
-            + "+ \"        <tr>\"\n"
-            + "+ \"            <td>\" + d.Terms + \"</td><td>\" + d.Notes + \"</td>\"\n"
-            + "+ \"        </tr>\"\n"
-            + "+ \"    </tbody>\"\n"
-            + "+ \"</table>\"\n"
-            ;
+            , "        <tr>"
+            , "            <td>\" + d.Terms + \"</td>"
+            , "        </tr>"
+
+
+            , "        <tr>"
+            , "            <th style='width:256px'>Notes</th>"
+            , "        </tr>"
+
+
+            , "        <tr>"
+            , "            <td>\" + d.Notes + \"</td>"
+            , "        </tr>"
+
+            , "</table>"
+        };
+
+        static private string warrantiesChildFieldFormatter =
+             "\"" + string.Join("\"\n + \"", warrantiesChildDisplayFieldList) + "\"";
+
+
 
         private string customForm = ControllerCommon.ControllerCommon.TwoPartCustomForm(displayFieldList.GetRange(1, displayFieldList.Count-1), childFieldList);
 
@@ -101,7 +116,20 @@ namespace SpectrumWeb.Controllers.Maintenance
                 , "Guarantees and Warranties"
                 , classList.Select(e => (object)e).ToList()
                 , childFieldList
-                , warrantiesChildFieldFormatter);
+                , warrantiesChildFieldFormatter
+                , "WarranteeDetailView");
+        }
+
+
+        public IActionResult WarranteeDetailView(string id, string data1)
+        {
+            var data = context.GuaranteeWarranties.Where(g => g.PkRecordId == id).FirstOrDefault();
+          
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
+
+
+            return View("~/Views/Maintenance/WarranteeDetailView.cshtml");
         }
     }
     

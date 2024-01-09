@@ -2,7 +2,34 @@
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
+    @using SpectrumWeb.Models;
+    @model TaskCard;
+
+    TaskCard tc = @ViewBag.Data;
+
+    string otc = "U";
+
+    if (@tc.OneTimeCard.HasValue)
+    {
+        if (tc.OneTimeCard.Value)
+        {
+            otc = "Y";
+        }
+
+        else
+        {
+            otc = "N";                     
+        }
+    }
+
+    string sm = "N";
+
+    if (!string.IsNullOrEmpty(tc.SignatureMode))
+    {
+        sm = tc.SignatureMode;
+    }
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,75 +76,9 @@
 
         $(document).ready(function()
             {
-                let id = @Html.Raw(ViewBag.Id);
-                let data = @Html.Raw(ViewBag.Data);
+            
 
-                let revision = data['Revision'];
-                let taskId = data['TaskId'];
-                let packageNmbr = data['PackageNmbr'];
-                let oneTimeCard = data['OneTimeCard']
-                let seqNmbr = data['SeqNmbr'];
-                let issueDate = data['IssueDate'];
-                let revisionDate = data['RevisionDate'];
-                let acftType = data['AcftType'];
-                let airframeNmbr = data['AirframeNmbr'];
-                let srcRef = data['SrcRef'];
-                let category = data['Category'];
-                let checkName = data['CheckName'];
-                let priority = data['Priority'];
-                let maintManRef = data['MaintManRef'];
-                let ata = data['Ata'];
-                let signatureMode = data['SignatureMode'];
-                let workZone = data['WorkZone'];
-                let section = data['Section'];
-                let station = data['Station'];
-                let jobSummary = data['JobSummary'];
-                let task = data['Task'];
-                let interval = data['Interval'];
-                let instructions = data['Instructions'];
-                let remarks = data['Remarks'];
-              
-
-                $("#taskId").attr("value", taskId);
-                $("#packageNmbr").attr("value", packageNmbr);
-
-                const oneTimeCardSelect = document.getElementById('oneTimeCard');
-
-                oneTimeCard = oneTimeCard.toLowerCase();
-
-                if (oneTimeCard == 'y' || oneTimeCard == 'yes' || oneTimeCard == 'true' || oneTimeCard == 't')
-                {
-                    oneTimeCardSelect.selectedIndex = 0;
-                }
-
-                else
-                {
-                    oneTimeCardSelect.selectedIndex = 1;
-                }
-
-                $("#seqNmbr").attr("value", seqNmbr);
-                $("#issueDate").attr("value", issueDate);
-                $("revisionDate").attr("value", revisionDate);
-                $("#acftType").attr("value", acftType);
-                $("#srcRef").attr("value", srcRef);
-                $("#category").attr("value", category);
-                $("#checkName").attr("value", checkName);
-                $("#priority").attr("value", priority);
-                $("#maintManRef").attr("value", maintManRef);
-                $("#ata").attr("value", ata);
-
-                $("#SignatureMode").attr("value", signatureMode);
-
-                $("#workZone").attr("value", workZone);
-                $("#section").attr("value", section);
-                $("#station").attr("value", station);
-                $("#jobSummary").attr("value", jobSummary);
-                $("#task").attr("value", task);
-                $("#interval").attr("value", interval);
-                $("#instructions").attr("value", instructions);
-                $("#remarks").attr("value", remarks);
-                document.getElementById("taskCardHeader").innerHTML= "Task " + taskId  + " Details";
-                document.title = "Task " + taskId + " Details";
+                
             }
         );
 
@@ -136,17 +97,23 @@
 
         <div style="height:16px"></div>
 
-        <div class="row" style="width:100%;margin:auto;vertical-align:top;">
-            <div class="col-1"></div>
-            <div class="col-3" style="vertical-align:top">
+        <div style="width:100%;display:block;align-content:center;text-align:center;">
+
+            <div style="margin:32px;display:inline-block">
+            
                 <table style="color:maroon;font-size:16px;">
                     <tr>
                         <td><label for="packageNmbr">Package Nmbr: </label></td>
-                        <td><input type="text" id="packageNmbr" name="packageNmbr" /></td>
+                        <td><input type="text" id="packageNmbr" name="packageNmbr" value="@tc.PackageNmbr"/></td>
                     </tr>
                     <tr>
+                        @{
+                            
+                        }
+
                         <td style="width:160px"><label for="oneTimeCard">One Time Card (Y/N): </label></td>
-                        <td><select id="oneTimeCard" name="oneTimeCard">
+                        <td><select id="oneTimeCard" name="oneTimeCard" value="@otc">
+                                <option value="U">&nbsp;</option>
                                 <option value="Y">Y</option>
                                 <option value="N">N</option>
                              </select>
@@ -154,57 +121,57 @@
                     </tr>
                     <tr>
                         <td><label for="seqNmbr">Sequence Nmbr: </label></td>
-                        <td><input type="text" id="seqNmbr" name="seqNmbr" /></td>
+                        <td><input type="text" id="seqNmbr" name="seqNmbr" value="@tc.SeqNmbr"/></td>
                     </tr>
                     <tr>
                        <td> <label for="issueDate">Issue Date: </label></td>
-                       <td> <input type="date" id="issueDate" name="issueDate" /></td>
+                       <td> <input type="date" id="issueDate" name="issueDate" value="@tc.IssueDate" /></td>
                     </tr>
                     <tr>
                         <td> <label for="revisionDate">Revision Date: </label></td>
-                        <td> <input type="date" id="revisionDate" name="revisionDate" /></td>
+                        <td> <input type="date" id="revisionDate" name="revisionDate" value="@tc.RevisionDate"/></td>
                     </tr>
                     <tr>
                         <td> <label for="acftType">Aircraft Type: </label></td>
-                        <td> <input type="text" id="acftType" name="acftType" /></td>
+                        <td> <input type="text" id="acftType" name="acftType" value="@tc.AcftType"/></td>
                     </tr>
                     <tr>
                         <td> <label for="airframeNmbr">Airframe Nmbr: </label></td>
-                        <td> <input type="text" id="airframeNmbr" name="airframeNmbr" /></td>
+                        <td> <input type="text" id="airframeNmbr" name="airframeNmbr" value="@tc.AirframeNmbr"/></td>
                     </tr>
                     <tr>
                         <td> <label for="srcRef">Source Ref: </label></td>
-                        <td> <input type="text" id="srcRef" name="srcRef" /></td>
+                        <td> <input type="text" id="srcRef" name="srcRef" value="@tc.SrcRef"/></td>
                     </tr>
                     <tr>
                         <td> <label for="category">Check Name: </label></td>
-                        <td> <input type="text" id="checkName" name="checkName" /></td>
+                        <td> <input type="text" id="checkName" name="checkName" value="@tc.CheckName"/></td>
                     </tr>
                   
                 </table>
             </div>
-            <div class="col-3" style="float:left">
+            <div style="display:inline-block;margin:32px">
                 <table style="color:maroon;font-size:16px;">
                     <tr>
                         <td style="width:160px"> <label for="checkName">Check Name: </label></td>
-                        <td> <input type="text" id="checkName" name="checkDate" /></td>
+                        <td> <input type="text" id="checkName" name="checkDate" value="@tc.CheckName"/></td>
                     </tr>
                      <tr>
                         <td> <label for="priority">Priority: </label></td>
-                        <td> <input type="text" id="priority" name="priority" /></td>
+                        <td> <input type="text" id="priority" name="priority" value="@tc.Priority"/></td>
                     </tr>
                     <tr>
                         <td> <label for="maintManRef">Maint Manual Ref: </label></td>
-                        <td> <input type="text" id="maintManRef" name="maintManRef" /></td>
+                        <td> <input type="text" id="maintManRef" name="maintManRef" value="@tc.MaintManRef"/></td>
                     </tr>
                   
                     <tr>
                         <td> <label for="ata">ATA: </label></td>
-                        <td> <input type="text" id="ata" name="ata" /></td>
+                        <td> <input type="text" id="ata" name="ata" value="@tc.Ata"/></td>
                     </tr>
                     <tr>
                         <td><label for="signatureMode">SignatureMode: </label></td>
-                        <td><select id="signatureMode" name="signatureMode">
+                        <td><select id="signatureMode" name="signatureMode" value="@sm">
                                 <option value="none"> </option>
                                 <option value="L">L</option>
                                 <option value="R">R</option>
@@ -214,20 +181,20 @@
                     </tr>
                     <tr>
                         <td> <label for="workZone">Work Zone: </label></td>
-                        <td> <input type="text" id="workZone" name="workZone" /></td>
+                        <td> <input type="text" id="workZone" name="workZone" value="@tc.WorkZone"/></td>
                     </tr>
                     <tr>
                         <td ><label for="section">Section: </label></td>
-                        <td><input type="text" id="section" name="section" style="width:64px;" /></td>
+                        <td><input type="text" id="section" name="section" style="width:64px;" value="@tc.Section"/></td>
                     </tr>
                     <tr>
                         <td><label for="station">Station: </label></td>
-                        <td><input type="text" id="station" name="section" style="width:64px;" /></td>
+                        <td><input type="text" id="station" name="section" style="width:64px;" value="@tc.Station"/></td>
                     </tr>
 
                 </table>
             </div>
-            <div class="col-5">
+            <div style="display:inline-block;margin:32px">
                 <h6 style="width:100%;color:maroon;" align="center">-- Job Summary --</h6>
                 <div class="row">
                     <div class="col-1"></div>
