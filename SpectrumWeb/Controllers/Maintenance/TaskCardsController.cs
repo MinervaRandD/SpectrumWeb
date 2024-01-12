@@ -97,7 +97,7 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         }
 
-        public IActionResult TaskCardDetailView(string id, string data1)
+        public IActionResult TaskCardDetailView(string id)
         {
             var data = context.TaskCards.Where(t => t.PkRecordId == id).FirstOrDefault();
 

@@ -121,7 +121,7 @@ namespace SpectrumWeb.Controllers.Maintenance
         }
 
 
-        public IActionResult WarranteeDetailView(string id, string data1)
+        public IActionResult WarranteeDetailView(string id)
         {
             var data = context.GuaranteeWarranties.Where(g => g.PkRecordId == id).FirstOrDefault();
           

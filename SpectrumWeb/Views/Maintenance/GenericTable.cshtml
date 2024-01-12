@@ -220,11 +220,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (detailsUrl) {
 
-                let data = table.row(this).data();
+               // let data = table.row(this).data();
  
                 let id = table.row(this).id();
 
-                let newWindow = window.open(detailsUrl + '?id=' + id + '&data=' + JSON.stringify(data));
+                let newWindow = window.open(detailsUrl + '?id=' + id);
 
             }
 

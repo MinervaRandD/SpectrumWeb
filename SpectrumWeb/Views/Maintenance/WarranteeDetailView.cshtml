@@ -60,7 +60,7 @@
     <form method="post" id="guaranteeWarrantyForm">
         
         <div style="width:100%;margin:auto;display:block;text-align:center;">
-            <label for="taskId" style="width:64px;">Guarantee/Waranty Number: </label><input type="text" id="taskId" name="taskId" style="width:64px;" />-<input type="text" id="taskIdSub" name="taskIdSub" style="width:48px" />
+            <label for="taskId" style="width:256px;">Guarantee/Waranty Number: </label><input type="text" id="warantyNmbr" name="warantyNmbr" style="width:128px;" value="@gw.Number" />
         </div>
 
         <div style="height:16px"></div>
@@ -70,10 +70,6 @@
             <div style="margin:32px;display:inline-block;">
             
                 <table style="color:maroon;font-size:16px;">
-                    <tr>
-                        <td><label for="number">Number: </label></td>
-                        <td><input type="text" id="number" name="number" value="@gw.Number" /></td>
-                    </tr>
                     <tr>
                         <td><label for="partNmbr">Part Nmbr: </label></td>
                         <td><input type="text" id="partNmbr" name="partNmbr" value="@gw.PartNumber"/></td>
@@ -98,14 +94,15 @@
                         <td> <label for="weeksGuaranteed">Weeks Guaranteed: </label></td>
                         <td> <input type="text" id="weeksGuaranteed" name="weeksGuaranteed" value="@gw.WeeksAtInstall" /></td>
                     </tr>
-                </table>
-            </div>
-            <div style="display:inline-block;margin:32px;">
-                <table style="color:maroon;font-size:16px;">
                     <tr>
-                        <td > <label for="hoursAtInstall">Hours At Install: </label></td>
+                        <td> <label for="hoursAtInstall">Hours At Install: </label></td>
                         <td> <input type="number" id="hoursAtInstall" name="hoursAtInstall" value="@gw.HoursAtInstall" /></td>
                     </tr>
+                </table>
+            </div>
+            <div style="display:inline-block;margin:32px;vertical-align:top">
+                <table style="color:maroon;font-size:16px;">
+                   
                      <tr>
                         <td> <label for="cyclesAtInstall">Cycles At Install: </label></td>
                         <td> <input type="number" id="cyclesAtInstall" name="cyclesAtInstall" value="@gw.CyclsAtInstall"/></td>

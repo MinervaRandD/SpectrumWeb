@@ -121,61 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
         ],
     } );
     
-@*function initializeSquawksMasterMap()
-{
-    squawkMasterMap.clear();
 
-    @foreach(SquawkMaster squawkMaster in ViewBag.squawkMasterList)
-        {
-            @:var squawkMasterInstance = new SquawkMasterClass(
-                @: '@squawkMaster.PkTransactId',
-                @: '@squawkMaster.SquawkNumber',
-                @: '@squawkMaster.TypeCode',
-                @: '@squawkMaster.AtaChapCode',
-                @: '@squawkMaster.DateReceived',
-                @: '@squawkMaster.ReportedBy',
-                @: '@squawkMaster.DateDispDuDef',
-                @: '@squawkMaster.FlightLogNmbr',
-                @: '@squawkMaster.ItemNmbr',
-                @: '@squawkMaster.Flight',
-                @: '@squawkMaster.DateComp',
-                @: '@squawkMaster.WorkOrderNmbr',
-                @: '@squawkMaster.PartNumbers',
-                @: '@squawkMaster.EtopsSignific',
-                @: '@squawkMaster.EtopsConfirmed',
-                @: '@squawkMaster.ByWhom',
-                @: '@squawkMaster.EtopsVerified',
-                @: '@squawkMaster.ByWho',
-                @: '@squawkMaster.CatIiiSignif',
-                @: '@squawkMaster.CatIiiVerified',
-                @: '@squawkMaster.CatIiiApproach',
-                @: '@squawkMaster.CatIiiLndgTyp',
-                @: '@squawkMaster.TextProbAndResolu',
-                @: '@squawkMaster.EngPositionNmbr',
-                @: '@squawkMaster.TailNmbr',
-                @: '@squawkMaster.City',
-                @: '@squawkMaster.EngineShutDown',
-                @: '@squawkMaster.DelayYN',
-                @: '@squawkMaster.CancellationYN',
-                @: '@squawkMaster.ServiceDiffYN',
-                @: '@squawkMaster.AtaChapAndSub',
-                @: '@squawkMaster.AtaParagraph',
-                @: '@squawkMaster.Sqmelt',
-                @: '@squawkMaster.AirframeAtSqwk',
-                @: '@squawkMaster.AFWhenDone',
-                @: '@squawkMaster.DelayMinutes',
-                @: '@squawkMaster.DmiNumber',
-                @: '@squawkMaster.AuditPrint',
-                @: '@squawkMaster.WhoFixed',
-                @: '@squawkMaster.FirstInspector',
-                @: '@squawkMaster.SecondInspector',
-                @: '@squawkMaster.SerialNumbers'
-                @:);
-       
-            @:squawkMasterMap.set(squawkMasterInstance.squawkNumber, squawkMasterInstance);
-
-        }
-}*@
 </script>
 
 <div style="height:32px"></div>

@@ -10,15 +10,16 @@ namespace SpectrumWeb.Controllers.Maintenance
 {
     public class SquawksController : Controller
     {
-        private readonly ArmsSpectrumDevelopmentContext _context;
+        private readonly ArmsSpectrumDevelopmentContext context;
 
         public SquawksController(ArmsSpectrumDevelopmentContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         List<FieldSpec> squawksMasterDisplayFieldList = new List<FieldSpec>()
         {
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details"),
             new FieldSpec("Rev", "Rev", "Revision", "center", 20),
             new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "right", 60),
             new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 30),
@@ -110,63 +111,64 @@ namespace SpectrumWeb.Controllers.Maintenance
            
         };
 
+        static List<string> squawkChildField = new List<string>()
+        {
+            "<style>"
+            , "  table.childTable td, table.childTable th {"
+            , "    border:solid;"
+            , "    border-color:maroon;"
+            , "    border-width:2px;"
+            , "  }"
+            , "</style>"
+            , "<h6 style='color:maroon'>Description</h6>"
+            , "<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Description + \"</div>"
+            , "<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>"
+            , "<h6 style='color:maroon'>Resolution</h6>"
+            , "<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Resolution + \"</div>"
+            , "<div class='row'>"
+            , "    <div class='col-1'></div>"
+            , "    <div class='col-2'>"
+            , "        <table style='border:2px solid maroon'>"
+            , "            <tr><th style='text-align:right'>Fixed By:</th><td>\" + d.WhoFixed + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Date Completed:</th><td>\" + d.DateComp + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Work Order Nmbr:</th><td>\" + d.WorkOrderNmbr + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Maint Task Code:</th><td>\" + d.MaintTaskCode + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Inspector 1:</th><td>\" + d.FirstInspector + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Inspector 2:</th><td>\" + d.SecondInspector + \"</td></tr>"
+            , "        </table>"
+            , "    </div>"
+            , "    <div class='col-2'>"
+            , "        <table style='border:2px solid maroon'>"
+            , "            <tr style='height:12px'>"
+            , "                <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber01 + \"</td><td>\" + d.Warehouse01 + \"</td><td>\" + d.SerialNumber01 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber02 + \"</td><td>\" + d.Warehouse02 + \"</td><td>\" + d.SerialNumber02 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber03 + \"</td><td>\" + d.Warehouse03 + \"</td><td>\" + d.SerialNumber03 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber04 + \"</td><td>\" + d.Warehouse04 + \"</td><td>\" + d.SerialNumber04 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber05 + \"</td><td>\" + d.Warehouse05 + \"</td><td>\" + d.SerialNumber05 + \"</td>"
+            , "            </tr>"
+            , "        </table>"
+            , "    </div>"
+            , "</div>"
+        };
 
-        private string squawkChildFieldFormatter =
-            "\"<h6 style='color:maroon'>Description</h6>\"\n"
-            + "+ \"<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Description + \"</div>\"\n"
-            + "+ \"<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>\"\n"
-            + "+ \"<h6 style='color:maroon'>Resolution</h6>\"\n"
-            + "+ \"<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Resolution + \"</div>\"\n"
-            + "+ \"<div class='row'>\"\n"
-            + "+ \"    <div class='col-1'></div>\"\n"
-            + "+ \"    <div class='col-2'>\"\n"
+        static private string squawkChildFieldFormatter =
+            "\"" + string.Join("\"\n + \"", squawkChildField) + "\"";
 
-
-            + "+ \"        <table style='border:2px solid maroon'>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Fixed By:</th><td>\" + d.WhoFixed + \"</td></tr>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Date Completed:</th><td>\" + d.DateComp + \"</td></tr>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Work Order Nmbr:</th><td>\" + d.WorkOrderNmbr + \"</td></tr>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Maint Task Code:</th><td>\" + d.MaintTaskCode + \"</td></tr>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Inspector 1:</th><td>\" + d.FirstInspector + \"</td></tr>\"\n"
-            + "+ \"            <tr><th style='text-align:right'>Inspector 2:</th><td>\" + d.SecondInspector + \"</td></tr>\"\n"
-            + "+ \"        </table>\"\n"
-            //+ "+ \"        <ul style='border:2px solid maroon;'>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Fixed By:</span><span>\" + d.WhoFixed + \"</span></li><br/>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Date Completed:</span><span>\" + d.DateComp + \"</span></li>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Work Order Nmbr:</span><span>\" + d.WorkOrderNmbr + \"</span></li>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Maint Task Code:</span><span>\" + d.MaintTaskCode + \"</span></li>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Inspector 1:</span><span>\" + d.FirstInspector + \"</span></li>\"\n"
-            //+ "+ \"            <li><span style='text-align:right'>Inspector 2:</span><span>\" + d.SecondInspector + \"</span></li>\"\n"
-            //+ "+ \"        </ul>\"\n"
-            + "+ \"    </div>\"\n"
-            + "+ \"    <div class='col-2'>\"\n"
-            + "+ \"        <table style='border:2px solid maroon'>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <td>\" + d.PartNumber01 + \"</td><td>\" + d.Warehouse01 + \"</td><td>\" + d.SerialNumber01 + \"</td>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <td>\" + d.PartNumber02 + \"</td><td>\" + d.Warehouse02 + \"</td><td>\" + d.SerialNumber02 + \"</td>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <td>\" + d.PartNumber03 + \"</td><td>\" + d.Warehouse03 + \"</td><td>\" + d.SerialNumber03 + \"</td>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <td>\" + d.PartNumber04 + \"</td><td>\" + d.Warehouse04 + \"</td><td>\" + d.SerialNumber04 + \"</td>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"            <tr style='height:12px'>\"\n"
-            + "+ \"                <td>\" + d.PartNumber05 + \"</td><td>\" + d.Warehouse05 + \"</td><td>\" + d.SerialNumber05 + \"</td>\"\n"
-            + "+ \"            </tr>\"\n"
-            + "+ \"        </table>\"\n"
-            + "+ \"    </div>\"\n"
-            + "+ \"</div>\"\n"
-            ;
 
         public IActionResult Squawks()
         {
-            var classList = _context.SquawkMasters.ToList();
+            var classList = context.SquawkMasters.ToList();
 
 
             return (new GenericTableController()).GenericTableGenerator(
@@ -175,26 +177,33 @@ namespace SpectrumWeb.Controllers.Maintenance
                 , classList.Select(e => (object)e).ToList()
                 , squawkMasterChildRows
                 , squawkChildFieldFormatter
+                , "squawkDetailView"
                 );
         }
 
+        public IActionResult squawkDetailView(string id)
+        {
+            var data = context.SquawkMasters.Where(t => t.PkRecordId == id).FirstOrDefault();
 
-        //List<FieldSpec> melEquipComplDisplayFieldList = new List<FieldSpec>()
-        //{
-        //    new FieldSpec("DateDispDuDef", "Due<br/>Date", "DateDispDuDef", "center", 80, "date"),
-        //    new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "center", 120),
-        //    new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 120),
-        //    new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 120),
-        //    new FieldSpec("AircraftType", "Acft<br/>Type", "AircraftType", "center", 80),
-        //    new FieldSpec("AtaChapCode", "Ata<br/>Chap<br/>Code", "AtaChapCode", "center", 80),
-        //    new FieldSpec("MinEquipList", "MEL<br/>Type", "MinEquipList", "center", 80)
-        //};
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
 
-        
+            return View("~/Views/Maintenance/SquawksDetailView.cshtml");
+        }
+
+        public IActionResult TaskCardDetailView(string id, string data1)
+        {
+            var data = context.TaskCards.Where(t => t.PkRecordId == id).FirstOrDefault();
+
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
+
+            return View("~/Views/Maintenance/TaskCardDetailView.cshtml");
+        }
+    
         List<FieldSpec> melEquipComplRprtDsplyFieldList = new List<FieldSpec>()
         {
             new FieldSpec("SquawkNumber", "Squawk Nbr", "SquawkNumber", "right", 64),
-            // Ref # ??
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 64),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 64),
             new FieldSpec("TypeCode", "Type", "TypeCode", "center", 40),
@@ -217,8 +226,8 @@ namespace SpectrumWeb.Controllers.Maintenance
         public IActionResult MELCmplDue()
         {
 
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.MinEquipList != null
                              select new {
@@ -246,20 +255,6 @@ namespace SpectrumWeb.Controllers.Maintenance
             return (new GenericTableController()).GenericTableGenerator(melEquipComplRprtDsplyFieldList, "MEL Compliance Due", classList.Select(e => (object)e).ToList());
 
         }
-
-        //public IActionResult MELCmplDueFull()
-        //{
-
-        //    List<SquawkMaster> classList = _context.SquawkMasters.Where(s=>s.MinEquipList != null).ToList();
-
-        //    return (new GenericTableController()).GenericTableGenerator(
-        //        squawksMasterDisplayFieldList
-        //        , "MEL Compliance Due"
-        //        , classList.Select(e => (object)e).ToList()
-        //        , "SquawksMasterClass"
-        //        , "squawks_master");
-        //}
-
 
         List<FieldSpec> dmiDisplayFieldList = new List<FieldSpec>()
         {
@@ -296,8 +291,8 @@ namespace SpectrumWeb.Controllers.Maintenance
         public IActionResult DMIRprt()
         {
 
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.DmiYN
                            
@@ -372,8 +367,8 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         public IActionResult MechSvcInterrupt()
         {
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.DmiNumber != null
                              select new {   

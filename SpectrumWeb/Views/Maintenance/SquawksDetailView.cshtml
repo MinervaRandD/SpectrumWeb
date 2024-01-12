@@ -1,0 +1,214 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @using SpectrumWeb.Models;
+    @using SpectrumWeb.Controllers.ControllerCommon;
+    @model SquawkMaster;
+    SquawkMaster sm = @ViewBag.Data;
+    
+        string trFunc(string id, string type, string title, string value)
+        {
+            string rtrnValu = "<tr>\n";
+
+            rtrnValu += "<td> <label for='" + id + "'>" + title + ": </label></td>\n";
+            rtrnValu += "<td> <input type='" + type + "' id='" + id + "' name='" + id + "' value='" + value + "' /></td>\n";
+
+            rtrnValu += "</tr>\n";
+
+            return rtrnValu;
+        }
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
+    <script>
+        function renderBooleanTd()
+    </script>
+    
+    <style>
+        .labelTd {
+            width:180px;
+        }
+
+        tr {
+            height:48px;
+        }
+
+        label {
+            color:maroon;
+            font:large;
+            font-weight:bold;
+        }
+
+        input {
+            color:maroon;
+            border:solid;
+            border-color:maroon;
+            border-width:2px;
+        }
+
+        td{
+            color:maroon;
+            font:large;
+        }
+
+        .tableContainer {
+            display:flex;
+            align-items:center;
+            font-size:16px;
+            color:maroon;
+        }
+    </style>
+</head>
+
+<body>
+     <h2  style="color:maroon;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
+            Squawk Details
+    </h2>
+
+    <div style="height:16px"> </div>
+
+    <form method="post" id="guaranteeWarrantyForm">
+        
+        <div style="width:100%;margin:auto;display:block;text-align:center;">
+            <label for="taskId" style="width:256px;">Squawk Number: </label><input type="text" id="squawkNmbr" name="squawkNmbr" style="width:128px;" value="@sm.SquawkNumber" />
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div style="width:100%;display:block;align-content:center;text-align:center;">
+
+            <div style="margin:32px;display:inline-block;">
+            
+                <table style="color:maroon;font-size:16px;">
+
+                    @Html.Raw(trFunc("typeCode", "text", "Type Code", sm.TypeCode))
+              
+                    <tr>
+                        <td><label for="typeCode">Type Code: </label></td>
+                        <td><input type="text" id="typeCode" name="typeCode" value="@sm.TypeCode"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="tailNmbr">Tail Nmbr: </label></td>
+                        <td><input type="text" id="tailNmbr" name="tailNmbr" value="@sm.TailNmbr"/></td>
+                    </tr>
+                    <tr>
+                       <td> <label for="ata">ATA: </label></td>
+                        <td>
+                            <input type="text" id="ataChapAndSub" name="ataChapAndSub" value="@sm.AtaChapAndSub" />'-'
+                            <input type="text" id="ataParagraph" name="ataParagraph" value="@sm.AtaParagraph" />
+                            </td>
+                    </tr>
+                    <tr>
+                        <td> <label for="dataReceived">Date Received: </label></td>
+                        <td> <input type="date" id="dateReceived" name="dateReceived" value="@sm.DateReceived" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="reportedBy">Reported By: </label></td>
+                        <td> <input type="text" id="reportedBy" name="reportedBy" value="@sm.ReportedBy" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="dateDelivered">Date Deferred: </label></td>
+                        <td> <input type="text" id="dateDeferred" name="dateDeferred" value="@sm.DateDeferred" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="flightNmbr">Flight Nmbr: </label></td>
+                        <td> <input type="text" id="flightNmbr" name="flightNmbr" value="@sm.Flight" /></td>
+                    </tr>
+
+                    <tr>
+                        <td> <label for="acftType">Aircraft Type: </label></td>
+                        <td> <input type="text" id="acftType" name="acftType" value="@sm.AcType" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="minEquipList">Reported By: </label></td>
+                        <td> <input type="text" id="minEquipList" name="minEquipList" value="@sm.MinEquipList" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="airframeAtSqwk">Airframe At Sqwk: </label></td>
+                        <td> <input type="text" id="airframeAtSqwk" name="airframeAtSqwk" value="@sm.AirframeAtSqwk" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="airframeAtCompletion">Airframe At Completion: </label></td>
+                        <td> <input type="text" id="airframeAtCompletion" name="airframeAtCompletion" value="@sm.AFWhenDone" /></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div style="display:inline-block;margin:32px;vertical-align:top">
+                <table style="color:maroon;font-size:16px;">
+                   
+                     <tr>
+                        <td> <label for="flightLogNmbr">Flight Log Nmbr: </label></td>
+                        <td> <input type="text" id="flightLogNmbr" name="flightLogNmbr" value="@sm.FlightLogNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="city">City: </label></td>
+                        <td> <input type="text" id="city" name="city" value="@sm.City" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td> <label for="dmiItem">DMI Item: </label></td>
+                        <td> <input type="text" id="dmiItem" name="dmiItem" value="@sm.DmiYN" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="dmiType">DMI Type: </label></td>
+                        <td> <input type="text" id="dmiType" name="dmiType" value="@sm.DmiType" /></td>
+                    </tr>
+                    <tr>
+                        <td ><label for="dmiNmbr">DMI Nmbr: </label></td>
+                        <td><input type="text" id="dmiNmbr" name="dmiNmbr" value="@sm.DmiNumber" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="engPosnNmbr">ATA Chapter: </label></td>
+                        <td><input type="text" id="engPosnNmbr" name="engPosnNmbr" value="@sm.EngPositionNmbr" /></td>
+                    </tr>
+                    
+                    <tr>
+                        <td> <label for="flightLogNmbr">Flight Log Nmbr: </label></td>
+                        <td> <input type="text" id="flightLogNmbr" name="flightLogNmbr" value="@sm.FlightLogNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="city">City: </label></td>
+                        <td> <input type="text" id="city" name="city" value="@sm.City" /></td>
+                    </tr>
+
+                    <tr>
+                        <td> <label for="dmiItem">DMI Item: </label></td>
+                        <td> <input type="text" id="dmiItem" name="dmiItem" value="@sm.DmiYN" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="dmiType">DMI Type: </label></td>
+                 <td> <input type="text" id="dmiType" name="dmiType" value="@sm.DmiType" /></td>
+                    </tr>
+                    <tr>
+                        <td ><label for="dmiNmbr">DMI Nmbr: </label></td>
+                        <td><input type="text" id="dmiNmbr" name="dmiNmbr" value="@sm.DmiNumber" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="engPosnNmbr">ATA Chapter: </label></td>
+                        <td><input type="text" id="engPosnNmbr" name="engPosnNmbr" value="@sm.EngPositionNmbr" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="display:block;margin:auto">
+                <h6 style="width:100%;color:maroon;" align="center">-- terms --</h6>
+                <textarea style="align-content:center;width:80%;" rows="4" name="terms" id="terms" form="guaranteeWarrantyForm">
+                    @sm.Description
+                </textarea>
+                <div style="height:16px"></div>
+                <h6 style="width:100%;color:maroon;" align="center">-- Notes --</h6>
+                <textarea style="align-content:center;width:80%;" rows="4" name="notes" id="notes" form="guaranteeWarrantyForm">
+                    @sm.Resolution
+                </textarea>
+            </div>
+        </div>
+       
+    </form>
+</body>
+</html>
