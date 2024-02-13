@@ -149,10 +149,16 @@ function inspections(e) {
             document.getElementById('TabLevel2').innerHTML = menuText;
 }
 
-function phyInventory() {
+function physInventory(e) {
 
     setLevel1TabState(e);
 
+
+            var menuText = buildButton("/Parts/Parts", "Parts") +
+                buildButton("/Parts/PartsMaster", "Parts Master")
+               
+
+            document.getElementById('TabLevel2').innerHTML = menuText;
 }
 
 function components() {

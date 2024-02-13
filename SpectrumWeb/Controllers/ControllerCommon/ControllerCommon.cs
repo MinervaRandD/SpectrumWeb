@@ -75,5 +75,94 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValu;
 
         }
+
+        public static string trFunc(string id, string type, string title, bool? bVal)
+        {
+            string value = string.Empty;
+
+            if (bVal.HasValue)
+            {
+                value = bVal.Value.ToString();
+            }
+
+            return trFunc(id, type, title, value); 
+        }
+
+        public static string trFunc(string id, string type, string title, short? sVal)
+        {
+            string value = string.Empty;
+
+            if (sVal.HasValue)
+            {
+                value = sVal.Value.ToString();
+            }
+
+            return trFunc(id, type, title, value);
+        }
+
+        public static string trFunc(string id, string type, string title, int? iVal)
+        {
+            string value = string.Empty;
+
+            if (iVal.HasValue)
+            {
+                value = iVal.Value.ToString();
+            }
+
+            return trFunc(id, type, title, value);
+        }
+
+        public static string trFunc(string id, string type, string title, string value)
+        {
+            string rtrnValu = "<tr>\n";
+
+            rtrnValu += "<td> <label for='" + id + "'>" + title + ": </label></td>\n";
+
+            if (type == "bool")
+            {
+                string undefinedSelected = string.Empty;
+                string yesSelected = string.Empty;
+                string noSelected = string.Empty;
+
+              
+                if (string.IsNullOrWhiteSpace(value))
+                {
+                    undefinedSelected = "selected";
+                }
+
+                else
+                {
+                    switch (value.ToLower())
+                    {
+                        case "true" or "t" or "yes" or "y":
+                            yesSelected = "selected";
+                            break;
+                        case "false" or "f" or "no" or "n":
+                            noSelected = "selected";
+                            break;
+                        default:
+                            undefinedSelected = "selected";
+                            break;
+                    }
+                }
+
+                rtrnValu += "<td>\n";
+                rtrnValu += "    <select id='" + id + "' name='" + id + "'><\n";
+                rtrnValu += "        <option value='U' " + undefinedSelected + "> &nbsp;</option>\n";
+                rtrnValu += "        <option value='Y' " + yesSelected + ">Y</option>\n";
+                rtrnValu += "        <option value='N' " + noSelected  + ">N</option>\n";
+                rtrnValu += "    </select>\n";
+                rtrnValu += "</td>\n";
+            }
+
+            else
+            {
+                rtrnValu += "<td> <input type='" + type + "' id='" + id + "' name='" + id + "' value='" + value + "' /></td>\n";
+            }
+
+            rtrnValu += "</tr>\n";
+
+            return rtrnValu;
+        }
     }
 }

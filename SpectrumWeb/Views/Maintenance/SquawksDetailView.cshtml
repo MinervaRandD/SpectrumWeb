@@ -7,17 +7,6 @@
     @model SquawkMaster;
     SquawkMaster sm = @ViewBag.Data;
     
-        string trFunc(string id, string type, string title, string value)
-        {
-            string rtrnValu = "<tr>\n";
-
-            rtrnValu += "<td> <label for='" + id + "'>" + title + ": </label></td>\n";
-            rtrnValu += "<td> <input type='" + type + "' id='" + id + "' name='" + id + "' value='" + value + "' /></td>\n";
-
-            rtrnValu += "</tr>\n";
-
-            return rtrnValu;
-        }
 }
 
 <!DOCTYPE html>
@@ -87,16 +76,9 @@
             
                 <table style="color:maroon;font-size:16px;">
 
-                    @Html.Raw(trFunc("typeCode", "text", "Type Code", sm.TypeCode))
-              
-                    <tr>
-                        <td><label for="typeCode">Type Code: </label></td>
-                        <td><input type="text" id="typeCode" name="typeCode" value="@sm.TypeCode"/></td>
-                    </tr>
-                    <tr>
-                        <td><label for="tailNmbr">Tail Nmbr: </label></td>
-                        <td><input type="text" id="tailNmbr" name="tailNmbr" value="@sm.TailNmbr"/></td>
-                    </tr>
+                    @Html.Raw(ControllerCommon.trFunc("typeCode", "text", "Type Code", sm.TypeCode))
+                    @Html.Raw(ControllerCommon.trFunc("tailNmbr", "text", "Tail Nmbr", sm.TailNmbr))
+                 
                     <tr>
                        <td> <label for="ata">ATA: </label></td>
                         <td>
@@ -142,7 +124,7 @@
             </div>
             <div style="display:inline-block;margin:32px;vertical-align:top">
                 <table style="color:maroon;font-size:16px;">
-                   
+                   +
                      <tr>
                         <td> <label for="flightLogNmbr">Flight Log Nmbr: </label></td>
                         <td> <input type="text" id="flightLogNmbr" name="flightLogNmbr" value="@sm.FlightLogNmbr" /></td>
@@ -154,7 +136,7 @@
                   
                     <tr>
                         <td> <label for="dmiItem">DMI Item: </label></td>
-                        <td> <input type="text" id="dmiItem" name="dmiItem" value="@sm.DmiYN" /></td>
+                        <td> <input type="bool" id="dmiItem" name="dmiItem" value="@sm.DmiYN" /></td>
                     </tr>
                     <tr>
                         <td> <label for="dmiType">DMI Type: </label></td>
@@ -165,38 +147,38 @@
                         <td><input type="text" id="dmiNmbr" name="dmiNmbr" value="@sm.DmiNumber" /></td>
                     </tr>
                     <tr>
-                        <td><label for="engPosnNmbr">ATA Chapter: </label></td>
+                        <td><label for="engPosnNmbr">Eng Posn Nmbr: </label></td>
                         <td><input type="text" id="engPosnNmbr" name="engPosnNmbr" value="@sm.EngPositionNmbr" /></td>
-                    </tr>
-                    
-                    <tr>
-                        <td> <label for="flightLogNmbr">Flight Log Nmbr: </label></td>
-                        <td> <input type="text" id="flightLogNmbr" name="flightLogNmbr" value="@sm.FlightLogNmbr" /></td>
-                    </tr>
-                    <tr>
-                        <td> <label for="city">City: </label></td>
-                        <td> <input type="text" id="city" name="city" value="@sm.City" /></td>
                     </tr>
 
-                    <tr>
-                        <td> <label for="dmiItem">DMI Item: </label></td>
-                        <td> <input type="text" id="dmiItem" name="dmiItem" value="@sm.DmiYN" /></td>
-                    </tr>
-                    <tr>
-                        <td> <label for="dmiType">DMI Type: </label></td>
-                 <td> <input type="text" id="dmiType" name="dmiType" value="@sm.DmiType" /></td>
-                    </tr>
-                    <tr>
-                        <td ><label for="dmiNmbr">DMI Nmbr: </label></td>
-                        <td><input type="text" id="dmiNmbr" name="dmiNmbr" value="@sm.DmiNumber" /></td>
-                    </tr>
-                    <tr>
-                        <td><label for="engPosnNmbr">ATA Chapter: </label></td>
-                        <td><input type="text" id="engPosnNmbr" name="engPosnNmbr" value="@sm.EngPositionNmbr" /></td>
-                    </tr>
+                    @Html.Raw(ControllerCommon.trFunc("delay", "bool", "Delay", sm.DelayYN))
+                    @Html.Raw(ControllerCommon.trFunc("delayMins", "number", "delayMins", sm.DelayMinutes))
+                    @Html.Raw(ControllerCommon.trFunc("cancel", "bool", "Cancel", sm.CancellationYN))
+                    @Html.Raw(ControllerCommon.trFunc("svcDiff", "bool", "Svc Diff", sm.ServiceDiffYN))
+                    @Html.Raw(ControllerCommon.trFunc("svcDiff", "bool", "Svc Diff", sm.EngineShutDown))
+                    @Html.Raw(ControllerCommon.trFunc("engShutDown", "bool", "Eng Shut Down", sm.EngineShutDown))
+                   
                 </table>
             </div>
-            <div style="display:block;margin:auto">
+            <div style="display:inline-block;margin:32px;vertical-align:top">
+                <table style="color:maroon;font-size:16px;">
+                    @Html.Raw(ControllerCommon.trFunc("approach", "bool", "Approach", sm.Approach))
+                    @Html.Raw(ControllerCommon.trFunc("landing", "bool", "Landing", sm.Landing))
+                    @Html.Raw(ControllerCommon.trFunc("approach", "bool", "Approach", sm.Approach))
+                    @Html.Raw(ControllerCommon.trFunc("catIIISignif", "bool", "Cat III Signif", sm.CatIiiSignif))
+                    @Html.Raw(ControllerCommon.trFunc("catIIIVerif", "bool", "Cat III Verif", sm.CatIiiVerified))
+                    @Html.Raw(ControllerCommon.trFunc("catIIIApproach", "bool", "Cat III Approach", sm.CatIiiApproach)) 
+                    @Html.Raw(ControllerCommon.trFunc("etopsSignif", "bool", "Etops Signif", sm.EtopsSignificant))
+                    @Html.Raw(ControllerCommon.trFunc("etopsConf", "bool", "Etops Conf", sm.EtopsConfirmed))
+                    @Html.Raw(ControllerCommon.trFunc("etopsConfBy", "number", "Etops Conf By", sm.EtopsConfirmedBy))
+                    @Html.Raw(ControllerCommon.trFunc("etopsVerified", "bool", "Etops Verified", sm.EtopsVerified))
+                    @Html.Raw(ControllerCommon.trFunc("etopsVerifiedBy", "number", "Etops Verified By", sm.EtopsVerifiedBy))
+                    @Html.Raw(ControllerCommon.trFunc("auditPrint", "bool", "Audit Print", sm.AuditPrint))
+                </table>
+            </div>
+        </div>
+
+        <div style="display:block;margin:auto">
                 <h6 style="width:100%;color:maroon;" align="center">-- terms --</h6>
                 <textarea style="align-content:center;width:80%;" rows="4" name="terms" id="terms" form="guaranteeWarrantyForm">
                     @sm.Description
