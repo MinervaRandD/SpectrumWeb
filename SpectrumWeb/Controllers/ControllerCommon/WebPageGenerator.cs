@@ -1,4 +1,6 @@
-﻿using System.Runtime.InteropServices.ComTypes;
+﻿using Microsoft.EntityFrameworkCore.Metadata;
+using System.Runtime.InteropServices.ComTypes;
+using SpectrumWeb.Controllers.ControllerCommon;
 
 namespace SpectrumWeb.Controllers.ControllerCommon
 {
@@ -6,14 +8,28 @@ namespace SpectrumWeb.Controllers.ControllerCommon
     {
       
 
-        public static string generateTableFields(List<FieldSpec> fieldList, List<string> childRowList = null)
+        public static string generateTableFields(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
-            string rtrnValue = string.Join(",\n", fieldList.Where(f=>(!string.IsNullOrEmpty(f.field))&& !isChildRow(f,childRowList)).Select(f => "{ label: '" + f.description + "', name: '" + f.label + "' }"));
+            List<string> tableFields = new List<string>();
+
+            foreach (FieldSpec field in fieldList)
+            {
+                if (ControllerCommon.isChildRow(field, childRowList))
+                {
+                    tableFields.Add("{ label: '" + field.description + "', name: '" + field.field + "', type:'textarea', className:'largeTextArea'}");
+                }
+                else
+                {
+                    tableFields.Add("{ label: '" + field.description + "', name: '" + field.field + "'}");
+                }
+            }
+
+            string rtrnValue = string.Join(",\n", tableFields);
            
             return rtrnValue;
         }
 
-        public static string generateTableColumns(List<FieldSpec> fieldList, List<string> childRowList = null)
+        public static string generateTableColumns(List<FieldSpec> fieldList, List<FieldSpec> childRowList = null)
         {
 
             string rtrnValue = string.Empty;
@@ -24,12 +40,36 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 rtrnValue += "{\r\n            className: 'dt-control',\r\n            orderable: false,\r\n            data: null,\r\n            defaultContent: ''\r\n        },";
             }
 
-            rtrnValue += string.Join(",\n", fieldList.Where(f => !isChildRow(f, childRowList)).Select(f=>"{ data: '" + f.label + "' }"));
+            //rtrnValue += string.Join(",\n", fieldList.Where(f => !isChildRow(f, childRowList)).Select(f=>"{ data: '" + f.label + "' }"));
 
+            List<string> tableColumnSpecs = new List<string>();
+
+            foreach (FieldSpec fieldSpec in fieldList)
+            {
+        
+                if (ControllerCommon.isChildRow(fieldSpec,childRowList))
+                {
+                    tableColumnSpecs.Add("{ data: '" + fieldSpec.label + "', visible: false }");
+                }
+
+                else
+                {
+                    tableColumnSpecs.Add("{ data: '" + fieldSpec.label + "' }");
+                }
+            }
+
+            rtrnValue += string.Join(",\n", tableColumnSpecs);
+            
+           // rtrnValue += string.Join(",\n", fieldList.Select(f => "{ data: '" + f.label + "' }"));
+
+            //if (childRowList != null)
+            //{
+            //    rtrnValue += ",\n" + string.Join(",\n", childRowList.Select(f => "{ data: '" + f.label + "' }"));
+            //}
             return rtrnValue;
         }
 
-        public static string generateTableHeader(List<FieldSpec> fieldList, List<string> childFieldList = null)
+        public static string generateTableHeader(List<FieldSpec> fieldList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
@@ -40,10 +80,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec, childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec, childFieldList))
+                //{
+                //    continue;
+                //}
 
                 string styleStr = "'text-align:center;";
 
@@ -57,10 +97,27 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
             }
 
+            //if (childFieldList != null)
+            //{
+            //    foreach (FieldSpec fieldSpec in childFieldList)
+            //    {
+            //        string styleStr = "'text-align:center;";
+
+            //        if (fieldSpec.fieldWidth.HasValue)
+            //        {
+            //            styleStr += "width:" + fieldSpec.fieldWidth.Value.ToString() + "px;";
+            //        }
+
+            //        styleStr += "'";
+
+            //        rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
+            //    }
+            //}
+
             return rtrnValue;
         }
 
-        public static string generateTableFooter(List<FieldSpec> fieldList, List<string> childFieldList = null)
+        public static string generateTableFooter(List<FieldSpec> fieldList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
 
@@ -71,19 +128,27 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec, childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec, childFieldList))
+                //{
+                //    continue;
+                //}
 
                 rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
             }
+
+            //if (childFieldList != null)
+            //{
+            //    foreach (FieldSpec fieldSpec in childFieldList)
+            //    {
+            //        rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
+            //    }
+            //}
 
             return rtrnValue;
         }
 
 
-        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList, List<string> childFieldList = null)
+        public static string generateTableBody(List<List<string>> classDisplayValueListWithRecordId, List<FieldSpec> fieldSpecList, List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = string.Empty;
             List<int> ilist = new List<int>();
@@ -99,21 +164,34 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
-                    //if (isChildRow(fieldSpecList[i], childFieldList))
-                    //{
-                    //    continue;
-                    //}
-
+                   
                     string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
 
-                    if (fieldJustify != null)
+
+                    if (fieldSpecList[i - 1].fieldType == "details")
                     {
-                        rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>" + fieldValueList[i] + "</td>\n";
+                        if (fieldJustify != null)
+                        {
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><img src='/Img/EditIcon.png' style='width:24px;height:24px;'/></td>\n";
+                        }
+
+                        else
+                        {
+                            rtrnValue += "    <td class='detailsCell'><img src='/Img/EditIcon.png'/></td>\n";
+                        }
                     }
 
                     else
                     {
-                        rtrnValue += "    <td>" + fieldValueList[i] + "</td>\n";
+                        if (fieldJustify != null)
+                        {
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>" + fieldValueList[i] + "</td>\n";
+                        }
+
+                        else
+                        {
+                            rtrnValue += "    <td>" + fieldValueList[i] + "</td>\n";
+                        }
                     }
                 }
 
@@ -123,7 +201,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId", List<string> childFieldList = null)
+        public static string generateTableBodyBuilder(List<FieldSpec> fieldList,  string keyField = "PkRecordId", List<FieldSpec> childFieldList = null)
         {
             string rtrnValue = "var tableBodyHtml = '';\n\n";
 
@@ -133,15 +211,15 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             if (childFieldList != null)
             {
-                rtrnValue += "    tableBodyHtml += \"    \" + \"<td></td>\"" + " + \"\\n\";\n";
+                rtrnValue += "    tableBodyHtml += \"    \" + \"<td style='width:16px'></td>\"" + " + \"\\n\";\n";
             }
 
             foreach (var fieldSpec in fieldList)
             {
-                if (isChildRow(fieldSpec,childFieldList))
-                {
-                    continue;
-                }
+                //if (isChildRow(fieldSpec,childFieldList))
+                //{
+                //    continue;
+                //}
 
                 rtrnValue += "    tableBodyHtml += \"    \" + \"" + tableRow(fieldSpec) + " + \"\\n\";\n";
             }
@@ -166,54 +244,93 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in displayFieldList)
             {
-                if (!fieldsDict.ContainsKey(fieldSpec.field))
-                {
-                    // This will happen if the field is a child row
+                //if (!fieldsDict.ContainsKey(fieldSpec.field))
+                //{
+                //    // This will happen if the field is a child row
 
-                    continue;
+                //    continue;
+                //}
+
+                if (fieldSpec.fieldType == "details")
+                {
+                    field = @"&rarrhk;";
                 }
 
-                field = fieldsDict[fieldSpec.field];
-
-
-                if (fieldSpec.fieldType == "date")
+                else
                 {
-                    if (!string.IsNullOrEmpty(field))
-                    {
-                        field = field.Substring(0, 10);
-                    }
-                }
+                    field = fieldsDict[fieldSpec.field];
 
-                else if (fieldSpec.fieldType == "bool")
-                {
-                    if (field == "true")
+                    if (fieldSpec.fieldType == "date")
                     {
-                        field = "Y";
+                        if (!string.IsNullOrEmpty(field))
+                        {
+                            field = field.Substring(0, 10);
+                        }
                     }
 
-                    else if (field == "false")
+                    else if (fieldSpec.fieldType == "bool")
                     {
-                        field = "N";
-                    }
-                }
+                        if (field == "true")
+                        {
+                            field = "Y";
+                        }
 
-                else if (fieldSpec.fieldType == "fixed")
-                {
-                    int dotIndx = field.LastIndexOf('.');
-
-                    if (dotIndx == 0)
-                    {
-                        field = "0";
+                        else if (field == "false")
+                        {
+                            field = "N";
+                        }
                     }
 
-                    else if (dotIndx > 0)
+                    else if (fieldSpec.fieldType == "fixed")
                     {
-                        field = field.Substring(0, dotIndx);
+                        int dotIndx = field.LastIndexOf('.');
+
+                        if (dotIndx == 0)
+                        {
+                            field = "0";
+                        }
+
+                        else if (dotIndx > 0)
+                        {
+                            field = field.Substring(0, dotIndx);
+                        }
                     }
                 }
 
                 rtrnValue.Add(field);
             }
+
+            return rtrnValue;
+        }
+
+        internal static string generateChildRows(List<FieldSpec> childFieldList)
+        {
+            string rtrnValue = string.Empty;
+
+            if (childFieldList is null)
+            {
+                return "null";
+            }
+
+            rtrnValue = "[\n";
+
+            List<string> childTuples = new List<string>();
+
+            foreach (FieldSpec childField in childFieldList)
+            {
+                short fieldHeight = 16;
+
+                if (childField.fieldHeight != null)
+                {
+                    fieldHeight = childField.fieldHeight.Value;
+                }
+
+                childTuples.Add("    [ '" + childField.description + "', '" + childField.field + "', " + fieldHeight + " ]");
+            }
+
+            rtrnValue += string.Join(",\n", childTuples);
+
+            rtrnValue += "\n]";
 
             return rtrnValue;
         }
@@ -254,7 +371,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
-        internal static int? generateTableWidth(List<FieldSpec> displayFieldList)
+        internal static int? generateTableWidth(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList = null)
         {
             int totalWidth = 0;
 
@@ -265,6 +382,11 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     return null;
                 }
 
+                if (ControllerCommon.isChildRow(field, childFieldList))
+                {
+                    continue;
+                }
+
                 totalWidth += field.fieldWidth.Value;
             }
 
@@ -272,15 +394,5 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         }
 
 
-        private static bool isChildRow(FieldSpec fieldSpec, List<string> childFieldList)
-        {
-            if (childFieldList != null)
-            {
-                return childFieldList.Contains(fieldSpec.field);
-            }
-
-            return false;
-
-        }
     }
 }

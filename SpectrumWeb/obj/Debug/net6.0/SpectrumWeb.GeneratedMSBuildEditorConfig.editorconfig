@@ -10,6 +10,8 @@ build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = SpectrumWeb
 build_property.RootNamespace = SpectrumWeb
 build_property.ProjectDir = C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
@@ -66,6 +68,18 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/Maintenance/ReportGeneratorViews/M23ReliabilityMonitoring.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcTWFpbnRlbmFuY2VcUmVwb3J0R2VuZXJhdG9yVmlld3NcTTIzUmVsaWFiaWxpdHlNb25pdG9yaW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/SquawksDetailView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcU3F1YXdrc0RldGFpbFZpZXcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/TaskCardDetailView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcVGFza0NhcmREZXRhaWxWaWV3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Maintenance/WarranteeDetailView.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWFpbnRlbmFuY2VcV2FycmFudGVlRGV0YWlsVmlldy5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Minerva Research and Development/Projects/Arms-Spectrum/Base System/SpectrumWeb/SpectrumWeb/Views/Shared/Error.cshtml]

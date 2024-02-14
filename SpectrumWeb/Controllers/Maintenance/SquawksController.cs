@@ -10,75 +10,200 @@ namespace SpectrumWeb.Controllers.Maintenance
 {
     public class SquawksController : Controller
     {
-        private readonly ArmsSpectrumDevelopmentContext _context;
+        private readonly ArmsSpectrumDevelopmentContext context;
 
         public SquawksController(ArmsSpectrumDevelopmentContext context)
         {
-            _context = context;
+            this.context = context;
         }
 
         List<FieldSpec> squawksMasterDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "right", 64),
-            new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 40),
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details"),
+            new FieldSpec("Rev", "Rev", "Revision", "center", 20),
+            new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "right", 60),
+            new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 30),
             new FieldSpec("Description", "Description", "Description", "left", 240),
-            new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 64),
-            new FieldSpec("AtaChapCode", "Ata<br/>Chap<br/>Code", "AtaChapCode", "center", 50),
-            new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, "date"),
+            new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 60),
+            new FieldSpec("AtaChapAndSub", "Ata", "AtaChapAndSub", "center", 50),
+            new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 72, "date"),
             new FieldSpec("ReportedBy", "Report By", "ReportedBy", "right", 64),
-            new FieldSpec("DateDispDuDef", "Date<br/>Reported", "DateDispDuDef", "center", 80, "date"),
-            new FieldSpec("Flight", "Flight", "Flight", "center", 60),
+            new FieldSpec("DateDeferred", "Date<br>Deferred To", "DateDeferred", "center", 72, "date"),
+            new FieldSpec("Flight", "Flight<br/>Nmbr", "Flight", "center", 60),
             new FieldSpec("AcType", "A/C<br/>Type", "AcType", "center", 60),
+            new FieldSpec("MinEqpList", "Min<br/>Equip<br/>List", "MinEquipList", "center", 60),
+            new FieldSpec("AFAtSqwk", "Airframe<br/>At Squawk", "AirframeAtSqwk", "center", 60),
+            new FieldSpec("AFWhenDone", "Airframe<br/>At<br/>Completion", "AFWhenDone", "center", 60),
             new FieldSpec("FlightLogNmbr", "Flight<br/>Log<br/>Nmbr", "FlightLogNmbr", "center", 80),
-            new FieldSpec("City", "City", "City", "center", 60),
-            new FieldSpec("MinEquipList", "Min<br/>Equip<br/>List", "MinEquipList", "center", 60),
-            new FieldSpec("DmiYN", "DMI<br/>Item<br/>(Y/N)", "DmiYN", "center", 50, "bool"),
-            new FieldSpec("DmiType", "DMI<br/>Type", "DmiType", "center", 60),
+            new FieldSpec("LogItemNmbr", "Log<br/>Item Nmbr", "ItemNmbr", "center", 80),
+            new FieldSpec("City", "City", "City", "center", 40),
+            new FieldSpec("DmiYN", "DMI<br/>Item<br/>(Y/N)", "DmiYN", "center", 40, "bool"),
+            new FieldSpec("DmiType", "DMI<br/>Type", "DmiType", "center", 50),
             new FieldSpec("DmiNumber", "DMI<br/>Nmbr", "DmiNumber", "right", 60),
-            new FieldSpec("EngPositionNmbr", "Eng<br/>Posn<br/>Nmbr", "EngPositionNmbr", "right", 40),
-            new FieldSpec("DelayYN", "Delay<br/>(Y/N)", "DelayYN", "center", 50, "bool"),
-            new FieldSpec("DelayMinutes", "Delay<br/>Minutes", "DelayMinutes", "right", 80),
-            new FieldSpec("CancellationYN", "Cancel<br/>(Y/N)", "CancellationYN", "center", 50, "bool"),
-            new FieldSpec("ServiceDiffYN", "Svc<br/>Diff<br/>(Y/N)", "ServiceDiffYN", "center", 50, "bool"),
-            new FieldSpec("EngineShutDown", "Engine<br/>Shut<br/>Down", "EngineShutDown", "center", 50, "bool"),
-            new FieldSpec("Approach", "Aprch", "Approach", "center", 50, "bool"),
-            new FieldSpec("Landing", "Land", "Landing", "center", 50, "bool"),
-            new FieldSpec("CatIiiSignif", "Cat<br/>III<br/>Signif", "CatIiiSignif", "center", 50, "bool"),
-            new FieldSpec("CatIiiVerified", "Cat<br/>III<br/>Verified", "CatIiiVerified", "center", 50, "bool"),
-            new FieldSpec("EtopsSignificant", "Etops<br/>Signif", "EtopsSignificant", "center", 50, "bool"),
-            new FieldSpec("EtopsConfirmed", "Etops<br/>Conf", "EtopsConfirmed", "center", 50, "bool"),
+            new FieldSpec("EngPositionNmbr", "Eng<br/>Posn<br/>Nmbr", "EngPositionNmbr", "right", 30),
+            new FieldSpec("DelayYN", "Delay<br/>(Y/N)", "DelayYN", "center", 40, "bool"),
+            new FieldSpec("DelayMinutes", "Delay<br/>Mins", "DelayMinutes", "right", 40),
+            new FieldSpec("CancellationYN", "Cancel<br/>(Y/N)", "CancellationYN", "center", 40, "bool"),
+            new FieldSpec("ServiceDiffYN", "Svc<br/>Diff<br/>(Y/N)", "ServiceDiffYN", "center", 40, "bool"),
+            new FieldSpec("EngineShutDown", "Engine<br/>Shut<br/>Down", "EngineShutDown", "center", 40, "bool"),
+            new FieldSpec("Approach", "Aprch", "Approach", "center", 40, "bool"),
+            new FieldSpec("Landing", "Land", "Landing", "center", 40, "bool"),
+            new FieldSpec("CatIiiSignif", "Cat<br/>III<br/>Signif", "CatIiiSignif", "center", 40, "bool"),
+            new FieldSpec("CatIiiVerified", "Cat<br/>III<br/>Verified", "CatIiiVerified", "center", 40, "bool"),
+            new FieldSpec("CatIiiApproach", "Cat<br/>III<br/>Approach", "CatIiiApproach", "center", 40, "bool"),
+            new FieldSpec("CatIiiLanding", "Cat<br/>III<br/>Landing", "CatIiiLndgTyp", "center", 40, "bool"),
+            new FieldSpec("EtopsSignificant", "Etops<br/>Signif", "EtopsSignificant", "center", 40, "bool"),
+            new FieldSpec("EtopsConfirmed", "Etops<br/>Conf", "EtopsConfirmed", "center", 40, "bool"),
             new FieldSpec("EtopsConfirmedBy", "Etops<br/>Conf<br/>By", "EtopsConfirmedBy", "right", 60),
-            new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 50, "bool"),
+            new FieldSpec("EtopsVerified", "Etops<br/>Verified", "EtopsVerified", "center", 40, "bool"),
             new FieldSpec("EtopsVerifiedBy", "Etops<br/>Verified<br/>By", "EtopsVerifiedBy", "right", 60),
-            new FieldSpec("Resolution", "Resolution", "Resolution", "left", 240)
+            new FieldSpec("AuditPrint", "Audit<br/>Print", "AuditPrint", "center", 40, "bool"),
+            new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center", 72),
+            new FieldSpec("Resolution", "Resolution", "Resolution", "left", 240),
+            new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center", 80),
+            new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
+            new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
+            new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
+            new FieldSpec("PartNumber04", "Part<br/>Nmbr 4", "PartNumber04", "center", 60),
+            new FieldSpec("PartNumber05", "Part<br/>Nmbr 5", "PartNumber05", "center", 60),
+            new FieldSpec("Warehouse01", "Warehouse<br/>1", "Warehouse01", "center", 40),
+            new FieldSpec("Warehouse02", "Warehouse<br/>2", "Warehouse02", "center", 40),
+            new FieldSpec("Warehouse03", "Warehouse<br/>3", "Warehouse03", "center", 40),
+            new FieldSpec("Warehouse04", "Warehouse<br/>4", "Warehouse04", "center", 40),
+            new FieldSpec("Warehouse05", "Warehouse<br/>1", "Warehouse05", "center", 40),
+            new FieldSpec("SerialNumber01", "Serial<br/>Nmbr<br/>1", "SerialNumber01", "center"),
+            new FieldSpec("SerialNumber02", "Serial<br/>Nmbr<br/>2", "SerialNumber02", "center"),
+            new FieldSpec("SerialNumber03", "Serial<br/>Nmbr<br/>3", "SerialNumber03", "center"),
+            new FieldSpec("SerialNumber04", "Serial<br/>Nmbr<br/>4", "SerialNumber04", "center"),
+            new FieldSpec("SerialNumber05", "Serial<br/>Nmbr<br/>5", "SerialNumber05", "center"),
+
         };
+
+        List<FieldSpec> squawkMasterChildRows = new List<FieldSpec>()
+        {
+            new FieldSpec("Description", "Description", "Description", "left", 240),
+            new FieldSpec("WhoFixed", "Fixed<br/>By", "WhoFixed", "center"),
+             new FieldSpec("DateComp", "Date<br/>Completed", "DateComp", "center"),
+            new FieldSpec("Resolution", "Resolution", "Resolution", "left", 240),
+            new FieldSpec("WorkOrderNmbr", "Work<br/>Order<br/>Nmbr", "WorkOrderNmbr", "center"),
+            new FieldSpec("MaintTaskCode", "Maint<br/>Task<br/>Code", "MaintTaskCode", "center"),
+            new FieldSpec("FirstInspector", "Inspector 1", "FirstInspector", "center"),
+            new FieldSpec("SecondInspector", "Inspector 2", "SecondInspector", "center"),
+            new FieldSpec("PartNumber01", "Part<br/>Nmbr 1", "PartNumber01", "center", 60),
+            new FieldSpec("PartNumber02", "Part<br/>Nmbr 2", "PartNumber02", "center", 60),
+            new FieldSpec("PartNumber03", "Part<br/>Nmbr 3", "PartNumber03", "center", 60),
+            new FieldSpec("PartNumber04", "Part<br/>Nmbr 4", "PartNumber04", "center", 60),
+            new FieldSpec("PartNumber05", "Part<br/>Nmbr 5", "PartNumber05", "center", 60),
+            new FieldSpec("Warehouse01", "Warehouse<br/>1", "Warehouse01", "center", 40),
+            new FieldSpec("Warehouse02", "Warehouse<br/>2", "Warehouse02", "center", 40),
+            new FieldSpec("Warehouse03", "Warehouse<br/>3", "Warehouse03", "center", 40),
+            new FieldSpec("Warehouse04", "Warehouse<br/>4", "Warehouse04", "center", 40),
+            new FieldSpec("Warehouse05", "Warehouse<br/>1", "Warehouse05", "center", 40),
+            new FieldSpec("SerialNumber01", "Serial<br/>Nmbr<br/>1", "SerialNumber01", "center"),
+            new FieldSpec("SerialNumber02", "Serial<br/>Nmbr<br/>2", "SerialNumber02", "center"),
+            new FieldSpec("SerialNumber03", "Serial<br/>Nmbr<br/>3", "SerialNumber03", "center"),
+            new FieldSpec("SerialNumber04", "Serial<br/>Nmbr<br/>4", "SerialNumber04", "center"),
+            new FieldSpec("SerialNumber05", "Serial<br/>Nmbr<br/>5", "SerialNumber05", "center"),
+           
+        };
+
+        static List<string> squawkChildField = new List<string>()
+        {
+            "<style>"
+            , "  table.childTable td, table.childTable th {"
+            , "    border:solid;"
+            , "    border-color:maroon;"
+            , "    border-width:2px;"
+            , "  }"
+            , "</style>"
+            , "<h6 style='color:maroon'>Description</h6>"
+            , "<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Description + \"</div>"
+            , "<hr style='height:2px;color:maroon;opacity:1;margin-top:16px;margin-bottom:16px;width:100%'/>"
+            , "<h6 style='color:maroon'>Resolution</h6>"
+            , "<div style='height:80px;width:50%;margin-top:10px;margin-left:32px;margin-bottom:10px;padding:4px;border:2px solid maroon;border-radius:4px'>\" + d.Resolution + \"</div>"
+            , "<div class='row'>"
+            , "    <div class='col-1'></div>"
+            , "    <div class='col-2'>"
+            , "        <table style='border:2px solid maroon'>"
+            , "            <tr><th style='text-align:right'>Fixed By:</th><td>\" + d.WhoFixed + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Date Completed:</th><td>\" + d.DateComp + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Work Order Nmbr:</th><td>\" + d.WorkOrderNmbr + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Maint Task Code:</th><td>\" + d.MaintTaskCode + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Inspector 1:</th><td>\" + d.FirstInspector + \"</td></tr>"
+            , "            <tr><th style='text-align:right'>Inspector 2:</th><td>\" + d.SecondInspector + \"</td></tr>"
+            , "        </table>"
+            , "    </div>"
+            , "    <div class='col-2'>"
+            , "        <table style='border:2px solid maroon'>"
+            , "            <tr style='height:12px'>"
+            , "                <th>Part Nmbr</th><th>Whse</th><th>Serial Nmbr</th>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber01 + \"</td><td>\" + d.Warehouse01 + \"</td><td>\" + d.SerialNumber01 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber02 + \"</td><td>\" + d.Warehouse02 + \"</td><td>\" + d.SerialNumber02 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber03 + \"</td><td>\" + d.Warehouse03 + \"</td><td>\" + d.SerialNumber03 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber04 + \"</td><td>\" + d.Warehouse04 + \"</td><td>\" + d.SerialNumber04 + \"</td>"
+            , "            </tr>"
+            , "            <tr style='height:12px'>"
+            , "                <td>\" + d.PartNumber05 + \"</td><td>\" + d.Warehouse05 + \"</td><td>\" + d.SerialNumber05 + \"</td>"
+            , "            </tr>"
+            , "        </table>"
+            , "    </div>"
+            , "</div>"
+        };
+
+        static private string squawkChildFieldFormatter =
+            "\"" + string.Join("\"\n + \"", squawkChildField) + "\"";
 
 
         public IActionResult Squawks()
         {
-            
-            List < SquawkMaster > classList = _context.SquawkMasters.ToList();
+            var classList = context.SquawkMasters.ToList();
 
-            return (new GenericTableController()).GenericTableGenerator(squawksMasterDisplayFieldList, "Squawks", classList.Select(e => (object)e).ToList());
+
+            return (new GenericTableController()).GenericTableGenerator(
+                squawksMasterDisplayFieldList
+                , "Squawks"
+                , classList.Select(e => (object)e).ToList()
+                , squawkMasterChildRows
+                , squawkChildFieldFormatter
+                , "squawkDetailView"
+                );
         }
 
+        public IActionResult squawkDetailView(string id)
+        {
+            var data = context.SquawkMasters.Where(t => t.PkRecordId == id).FirstOrDefault();
 
-        //List<FieldSpec> melEquipComplDisplayFieldList = new List<FieldSpec>()
-        //{
-        //    new FieldSpec("DateDispDuDef", "Due<br/>Date", "DateDispDuDef", "center", 80, "date"),
-        //    new FieldSpec("SquawkNumber", "Squawk<br/>Number", "SquawkNumber", "center", 120),
-        //    new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 120),
-        //    new FieldSpec("TailNmbr", "Tail<br/>Nmbr", "TailNmbr", "center", 120),
-        //    new FieldSpec("AircraftType", "Acft<br/>Type", "AircraftType", "center", 80),
-        //    new FieldSpec("AtaChapCode", "Ata<br/>Chap<br/>Code", "AtaChapCode", "center", 80),
-        //    new FieldSpec("MinEquipList", "MEL<br/>Type", "MinEquipList", "center", 80)
-        //};
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
 
-        
+            return View("~/Views/Maintenance/SquawksDetailView.cshtml");
+        }
+
+        public IActionResult TaskCardDetailView(string id, string data1)
+        {
+            var data = context.TaskCards.Where(t => t.PkRecordId == id).FirstOrDefault();
+
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
+
+            return View("~/Views/Maintenance/TaskCardDetailView.cshtml");
+        }
+    
         List<FieldSpec> melEquipComplRprtDsplyFieldList = new List<FieldSpec>()
         {
             new FieldSpec("SquawkNumber", "Squawk Nbr", "SquawkNumber", "right", 64),
-            // Ref # ??
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 64),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 64),
             new FieldSpec("TypeCode", "Type", "TypeCode", "center", 40),
@@ -101,8 +226,8 @@ namespace SpectrumWeb.Controllers.Maintenance
         public IActionResult MELCmplDue()
         {
 
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.MinEquipList != null
                              select new {
@@ -110,10 +235,10 @@ namespace SpectrumWeb.Controllers.Maintenance
                                 ,s.SquawkNumber
                                 ,s.TailNmbr
                                 ,s.TypeCode
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.ReportedBy
                                 ,s.DateReceived
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 ,s.DateComp
                                 ,s.FlightLogNmbr
                                 ,s.ItemNmbr
@@ -130,20 +255,6 @@ namespace SpectrumWeb.Controllers.Maintenance
             return (new GenericTableController()).GenericTableGenerator(melEquipComplRprtDsplyFieldList, "MEL Compliance Due", classList.Select(e => (object)e).ToList());
 
         }
-
-        //public IActionResult MELCmplDueFull()
-        //{
-
-        //    List<SquawkMaster> classList = _context.SquawkMasters.Where(s=>s.MinEquipList != null).ToList();
-
-        //    return (new GenericTableController()).GenericTableGenerator(
-        //        squawksMasterDisplayFieldList
-        //        , "MEL Compliance Due"
-        //        , classList.Select(e => (object)e).ToList()
-        //        , "SquawksMasterClass"
-        //        , "squawks_master");
-        //}
-
 
         List<FieldSpec> dmiDisplayFieldList = new List<FieldSpec>()
         {
@@ -180,20 +291,20 @@ namespace SpectrumWeb.Controllers.Maintenance
         public IActionResult DMIRprt()
         {
 
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.DmiYN
                            
                              select new {
                                  s.PkRecordId
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 ,s.TailNmbr
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.City
                                 ,s.TypeCode
-                                ,s.PartNumbers
-                                ,s.SerialNumbers
+                                ,s.PartNumber01
+                                ,s.SerialNumber01
                                 ,s.WhoFixed
                                 ,s.FirstInspector
                                 ,s.EtopsSignificant
@@ -256,8 +367,8 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         public IActionResult MechSvcInterrupt()
         {
-            var classList = (from s in _context.SquawkMasters
-                             join a in _context.AcMasters
+            var classList = (from s in context.SquawkMasters
+                             join a in context.AcMasters
                              on s.TailNmbr equals a.TailNmbr
                              where s.DmiNumber != null
                              select new {   
@@ -265,7 +376,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                                  ,s.SquawkNumber
                                 ,s.DateReceived
                                 ,s.TailNmbr
-                                ,s.AtaChapCode
+                                ,s.AtaChapAndSub
                                 ,s.Flight
                                 ,s.DelayYN
                                 ,s.CancellationYN
@@ -274,7 +385,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                                 ,s.Description
                                 ,s.Resolution
                                 ,s.DateComp
-                                ,s.DateDispDuDef
+                                ,s.DateDeferred
                                 , a.AircraftType }).ToList();
 
 

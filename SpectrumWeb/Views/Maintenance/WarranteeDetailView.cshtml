@@ -1,0 +1,149 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @using SpectrumWeb.Models;
+    @model GuaranteeWarranty;
+    GuaranteeWarranty gw = @ViewBag.Data;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+   
+    
+    <style>
+        .labelTd {
+            width:180px;
+        }
+
+        tr {
+            height:48px;
+        }
+
+        label {
+            color:maroon;
+            font:large;
+            font-weight:bold;
+        }
+
+        input {
+            color:maroon;
+            border:solid;
+            border-color:maroon;
+            border-width:2px;
+        }
+
+        td{
+            color:maroon;
+            font:large;
+        }
+
+        .tableContainer {
+            display:flex;
+            align-items:center;
+            font-size:16px;
+            color:maroon;
+        }
+    </style>
+</head>
+
+<body>
+     <h2  style="color:maroon;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
+            Guarantee / Warranty Details
+    </h2>
+
+    <div style="height:16px"> </div>
+
+    <form method="post" id="guaranteeWarrantyForm">
+        
+        <div style="width:100%;margin:auto;display:block;text-align:center;">
+            <label for="taskId" style="width:256px;">Guarantee/Waranty Number: </label><input type="text" id="warantyNmbr" name="warantyNmbr" style="width:128px;" value="@gw.Number" />
+        </div>
+
+        <div style="height:16px"></div>
+
+        <div style="width:100%;display:block;align-content:center;text-align:center;">
+
+            <div style="margin:32px;display:inline-block;">
+            
+                <table style="color:maroon;font-size:16px;">
+                    <tr>
+                        <td><label for="partNmbr">Part Nmbr: </label></td>
+                        <td><input type="text" id="partNmbr" name="partNmbr" value="@gw.PartNumber"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="serialNmbr">Serial Nmbr: </label></td>
+                        <td><input type="text" id="serialNmbr" name="serialNmbr" value="@gw.SerialNmbr"/></td>
+                    </tr>
+                    <tr>
+                       <td> <label for="dateReceived">Received Date: </label></td>
+                        <td> <input type="date" id="dateReceived" name="dateReceived" value="@gw.DateReceived" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="hoursGuaranteed">Hours Guaranteed: </label></td>
+                        <td> <input type="number" id="Hours Guaranteed" name="hoursGuaranteed" value="@gw.HoursGuaranteed" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="cyclesGuaranteed">Cycles Guaranteed: </label></td>
+                        <td> <input type="text" id="cyclesGuaranteed" name="cyclesGuaranteed" value="@gw.CyclesGuaranteed" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="weeksGuaranteed">Weeks Guaranteed: </label></td>
+                        <td> <input type="text" id="weeksGuaranteed" name="weeksGuaranteed" value="@gw.WeeksAtInstall" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="hoursAtInstall">Hours At Install: </label></td>
+                        <td> <input type="number" id="hoursAtInstall" name="hoursAtInstall" value="@gw.HoursAtInstall" /></td>
+                    </tr>
+                </table>
+            </div>
+            <div style="display:inline-block;margin:32px;vertical-align:top">
+                <table style="color:maroon;font-size:16px;">
+                   
+                     <tr>
+                        <td> <label for="cyclesAtInstall">Cycles At Install: </label></td>
+                        <td> <input type="number" id="cyclesAtInstall" name="cyclesAtInstall" value="@gw.CyclsAtInstall"/></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="weeksAtInstall">Weeks At Install: </label></td>
+                        <td> <input type="number" id="weeksAtInstall" name="weeksAtInstall" value="@gw.WeeksAtInstall" /></td>
+                    </tr>
+                  
+                    <tr>
+                        <td> <label for="exchangedSerNmbr">Exchange Serial Nmbr: </label></td>
+                        <td> <input type="text" id="exchangedSerNmbr" name="exchangedSerNmbr" value="@gw.ExchangedSerNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td> <label for="controlTag">Control Tag: </label></td>
+                        <td> <input type="text" id="controlTag" name="controlTag" value="@gw.ControlTag" /></td>
+                    </tr>
+                    <tr>
+                        <td ><label for="vendorNmbr">Vendor Nmbr: </label></td>
+                        <td><input type="text" id="vendorNmbr" name="vendorNmbr" value="@gw.VendorNumber"/></td>
+                    </tr>
+                    <tr>
+                        <td><label for="ataChap">ATA Chapter: </label></td>
+                        <td><input type="text" id="ataChap" name="ataChap"  value="@gw.AtaChap"/></td>
+                    </tr>
+
+                </table>
+            </div>
+            <div style="display:block;margin:auto">
+                <h6 style="width:100%;color:maroon;" align="center">-- terms --</h6>
+                <textarea style="align-content:center;width:80%;" rows="4" name="terms" id="terms" form="guaranteeWarrantyForm">
+                    @gw.Terms
+                </textarea>
+                <div style="height:16px"></div>
+                <h6 style="width:100%;color:maroon;" align="center">-- Notes --</h6>
+                <textarea style="align-content:center;width:80%;" rows="4" name="notes" id="notes" form="guaranteeWarrantyForm">
+                    @gw.Notes
+                </textarea>
+            </div>
+        </div>
+       
+    </form>
+</body>
+</html>

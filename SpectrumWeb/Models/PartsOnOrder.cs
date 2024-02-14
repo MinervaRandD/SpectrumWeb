@@ -9,23 +9,23 @@ public partial class PartsOnOrder
 
     public string PkTransactionId { get; set; } = null!;
 
-    public int? Number { get; set; }
+    public string? PoNumber { get; set; }
 
     public short? PageNumber { get; set; }
 
-    public string? MultiplePgYN { get; set; }
+    public bool? MultiplePgYN { get; set; }
 
-    public string? VoidCloseFlag { get; set; }
+    public bool? VoidCloseFlag { get; set; }
 
     public string? BuyerCode { get; set; }
 
     public string? Vendor { get; set; }
 
-    public string? Confirm { get; set; }
+    public bool? Confirm { get; set; }
 
-    public string? Taxable { get; set; }
+    public bool? Taxable { get; set; }
 
-    public string? FreeOnBoard { get; set; }
+    public bool? FreeOnBoard { get; set; }
 
     public string? ContactPerson { get; set; }
 
@@ -35,33 +35,33 @@ public partial class PartsOnOrder
 
     public string? Status { get; set; }
 
-    public string? PrintFlag { get; set; }
+    public bool? PrintFlag { get; set; }
 
     public string? PartNumber { get; set; }
 
-    public string? QtyOrdered { get; set; }
+    public int? QtyOrdered { get; set; }
 
-    public string? QuotedAmnt { get; set; }
+    public double? QuotedAmnt { get; set; }
 
     public DateTime? DateDue { get; set; }
 
-    public string? QtyReceived { get; set; }
+    public int? QtyReceived { get; set; }
 
     public DateTime? DateReceived { get; set; }
 
-    public string? InvoicedAmnt { get; set; }
+    public double? InvoicedAmnt { get; set; }
 
-    public string? QtyOnhandRecvd { get; set; }
+    public int? QtyOnhandRecvd { get; set; }
 
-    public string? AvgAmntWhenRecvd { get; set; }
+    public double? AvgAmntWhenRecvd { get; set; }
 
     public string? ShipVia { get; set; }
 
-    public string? BuyerNotes7x60 { get; set; }
+    public string? BuyerNotes { get; set; }
 
-    public string? Account7x84 { get; set; }
+    public string? Account { get; set; }
 
-    public string? SpecInstr2x70 { get; set; }
+    public string? SpecInstr { get; set; }
 
     public string? TypeOfPo { get; set; }
 
@@ -69,11 +69,11 @@ public partial class PartsOnOrder
 
     public int? SalesOrderNmbr { get; set; }
 
-    public string? InvoiceFlag { get; set; }
+    public bool? InvoiceFlag { get; set; }
 
     public string? NoCharge { get; set; }
 
-    public string? UseCurx { get; set; }
+    public bool? UseCurx { get; set; }
 
     public string? CurrencyCode { get; set; }
 
@@ -81,19 +81,19 @@ public partial class PartsOnOrder
 
     public string? EnteredQuote { get; set; }
 
-    public string? OriginalInvoiAmnt { get; set; }
+    public double? OriginalInvoiAmnt { get; set; }
 
-    public string? ItemTask7x322 { get; set; }
+    public string? ItemTask { get; set; }
 
-    public string? JobCards7x80 { get; set; }
+    public string? JobCards { get; set; }
 
-    public string? Freight7x112 { get; set; }
+    public string? Freight { get; set; }
 
     public string? CstmImpBrkr { get; set; }
 
-    public string? ShpHndl7x112 { get; set; }
+    public string? ShpHndl { get; set; }
 
-    public string? Approved { get; set; }
+    public bool? Approved { get; set; }
 
     public short? RevisionNmbr { get; set; }
 

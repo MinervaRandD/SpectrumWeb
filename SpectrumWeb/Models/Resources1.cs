@@ -9,8 +9,6 @@ public partial class Resources1
 
     public string PkTransactionId { get; set; } = null!;
 
-    public string? TransactId { get; set; }
-
     public int? RefnmbrLinksFiles { get; set; }
 
     public string? SerialNmbr { get; set; }

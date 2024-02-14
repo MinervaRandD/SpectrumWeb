@@ -14,4 +14,6 @@ public partial class Transaction
     public string TableId { get; set; } = null!;
 
     public DateTime TransactDate { get; set; }
+
+    public string TransactType { get; set; } = null!;
 }

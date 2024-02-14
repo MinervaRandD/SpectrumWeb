@@ -9,6 +9,8 @@ public partial class GuaranteeWarranty
 
     public string PkTransactionId { get; set; } = null!;
 
+    public int Revision { get; set; }
+
     public string? Number { get; set; }
 
     public string? PartNumber { get; set; }
@@ -29,7 +31,7 @@ public partial class GuaranteeWarranty
 
     public short? WeeksAtInstall { get; set; }
 
-    public string? TermsTerminalNmbr { get; set; }
+    public string? Terms { get; set; }
 
     public string? Notes { get; set; }
 

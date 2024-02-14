@@ -9,11 +9,9 @@ public partial class Resources0
 
     public string PkTransactionId { get; set; } = null!;
 
-    public string? TransactId { get; set; }
-
     public string? PartNumber { get; set; }
 
-    public string? Rsitmx { get; set; }
+    public string? SerialNmbr { get; set; }
 
     public string? Warehouse { get; set; }
 

@@ -14,6 +14,8 @@
 
         public string? fieldType { get; set; } = "text";
 
+        public short? fieldHeight { get; set; } = null;
+
         public FieldSpec(
             string label
             ,string description
@@ -21,6 +23,7 @@
             ,string? fieldJustify = null
             ,short? fieldWidth = null
             ,string? fieldType = "text"
+            ,short? fieldHeight= null
             )
         {
             this.label = label;
@@ -34,6 +37,8 @@
             this.fieldWidth = fieldWidth;
 
             this.fieldType = fieldType;
+
+            this.fieldHeight = fieldHeight;
         } 
     }
 }

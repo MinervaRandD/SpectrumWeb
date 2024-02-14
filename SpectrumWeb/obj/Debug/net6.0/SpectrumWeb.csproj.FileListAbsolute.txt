@@ -89,3 +89,4 @@ C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumW
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.SpectrumWeb.props
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SpectrumWeb.props
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\SpectrumWeb.sourcelink.json
