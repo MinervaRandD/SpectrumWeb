@@ -19,13 +19,13 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> displayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("PartNumber", "Part\nNmbr", "PartNumber", "center", 120),
-            new FieldSpec("PartDesignator", "Part\nDesig.", "PartDesignator"),
-            new FieldSpec("QtyOutForRepr", "Qty\nOut\nFor\nRepr", "QtyOutForRepr"),
+            new FieldSpec("PartNumber", "Part<br/>Nmbr", "PartNumber", "center", 120),
+            new FieldSpec("PartDesignator", "Part<br/>Desig.", "PartDesignator"),
+            new FieldSpec("QtyOutForRepr", "Qty<br/>Out</br>For<br/>Repr", "QtyOutForRepr"),
             new FieldSpec("Allotment", "Allot.", "Allotment"),
-            new FieldSpec("InSuspense", "In Suspense", "InSuspense"),
-            new FieldSpec("OrderQuantity", "Order\nQty", "OrderQuantity"),
-            new FieldSpec("NumberOfSpares", "Nmbr\nOf\nSpares", "NumberOfSpares"),
+            new FieldSpec("InSuspense", "In<br/>Sspns", "InSuspense"),
+            new FieldSpec("OrderQuantity", "Order<br/>Qty", "OrderQuantity"),
+            new FieldSpec("NumberOfSpares", "Nmbr<br/>Of<br/>Spares", "NumberOfSpares"),
             new FieldSpec("LastPoNmbr", "Last PO Nmbr", "LastPoNmbr"),
             new FieldSpec("LastPoType", "Last PO Type", "LastPoType"),
             new FieldSpec("LastPrice", "LastPrice", "LastPrice"),
@@ -57,6 +57,15 @@ namespace SpectrumWeb.Controllers.Maintenance
                 , classList.Select(e => (object)e).ToList());
         }
 
+        public IActionResult PartsMaster()
+        {
+            List<PartsMaster> classList = context.PartsMasters.ToList();
+
+            return (new GenericTableController()).GenericTableGenerator(
+                displayFieldList
+                , "Parts"
+                , classList.Select(e => (object)e).ToList());
+        }
 
         List<FieldSpec> PartsOnGuaranteeWarrantyDisplayFieldList = new List<FieldSpec>()
         {
