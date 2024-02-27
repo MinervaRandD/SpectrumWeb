@@ -139,7 +139,8 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("AtaChapCode", "ATA Chapter", "AtaChapCode", "center", 60),
             new FieldSpec("AtaSubCode", "ATA Sub Chap", "AtaSubCode", "center", 60),
             new FieldSpec("AtaParCode", "ATA Par Code", "AtaParCode", "center", 60),
-            new FieldSpec("OnAcft", "On Acft", "OnAcft", "center", 48, "bool")
+            new FieldSpec("OnAcft", "On Acft", "OnAcft", "center", 48, "bool"),
+            new FieldSpec("DueDate", "Due Date", "DueDate", "center", 90, "date")
         };
 
         //***************************************************//
@@ -148,26 +149,37 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         public IActionResult M15ProjDueDateByPartNmbr()
         {
+            var frstDate = DateTime.Now;
+            var lastDate = frstDate.AddYears(1);
+
+            List<string> dueDateList = new List<string>();
+
             var classList = (from r0 in context.Resources0s
-                             join r1 in context.Resources1s on r0.PartNumber equals r1.PartNumber
-                             select new
-                             {
-                                 r0.PkRecordId,
-                                 r1.SerialNmbr,
-                                 PartNmbr = r0.PartNumber,
-                                 AtaChapCode = SpectrumUtils.AtaChapter(r0.AtaChapCode),
-                                 AtaSubCode = SpectrumUtils.AtaSubChapter(r0.AtaSubchptPara),
-                                 AtaParCode = SpectrumUtils.AtaParagraph(r0.AtaSubchptPara),
-                                 OnAcft = (r1.TailNmbr != null)
-                             }).ToList();
+                              join r1 in context.Resources1s on r0.PartNumber equals r1.PartNumber
+                              select new
+                              {
+                                  r0.PkRecordId,
+                                  r1.SerialNmbr,
+                                  PartNmbr = r0.PartNumber,
+                                  AtaChapCode = SpectrumUtils.AtaChapter(r0.AtaChapCode),
+                                  AtaSubCode = SpectrumUtils.AtaSubChapter(r0.AtaSubchptPara),
+                                  AtaParCode = SpectrumUtils.AtaParagraph(r0.AtaSubchptPara),
+                                  OnAcft = (r1.TailNmbr != null),
+                                  DueDate = "2025-01-01"
+                              });
 
 
-            return (new M15ProjDueDateByPartNmbrController()).ProjDueDateByPartNmbrGenerator(
+            return (new GenericTableController()).GenericTableGenerator(
                 ProjDueDateByPartNmbrDisplayFieldList
-                , "Proj Due Date By Part Nmbr"
-                , classList.Select(e => (object)e).ToList()
-                , "WarrantyClass"
-                , "warranties");
+                , "Prj Due Date By Part Nmbr"
+                , classList.Select(e => (object)e).ToList());
+
+            //return (new M15ProjDueDateByPartNmbrController()).ProjDueDateByPartNmbrGenerator(
+            //    ProjDueDateByPartNmbrDisplayFieldList
+            //    , "Proj Due Date By Part Nmbr"
+            //    , classList.Select(e => (object)e).ToList()
+            //    , "WarrantyClass"
+            //    , "warranties");
         }
 
         //***************************************************//

@@ -207,10 +207,10 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 64),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 64),
             new FieldSpec("TypeCode", "Type", "TypeCode", "center", 40),
-            new FieldSpec("AtaChapCode", "ATA of Squawk", "AtaChapCode", "center", 50),
+            new FieldSpec("AtaChapAndSub", "ATA of Squawk", "AtaChapAndSub", "center", 50),
             new FieldSpec("ReportedBy", "Reported By", "ReportedBy", "right", 64),
             new FieldSpec("DateReceived", "Date Reported", "DateReceived", "center", 80, "date"),
-            new FieldSpec("DateDispDuDef", "Date Due", "DateDispDuDef", "center", 80, "date"),
+            new FieldSpec("DateDeferred", "Date Deferred", "DateDeferred", "center", 80, "date"),
             new FieldSpec("DateComp", "Date Fixed", "DateComp", "center", 80, "date"), // Is this date fixed?
             new FieldSpec("FlightLogNmbr", "Flight Log Nmbr", "FlightLogNmbr", "center", 80),
             new FieldSpec("ItemNmbr", "Item Nbr", "ItemNmbr", "center", 80),
@@ -258,15 +258,15 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> dmiDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("DateDispDuDef", "Due Date", "DateDispDuDef", "center", 80, "date"),
+            new FieldSpec("DateDeferred", "Due Deferred", "DateDeferred", "center", 80, "date"),
             new FieldSpec("Status", "Open/Closed", "Status", "center", 120),
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 120),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 80),
-            new FieldSpec("AtaChapCode", "Ata Chap Code", "AtaChapCode", "center", 64),
+            new FieldSpec("AtaChapAndSub", "Ata Chap Code", "AtaChapAndSub", "center", 64),
              new FieldSpec("City", "City", "City", "center", 64),
             new FieldSpec("TypeCode", "Type Code", "TypeCode", "center", 64),
-            new FieldSpec("PartNumbers", "Part Numbers", "PartNumbers", "left", 120),
-            new FieldSpec("SerialNumbers", "Serial Numbers", "SerialNumbers", "left", 120),
+            new FieldSpec("PartNumber01", "Part Number", "PartNumber01", "left", 120),
+            new FieldSpec("SerialNumber01", "Serial Number", "SerialNumber01", "left", 120),
             new FieldSpec("WhoFixed", "Fixed By", "WhoFixed", "center", 40),
             new FieldSpec("FirstInspector", "Inspected By", "FirstInspector", "center", 60),
             new FieldSpec("EtopsSignificant", "Etops Signif", "EtopsSignificant", "center", 40, "bool"),
@@ -352,7 +352,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("DateReceived", "Date", "DateReceived", "center", 80, "date"),
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 120),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 80),
-            new FieldSpec("AtaChapCode", "Ata Chap Code", "AtaChapCode", "center", 80),
+            new FieldSpec("AtaChapAndSub", "Ata Chap Code", "AtaChapAndSub", "center", 80),
             new FieldSpec("Flight", "Flight Nbr", "Flight", "center", 80),
             new FieldSpec("DelayYN", "Delay<br/>(Y/N)", "DelayYN", "center", 50, "bool"),
             new FieldSpec("CancellationYN", "Cancel<br/>(Y/N)", "CancellationYN", "center", 50, "bool"),
@@ -361,7 +361,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Description", "Description", "Description", "left", 240),
             new FieldSpec("Resolution", "Resolution", "Resolution", "left", 240),
             new FieldSpec("DateComp", "Date Fixed", "DateComp", "center", 80, "date"), // Is this date fixed?
-            new FieldSpec("DateDispDuDef", "Deferred To", "DateDispDuDef", "center", 80, "date") // Is this date delayed until?
+            new FieldSpec("DateDeferred", "Deferred To", "DateDeferred", "center", 80, "date") // Is this date delayed until?
         };
 
 

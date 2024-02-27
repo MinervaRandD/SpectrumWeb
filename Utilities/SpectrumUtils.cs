@@ -37,5 +37,18 @@ namespace Utilities
 
             return (subChapAndPara.Value % 100).ToString("00");
         }
+
+        static Random random = new Random();
+
+        public static string RandomDate(DateTime frstDate, DateTime lastDate)
+        {
+            double nextDbl = random.NextDouble();
+
+            var diff = ((lastDate - frstDate).TotalSeconds) * nextDbl;
+
+            DateTime randDate = frstDate.AddSeconds(diff);
+
+            return randDate.ToString("yyyy-MM-dd");
+        }
     }
 }
