@@ -79,7 +79,6 @@ C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumW
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
-C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\SpectrumWeb.csproj.CopyComplete
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\bin\Debug\net6.0\Utilities.dll
@@ -90,3 +89,4 @@ C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumW
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.SpectrumWeb.props
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\staticwebassets.pack.json
 C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\SpectrumWeb.sourcelink.json
+C:\Minerva Research and Development\Projects\Arms-Spectrum\Base System\SpectrumWeb\SpectrumWeb\obj\Debug\net6.0\Spectrum.D6D8DB55.Up2Date

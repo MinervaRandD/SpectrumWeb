@@ -74,6 +74,20 @@ tbody {
         margin:4px;
         
     }
+
+    #overlay {
+        position: fixed; /* Sit on top of the page content */
+        display: none; /* Hidden by default */
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+    }
 </style>
 <script>
     
@@ -287,28 +301,29 @@ function initializeClassMap()
 @Html.Raw(ViewBag.TemplateDiv)
 
 <div class="row">
-<div class="col-1" style="width:32px"></div>
+    <div class="col-1" style="width:32px"></div>
 
-<div class="col-11">
-<table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
-    <thead>
-        <tr style="color:maroon">
-                @Html.Raw(@ViewBag.TableHeader)
-        </tr>
-    </thead>
-    <tfoot>
-        <tr>
-            @Html.Raw(@ViewBag.TableFooter)
-        </tr>
-    </tfoot>
+    <div class="col-11">
+        <table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
+            <thead>
+                <tr style="color:maroon">
+                        @Html.Raw(@ViewBag.TableHeader)
+                </tr>
+            </thead>
+            <tfoot>
+                <tr>
+                    @Html.Raw(@ViewBag.TableFooter)
+                </tr>
+            </tfoot>
 
-    <tbody id='classTableBody'>      
-        @Html.Raw(@ViewBag.ClassTableBody)
-    </tbody>
+            <tbody id='classTableBody'>      
+                @Html.Raw(@ViewBag.ClassTableBody)
+            </tbody>
                 
-</table>
+        </table>
+        <div id="overlay">
+        </div>
     </div>
-</div>
 <script>
 
 function buildclassTableBody(){
