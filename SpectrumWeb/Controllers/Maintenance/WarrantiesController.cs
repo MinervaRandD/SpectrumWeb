@@ -112,12 +112,15 @@ namespace SpectrumWeb.Controllers.Maintenance
             }
 
             return (new GenericTableController()).GenericTableGenerator(
-                displayFieldList
-                , "Guarantees and Warranties"
+                 "/GenericTable/GenericUpdater"
+                , displayFieldList
+                , title()
                 , classList.Select(e => (object)e).ToList()
                 , childFieldList
                 , warrantiesChildFieldFormatter
-                , "WarranteeDetailView");
+                , "WarranteeDetailView"
+                , null
+                , overlay());
         }
 
 
@@ -130,6 +133,30 @@ namespace SpectrumWeb.Controllers.Maintenance
 
 
             return View("~/Views/Maintenance/WarranteeDetailView.cshtml");
+        }
+
+        private string overlay()
+        {
+            string rtrnValu = string.Empty;
+
+            rtrnValu = "<div id='overlay' style='display:block'>\n"
+                     + "    <div style='height:256px'></div>\n"
+                     + "    <div style='width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:maroon;border-radius:32px'>\n"
+                     + "        <div style='display:inline-block;width:93%'><h4 style='text-align:center;color:maroon;margin:auto'>Select Guarantees and Warranties</h4></div>\n"
+                     + "        <div style='display:inline-block;width:24px'><button onclick='hideFilter()' class='btn btn-outline-primary' style='border-color:maroon;border-width:2px;color:maroon;margin-top:2px;font:bolder'>X</button></div>\n"
+                     + "    </div>\n"
+                     + "</div>\n";
+
+            return rtrnValu;
+        }
+
+        private string title()
+        {
+            string rtrnValu = string.Empty;
+
+            rtrnValu = "Guarantees and Warranties";
+
+            return rtrnValu;
         }
     }
     

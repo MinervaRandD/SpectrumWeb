@@ -22,7 +22,8 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             , List<object> classList
             , List<FieldSpec> childFieldList = null
             , string childFieldFormater = null
-            , string customForm = null)
+            , string customForm = null
+            )
         {
             return GenericTableGenerator(
                 "/GenericTable/GenericUpdater"
@@ -40,9 +41,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
         , string title
         , List<object> classList
         , List<FieldSpec> childFieldList = null
-        , string childFieldFormatter = null
-        , string detailsUrl = null
-        , string customForm = null)
+        , string? childFieldFormatter = null
+        , string? detailsUrl = null
+        , string? customForm = null
+        , string? overlay = null)
         {
             ViewBag.Title = title;
 
@@ -156,6 +158,16 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.DetailsUrl = detailsUrlStr;
 
+            if (overlay != null)
+            {
+                ViewBag.Overlay = overlay;
+            }
+
+            else
+            {
+                ViewBag.Overlay = "''";
+
+            }
             //ViewBag.ClassDefnScript = "<script type='text/javascript' language='javascript' src='/local/" + classDefnFileName + ".js'></script >";
 
             return View("~/Views/Maintenance/GenericTable.cshtml");

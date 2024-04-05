@@ -2,7 +2,10 @@
 @{
     @using SpectrumWeb.Controllers.ControllerCommon;
 }
-<h2 style="color:maroon;text-align:center">@ViewBag.Title</h2>
+
+
+    <h2 style="color:maroon;text-align:center;width:95%;margin-top:32px;display:block">@ViewBag.Title</h2>
+  
 
 <script type="text/javascript" language="javascript" src="/local/common.js"></script>
 
@@ -119,8 +122,14 @@ const classMap = new Map();
     function hideFilter() {
         $("#tableDiv").removeClass("tableDivBlurred");
         $("#overlay").css("display", "none");
+        $("#overlayButton").css("display", "block");
     }
 
+    function showFilter() {
+        $("#tableDiv").addClass("tableDivBlurred");
+        $("#overlay").css("display", "block");
+        $("#overlayButton").css("display", "none");
+    }
 document.addEventListener('DOMContentLoaded', function () {
     initializeClassMap();
     //buildclassTableBody();
@@ -177,32 +186,34 @@ document.addEventListener('DOMContentLoaded', function () {
         select: true,
         buttons: [
 
-            {
-                extend: 'print',
-                action: function () {
-                    let count = table.rows({ selected: true }).count();
-                    if (count <= 0)
-                    {
-                        window.alert("No items selected to print.");
-                    }
+            // {
+            //     extend: 'print',
+            //     action: function () {
+            //         let count = table.rows({ selected: true }).count();
+            //         if (count <= 0)
+            //         {
+            //             window.alert("No items selected to print.");
+            //         }
 
-                    else
-                    {
-                        let selectedRows = table.rows({ selected: true });
+            //         else
+            //         {
+            //             let selectedRows = table.rows({ selected: true });
 
-                        for (let i = 0 ; i < count ; i++)
-                        {
-                            console.log(JSON.stringify(selectedRows.data()[i]));
-                        }
+            //             for (let i = 0 ; i < count ; i++)
+            //             {
+            //                 console.log(JSON.stringify(selectedRows.data()[i]));
+            //             }
                        
-                    }
-                }
-            },
+            //         }
+            //     }
+            // },
             
-            'searchBuilder',
-            { extend: "create", editor: editor },
-	        { extend: "edit",   editor: editor },
-	        { extend: "remove", editor: editor } 
+            { extend: 'print'},
+            { extend: 'searchBuilder' },
+            { text: 'Show Filter', action: function () { showFilter(); } }
+         //    { extend: "create", editor: editor },
+	        // { extend: "edit",   editor: editor },
+	        // { extend: "remove", editor: editor } 
         ],
        
         fixedHeader: {
@@ -347,14 +358,9 @@ function initializeClassMap()
                 
             </table>
         </div>
-        <div id="overlay" style="display:block">
-            <div style="height:256px"></div>
-            <div style="width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:maroon;border-radius:32px">
-                <div style="display:inline-block;width:100%"><h4 style="text-align:center;color:maroon;margin:auto">Select Guarantees and Warranties</h4></div>
-                <div style="display:inline-block;width:32px"><button onclick="hideFilter()" style="border:solid;border-radius:2px;height:16px;width:16px;color:maroon;margin-left:auto">X</button></div>
-            </div>
-            
-        </div>
+
+        @Html.Raw(ViewBag.Overlay)
+        
     </div>
 <script>
 
