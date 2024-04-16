@@ -112,9 +112,64 @@ tbody {
     .hiddenOverlay{
         display:none;
     }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    .dropDnElement {
+        border:none;
+    }
 </style>
 <script>
-    
+
+function partNmbrDropDnSelect(element) {
+        var el = document.getElementById('FilterPartNumber');
+
+    $(partNmbrDropDn).html(element);
+      
+    $(FilterPartNumber).val(element);
+        el.dispatchEvent(new Event('change'));
+    alert($(FilterPartNumber).text());
+}
+
 var table;
 
 const classMap = new Map();
@@ -137,7 +192,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
     $('#classTable tfoot th').each(function () {
         var title = $(this).text();
-        $(this).html('<input type="text" placeholder="Filter ' + title + '" />');
+        var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
+        $(this).html(ihtml);
+        console.log(this);
     });
     
     editor = new $.fn.dataTable.Editor( {

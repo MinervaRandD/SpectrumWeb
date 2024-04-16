@@ -139,13 +139,59 @@ namespace SpectrumWeb.Controllers.Maintenance
         {
             string rtrnValu = string.Empty;
 
+            string partNmbrFilter = genreatePartNmbrDropDown();
+
             rtrnValu = "<div id='overlay' style='display:block'>\n"
                      + "    <div style='height:256px'></div>\n"
                      + "    <div style='width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:maroon;border-radius:32px'>\n"
                      + "        <div style='display:inline-block;width:93%'><h4 style='text-align:center;color:maroon;margin:auto'>Select Guarantees and Warranties</h4></div>\n"
                      + "        <div style='display:inline-block;width:24px'><button onclick='hideFilter()' class='btn btn-outline-primary' style='border-color:maroon;border-width:2px;color:maroon;margin-top:2px;font:bolder'>X</button></div>\n"
+                     + "        <div style='height:16px'></div>\n"
+                     + "        <div style='margin:auto'>\n"
+                     + partNmbrFilter
+                     + "        </div>\n"
                      + "    </div>\n"
                      + "</div>\n";
+
+            return rtrnValu;
+        }
+
+        private string genreatePartNmbrDropDown()
+        {
+
+            List<string?> partNmbrList = context.GuaranteeWarranties.Select(p => p.PartNumber).Distinct().ToList();
+
+            if (partNmbrList.Count == 0 )
+            {
+                return string.Empty;
+            }
+            partNmbrList.Sort(StringComparer.OrdinalIgnoreCase);
+
+            string rtrnValu = generateDropDown(partNmbrList, "ALL");
+
+            return rtrnValu;
+
+        }
+
+        private string generateDropDown(List<string?> elementList, string defaultValu)
+        {
+            string rtrnValu = "            <div class='dropdown'>\n"
+                            + "                <button class='dropbtn' id='partNmbrDropDn'>" + defaultValu + "</button>\n"
+                            + "                <div class='dropdown-content'>\n";
+
+            foreach (string? element in elementList)
+            {
+                if (string.IsNullOrEmpty(element))
+                {
+                    continue;
+                }
+
+                rtrnValu += "                    <button class='dropDnElement' onclick='partNmbrDropDnSelect(\"" + element + "\")'>" + element + "</button>\n";
+            }
+
+            rtrnValu +=     "                </div>\n";
+
+            rtrnValu += "            </div>\n";
 
             return rtrnValu;
         }
