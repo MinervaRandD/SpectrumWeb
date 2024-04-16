@@ -193,6 +193,7 @@ document.addEventListener('DOMContentLoaded', function () {
     $('#classTable tfoot th').each(function () {
         var title = $(this).text();
         var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
+        //var ihtml = '<input type="text" placeholder="Filter ' + title + '" />';
         $(this).html(ihtml);
         console.log(this);
     });
