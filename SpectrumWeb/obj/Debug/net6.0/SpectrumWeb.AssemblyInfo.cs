@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SpectrumWeb")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd70dd74219203ddce96d4556884508e176fd3da")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fadb01527161e8da363c51c7f27a959d755952c1")]
 [assembly: System.Reflection.AssemblyProductAttribute("SpectrumWeb")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SpectrumWeb")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
