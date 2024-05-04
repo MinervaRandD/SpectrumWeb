@@ -96,9 +96,9 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.ClassTableBody = classTableBody;
 
-            string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList, "PkRecordId", childFieldList);
+            //string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList, "PkRecordId", childFieldList);
 
-            ViewBag.TableBodyBuilder = tableBodyBuilder;
+            //ViewBag.TableBodyBuilder = tableBodyBuilder;
 
             string childRows = WebPageGenerator.generateChildRows(childFieldList);
 
