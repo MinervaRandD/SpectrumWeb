@@ -160,16 +160,6 @@ tbody {
 </style>
 <script>
 
-function partNmbrDropDnSelect(element) {
-        var el = document.getElementById('FilterPartNumber');
-
-    $(partNmbrDropDn).html(element);
-      
-    $(FilterPartNumber).val(element);
-        el.dispatchEvent(new Event('change'));
-    alert($(FilterPartNumber).text());
-}
-
 var table;
 
 const classMap = new Map();
@@ -237,9 +227,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     let table = new DataTable('#classTable', {
     
-        layout: {
-            top1: 'searchPanes'
-        },
 
         dom: 'Blfrtip',
         //dom: "<'row'<'col-sm-12'Bfr>" +

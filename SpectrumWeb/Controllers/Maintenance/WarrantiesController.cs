@@ -139,14 +139,14 @@ namespace SpectrumWeb.Controllers.Maintenance
         {
             string rtrnValu = string.Empty;
 
-            string partNmbrFilter = genreatePartNmbrDropDown();
+            string partNmbrFilter = generatePartNmbrFilter();
 
             rtrnValu = "<div id='overlay' style='display:block'>\n"
                      + "    <div style='height:256px'></div>\n"
                      + "    <div style='width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:maroon;border-radius:32px'>\n"
                      + "        <div style='display:inline-block;width:93%'><h4 style='text-align:center;color:maroon;margin:auto'>Select Guarantees and Warranties</h4></div>\n"
                      + "        <div style='display:inline-block;width:24px'><button onclick='hideFilter()' class='btn btn-outline-primary' style='border-color:maroon;border-width:2px;color:maroon;margin-top:2px;font:bolder'>X</button></div>\n"
-                     + "        <div style='height:16px'></div>\n"
+                     + "        <div style='height:24px'></div>\n"
                      + "        <div style='margin:auto'>\n"
                      + partNmbrFilter
                      + "        </div>\n"
@@ -156,42 +156,57 @@ namespace SpectrumWeb.Controllers.Maintenance
             return rtrnValu;
         }
 
-        private string genreatePartNmbrDropDown()
+        private string generatePartNmbrFilter()
         {
 
-            List<string?> partNmbrList = context.GuaranteeWarranties.Select(p => p.PartNumber).Distinct().ToList();
+            List<string?> partNmbrList = context.GuaranteeWarranties.Select(p => p.PartNumber).ToList();
 
-            if (partNmbrList.Count == 0 )
+            SortedDictionary<string, int> partNmbrDict = new SortedDictionary<string, int>();
+
+            foreach (string?  partNmbr in partNmbrList)
             {
-                return string.Empty;
-            }
-            partNmbrList.Sort(StringComparer.OrdinalIgnoreCase);
+                if (string.IsNullOrEmpty(partNmbr))
+                {
+                    continue;
+                }
 
-            string rtrnValu = generateDropDown(partNmbrList, "ALL");
+                if (partNmbrDict.ContainsKey(partNmbr))
+                {
+                    partNmbrDict[partNmbr]++;
+                }
+
+                else
+                {
+                    partNmbrDict.Add(partNmbr, 1);
+                }
+            }
+
+            string rtrnValu = generateSelectionTable("Part Nmbr", partNmbrDict, "ALL");
 
             return rtrnValu;
 
         }
 
-        private string generateDropDown(List<string?> elementList, string defaultValu)
+        private string generateSelectionTable(string title, SortedDictionary<string, int> partNmbrDict, string defaultValu)
         {
-            string rtrnValu = "            <div class='dropdown'>\n"
-                            + "                <button class='dropbtn' id='partNmbrDropDn'>" + defaultValu + "</button>\n"
-                            + "                <div class='dropdown-content'>\n";
+            string rtrnValu = "            <table id=partNmbr>\n"
+                            + "                <thead>\n"
+                            + "                    <th>" + title + "</th>\n"
+                            + "                    <th> Count </th>\n"
+                            + "                </thead>\n"
+                            + "                <tbody>\n";
 
-            foreach (string? element in elementList)
+            foreach (var kvp in partNmbrDict)
             {
-                if (string.IsNullOrEmpty(element))
-                {
-                    continue;
-                }
-
-                rtrnValu += "                    <button class='dropDnElement' onclick='partNmbrDropDnSelect(\"" + element + "\")'>" + element + "</button>\n";
+                rtrnValu   += "                    <tr>\n";
+                rtrnValu   += "                        <td>" + kvp.Key + "</td>\n";
+                rtrnValu   += "                        <td>" + kvp.Value.ToString().PadLeft(4) + "</td>\n";
+                rtrnValu   += "                    </tr>\n";
             }
 
-            rtrnValu +=     "                </div>\n";
+            rtrnValu       += "                </tbody>\n";
 
-            rtrnValu += "            </div>\n";
+            rtrnValu       += "            </table>\n";
 
             return rtrnValu;
         }
