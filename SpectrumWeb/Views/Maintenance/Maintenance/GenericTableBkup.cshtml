@@ -1,0 +1,414 @@
+﻿
+@{
+    @using SpectrumWeb.Controllers.ControllerCommon;
+}
+
+
+    <h2 style="color:maroon;text-align:center;width:95%;margin-top:32px;display:block">@ViewBag.Title</h2>
+  
+
+<script type="text/javascript" language="javascript" src="/local/common.js"></script>
+
+@Html.Raw(@ViewBag.ClassDefnScript)
+
+<style>
+th {
+    text-align:center;
+    margin-top:auto;
+    margin-bottom:auto;
+}
+
+tbody {
+    padding-left:2px;
+    padding-right:2px;
+}
+
+.row_selected td {
+    background-color: black; !important;
+}
+ .dataTables_wrapper
+ {
+     margin-left:32px;
+     text-align:left;
+     float:left;
+ }
+
+    .testFieldName {
+        background-color: azure;
+        height: 64px;
+    }
+    .DTE_FieldInput {
+        background-color: yellow;
+        height:64px;
+    }
+    .FixedRow {
+        position:fixed;
+    }
+
+    div.DTE_Field_Type_textarea textarea  {
+        padding: 3px;
+        width: 200px;
+        height: 120px;
+        float:left;
+    }
+
+    #customForm {
+        display: flex;
+        flex-flow: row wrap;
+    }
+
+    #customForm fieldset {
+        flex: 1;
+           
+        margin: 0.5em;
+    }
+
+    .dt-buttons.btn-group {
+        position: fixed;
+    }
+
+    .detailsCell:hover {
+        cursor:pointer;
+        border-top:solid;
+        border-bottom:solid;
+        border-color:maroon;
+        border-width:thick;
+        border-radius:16px;
+        margin:4px;
+        
+    }
+
+    .tableDivBlurred {
+        
+        -webkit-filter: blur(5px);
+        -moz-filter: blur(5px);
+        -o-filter: blur(5px);
+        -ms-filter: blur(5px);
+        filter: blur(5px);
+        width: 100px;
+        height: 100px;
+        background-color: #ccc;
+    
+    }
+
+    #overlay {
+        position: fixed; /* Sit on top of the page content */
+
+        width: 100%; /* Full width (cover the whole page) */
+        height: 100%; /* Full height (cover the whole page) */
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0,0,0,0.0); /* Black background with opacity */
+        z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+        cursor: pointer; /* Add a pointer on hover */
+    }
+
+    .displayedOverlay{
+        display:block;
+    }
+
+    .hiddenOverlay{
+        display:none;
+    }
+
+    .dropbtn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f1f1f1;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+    }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+            .dropdown-content a:hover {
+                background-color: #ddd;
+            }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
+    }
+
+    .dropdown:hover .dropbtn {
+        background-color: #3e8e41;
+    }
+
+    .dropDnElement {
+        border:none;
+    }
+</style>
+<script>
+
+var table;
+
+const classMap = new Map();
+
+    function hideFilter() {
+        $("#tableDiv").removeClass("tableDivBlurred");
+        $("#overlay").css("display", "none");
+        $("#overlayButton").css("display", "block");
+    }
+
+    function showFilter() {
+        $("#tableDiv").addClass("tableDivBlurred");
+        $("#overlay").css("display", "block");
+        $("#overlayButton").css("display", "none");
+    }
+document.addEventListener('DOMContentLoaded', function () {
+    initializeClassMap();
+    //buildclassTableBody();
+   
+
+    $('#classTable tfoot th').each(function () {
+        var title = $(this).text();
+        var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
+        //var ihtml = '<input type="text" placeholder="Filter ' + title + '" />';
+        $(this).html(ihtml);
+        console.log(this);
+    });
+    
+    editor = new $.fn.dataTable.Editor( {
+
+
+        @Html.Raw(ViewBag.TemplateSpec)
+
+        table: "#classTable",
+        
+        fields:
+            [
+                @Html.Raw(@ViewBag.TableFields)
+            ],
+
+    } );
+
+    editor.on('preSubmit', function (e, data, action) {
+        console.log('preSubmit, action = ' + action);
+        console.log('preSubmit, data=' + data.data);
+
+        let request = new XMLHttpRequest;
+
+        request.open('POST', '/GenericTable/GenericUpdater', false);
+
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        let jdata=JSON.stringify(data.data);
+
+        console.log('preSubmit, jdata=' + jdata);
+
+        request.send('action=' + action + '&data=' + jdata);
+
+        let response = request.responseText;
+
+        console.log('preSubmit, response=' + response);
+
+        return true;
+    });
+
+    let table = new DataTable('#classTable', {
+    
+
+        dom: 'Blfrtip',
+        //dom: "<'row'<'col-sm-12'Bfr>" +
+        //    "<'row'<'col-sm-12'tr>>" +
+        //    "<'row'<'col-sm-12'ip>>",
+        select: true,
+        buttons: [
+
+            // {
+            //     extend: 'print',
+            //     action: function () {
+            //         let count = table.rows({ selected: true }).count();
+            //         if (count <= 0)
+            //         {
+            //             window.alert("No items selected to print.");
+            //         }
+
+            //         else
+            //         {
+            //             let selectedRows = table.rows({ selected: true });
+
+            //             for (let i = 0 ; i < count ; i++)
+            //             {
+            //                 console.log(JSON.stringify(selectedRows.data()[i]));
+            //             }
+                       
+            //         }
+            //     }
+            // },
+            
+            { extend: 'print'},
+            { extend: 'searchBuilder' },
+            { text: 'Show Filter', action: function () { showFilter(); } }
+         //    { extend: "create", editor: editor },
+	        // { extend: "edit",   editor: editor },
+	        // { extend: "remove", editor: editor } 
+        ],
+       
+        fixedHeader: {
+            header: true,
+            footer: true
+        },
+
+        "pageLength": 16,
+
+        columns: [
+           @Html.Raw(@ViewBag.TableColumns)
+        ],
+
+        @Html.Raw(ViewBag.ColumnDefs)
+
+        initComplete: function () {
+            
+            // Apply the search
+            this.api()
+                .columns()
+                .every(function () {
+                    var that = this;
+ 
+                    $('input', this.footer()).on('keyup change clear', function () {
+                        if (that.search() !== this.value) {
+                            that.search(this.value).draw();
+                        }
+                    });
+                });
+
+            },
+
+    //        scrollY:        500,
+    scrollX:        false,
+    //scrollCollapse: true,
+    //paging:         true,
+    //fixedColumns:   true,
+    //select: true 
+        });
+
+
+    table.buttons(0, null).containers().css('float:right');
+
+    table.on('dblclick', 'tbody tr td', function () {
+
+       // console.log("at point 1");
+
+       console.log(this);
+        
+       if ($(this).hasClass("detailsCell"))
+       {
+            let detailsUrl =  @Html.Raw(ViewBag.DetailsUrl) ;
+
+            if (detailsUrl) {
+
+               // let data = table.row(this).data();
+ 
+                let id = table.row(this).id();
+
+                let newWindow = window.open(detailsUrl + '?id=' + id);
+
+            }
+
+            return;
+       }
+    });
+
+    table.on('click', 'td.dt-control', function (e) {
+        let tr = e.target.closest('tr');
+        let row = table.row(tr);
+        if (row.child.isShown()) {
+            // This row is already open - close it
+            row.child.hide();
+        }
+        else {
+            // Open this row
+            row.child(format(row.data())).show();
+        }
+    });
+
+    //table.on('click', 'tbody tr', function (e) {
+    //    e.currentTarget.classList.toggle('selected');
+    //});
+
+        function format(d) {
+
+           rtrnValu=@Html.Raw(ViewBag.ChildFieldFormatter);
+           
+            //console.log(rtrnValu);
+
+            return(rtrnValu);
+
+        }
+
+    });
+   
+    new $.fn.dataTable.Buttons( table, {
+        buttons:[
+        {
+            extend: 'searchBuilder',
+            config: {
+                depthLimit: 4
+            }
+        }
+        ],
+    } );
+
+function initializeClassMap()
+{
+    @Html.Raw(@ViewBag.ClassMapInitializer)
+    // classMap.forEach(function(val)
+    //{
+    //    console.log(val.DateEntered);
+    //});
+}
+</script>
+
+<div style="height:32px"></div>
+
+@Html.Raw(ViewBag.TemplateDiv)
+
+<div class="row">
+    <div class="col-1" style="width:32px"></div>
+
+    <div class="col-11">
+        <div id="tableDiv">
+            <table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
+                <thead>
+                    <tr style="color:maroon">
+                            @Html.Raw(@ViewBag.TableHeader)
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        @Html.Raw(@ViewBag.TableFooter)
+                    </tr>
+                </tfoot>
+
+                <tbody id='classTableBody'>      
+                    @Html.Raw(@ViewBag.ClassTableBody)
+                </tbody>
+                
+            </table>
+        </div>
+
+       @*  @Html.Raw(ViewBag.Overlay) *@
+        
+    </div>
+</div>
