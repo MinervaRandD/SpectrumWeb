@@ -5,10 +5,11 @@
 <script>
     var table;
 
-    $(document).ready(function () {
-        let table = new DataTable('#classTable', {
+    function setupBaseDataTable() {
+        table = new DataTable('#classTable',
+            {
 
-            layout:
+                layout:
                 {
                     top2: 'searchPanes',
                     top1: {
@@ -17,59 +18,64 @@
                         ]
                     },
                 },
-           
-            searchPanes: {
-                viewTotal: true,
-                layout: 'columns-4',
-                columns: [3, 4, 5],
-                threshold: 1
-            },
 
-            fixedHeader: {
-                header: true,
-                footer: true
-            },
+                searchPanes: {
+                    viewTotal: true,
+                    layout: 'columns-4',
+                    columns: [3, 4, 5],
+                    threshold: 1
+                },
 
-            "pageLength": 16,
+                fixedHeader: {
+                    header: true,
+                    footer: true
+                },
 
-            columns: [
-                 @Html.Raw(@ViewBag.TableColumns)
-            ],
+                "pageLength": 16,
 
-            @Html.Raw(ViewBag.ColumnDefs)
+                columns: [
+                    @Html.Raw(@ViewBag.TableColumns)
+                ],
 
-            select: true,
-            buttons: [
-                { extend: 'print' },
-                { extend: 'searchBuilder' },
-            ],
-            initComplete: function () {
+                @Html.Raw(ViewBag.ColumnDefs)
 
-                // Apply the search
-                this.api()
-                    .columns()
-                    .every(function () {
-                        var that = this;
+                select: true,
 
-                        $('input', this.footer()).on('keyup change clear', function () {
-                            if (that.search() !== this.value) {
-                                that.search(this.value).draw();
-                            }
+                buttons: [
+                    { extend: 'print' },
+                    { extend: 'searchBuilder' },
+                 ],
+
+                initComplete: function () {
+
+                    // Apply the search
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            var that = this;
+
+                            $('input', this.footer()).on('keyup change clear', function () {
+                                if (that.search() !== this.value) {
+                                    that.search(this.value).draw();
+                                }
+                            });
                         });
-                    });
 
-            },
-            scrollX: false,
-            fixedColumns: false,
-            
-        }
-        )
+                },
+                scrollX: false,
+                scrollY: true,
+                fixedColumns: false,
+          });
+
+    }
+
+    function setupClickResponses() {
 
         table.on('dblclick', 'tbody tr td', function () {
 
-            console.log("at point 1");
+            // console.log("at point 1");
 
-            console.log(this);
+            // console.log(this);
 
             if ($(this).hasClass("detailsCell")) {
                 let detailsUrl = @Html.Raw(ViewBag.DetailsUrl) ;
@@ -89,7 +95,7 @@
         });
 
         table.on('click', 'td.dt-control', function (e) {
-            console.log("at point 2");
+            // console.log("at point 2");
             let tr = e.target.closest('tr');
             let row = table.row(tr);
             if (row.child.isShown()) {
@@ -111,65 +117,30 @@
             return (rtrnValu);
 
         }
-
+    }
+   
+    function setupFooters() {
         $('#classTable tfoot th').each(function () {
             var title = $(this).text();
             var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
             //var ihtml = '<input type="text" placeholder="Filter ' + title + '" />';
             $(this).html(ihtml);
-            console.log(this);
+            // console.log(this);
         });
+    }
 
-        new $.fn.dataTable.Buttons(table, {
-            buttons: [
-                {
-                    extend: 'searchBuilder',
-                    config: {
-                        depthLimit: 4
-                    }
-                }
-            ],
-        });
+    $(document).ready(function () {
 
-        editor = new $.fn.dataTable.Editor({
+        setupBaseDataTable();
 
-    @Html.Raw(ViewBag.TemplateSpec)
+        setupClickResponses();
 
-        table: "#classTable",
-
-        fields:
-        [
-    @Html.Raw(@ViewBag.TableFields)
-                    ],
-
-            });
-
-    });
+        setupFooters();
+    }
+    )
 
 
-    editor.on('preSubmit', function (e, data, action) {
-        console.log('preSubmit, action = ' + action);
-        console.log('preSubmit, data=' + data.data);
-
-        let request = new XMLHttpRequest;
-
-        request.open('POST', '/GenericTable/GenericUpdater', false);
-
-        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
-
-        let jdata = JSON.stringify(data.data);
-
-        console.log('preSubmit, jdata=' + jdata);
-
-        request.send('action=' + action + '&data=' + jdata);
-
-        let response = request.responseText;
-
-        console.log('preSubmit, response=' + response);
-
-        return true;
-    });
-
+       
 
 </script>
 

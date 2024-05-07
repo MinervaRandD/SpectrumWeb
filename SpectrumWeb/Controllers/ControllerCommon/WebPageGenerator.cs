@@ -80,11 +80,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                //if (isChildRow(fieldSpec, childFieldList))
-                //{
-                //    continue;
-                //}
-
+ 
                 string styleStr = "'text-align:center;";
 
                 if (fieldSpec.fieldWidth.HasValue)
@@ -96,23 +92,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
             }
-
-            //if (childFieldList != null)
-            //{
-            //    foreach (FieldSpec fieldSpec in childFieldList)
-            //    {
-            //        string styleStr = "'text-align:center;";
-
-            //        if (fieldSpec.fieldWidth.HasValue)
-            //        {
-            //            styleStr += "width:" + fieldSpec.fieldWidth.Value.ToString() + "px;";
-            //        }
-
-            //        styleStr += "'";
-
-            //        rtrnValue += "<th style=" + styleStr + ">" + fieldSpec.description + "</th>\n";
-            //    }
-            //}
 
             return rtrnValue;
         }
@@ -198,6 +177,39 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 rtrnValue += "</tr>\n";
             }
            
+            return rtrnValue;
+        }
+
+        internal static string generateColumnDefs(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList)
+        {
+            string rtrnValue = "columnDefs:\n[\n";
+
+            int target = 0;
+
+            if (childFieldList != null)
+            {
+                rtrnValue += "    { \"width\": \"16px\", \"targets\": 0 },\n";
+                target++;
+            }
+
+            foreach (FieldSpec fieldSpec in displayFieldList)
+            {
+                if (!fieldSpec.fieldWidth.HasValue)
+                {
+                    target++;
+
+                    continue;
+                }
+
+                string width = fieldSpec.fieldWidth.Value.ToString() + "px";
+
+                rtrnValue += "    { \"width\": \"" + width + "\", \"targets\": " + target.ToString() + "},\n";
+
+                target++;
+            }
+
+            rtrnValue += "],\n";
+
             return rtrnValue;
         }
 
@@ -392,7 +404,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             return totalWidth;
         }
-
 
     }
 }
