@@ -8,12 +8,16 @@
     $(document).ready(function () {
         let table = new DataTable('#classTable', {
 
-
-            layout: {
-                top1: 'searchPanes'
-            },
-
-
+            layout:
+                {
+                    top2: 'searchPanes',
+                    top1: {
+                        buttons: [
+                            'print', 'searchBuilder'
+                        ]
+                    },
+                },
+           
             searchPanes: {
                 viewTotal: true,
                 layout: 'columns-4',
@@ -21,6 +25,12 @@
                 threshold: 1
             },
 
+            fixedHeader: {
+                header: true,
+                footer: true
+            },
+
+            "pageLength": 16,
 
             columns: [
                  @Html.Raw(@ViewBag.TableColumns)
@@ -28,6 +38,11 @@
 
             @Html.Raw(ViewBag.ColumnDefs)
 
+            select: true,
+            buttons: [
+                { extend: 'print' },
+                { extend: 'searchBuilder' },
+            ],
             initComplete: function () {
 
                 // Apply the search
@@ -45,12 +60,117 @@
 
             },
             scrollX: false,
+            fixedColumns: false,
+            
         }
         )
 
-        //  table.searchPanes.rebuildPanes();
+        table.on('dblclick', 'tbody tr td', function () {
+
+            console.log("at point 1");
+
+            console.log(this);
+
+            if ($(this).hasClass("detailsCell")) {
+                let detailsUrl = @Html.Raw(ViewBag.DetailsUrl) ;
+
+                if (detailsUrl) {
+
+                    // let data = table.row(this).data();
+
+                    let id = table.row(this).id();
+
+                    let newWindow = window.open(detailsUrl + '?id=' + id);
+
+                }
+
+                return;
+            }
+        });
+
+        table.on('click', 'td.dt-control', function (e) {
+            console.log("at point 2");
+            let tr = e.target.closest('tr');
+            let row = table.row(tr);
+            if (row.child.isShown()) {
+                // This row is already open - close it
+                row.child.hide();
+            }
+            else {
+                // Open this row
+                row.child(format(row.data())).show();
+            }
+        });
+
+        function format(d) {
+
+            rtrnValu = @Html.Raw(ViewBag.ChildFieldFormatter);
+
+            //console.log(rtrnValu);
+
+            return (rtrnValu);
+
+        }
+
+        $('#classTable tfoot th').each(function () {
+            var title = $(this).text();
+            var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
+            //var ihtml = '<input type="text" placeholder="Filter ' + title + '" />';
+            $(this).html(ihtml);
+            console.log(this);
+        });
+
+        new $.fn.dataTable.Buttons(table, {
+            buttons: [
+                {
+                    extend: 'searchBuilder',
+                    config: {
+                        depthLimit: 4
+                    }
+                }
+            ],
+        });
+
+        editor = new $.fn.dataTable.Editor({
+
+    @Html.Raw(ViewBag.TemplateSpec)
+
+        table: "#classTable",
+
+        fields:
+        [
+    @Html.Raw(@ViewBag.TableFields)
+                    ],
+
+            });
 
     });
+
+
+    editor.on('preSubmit', function (e, data, action) {
+        console.log('preSubmit, action = ' + action);
+        console.log('preSubmit, data=' + data.data);
+
+        let request = new XMLHttpRequest;
+
+        request.open('POST', '/GenericTable/GenericUpdater', false);
+
+        request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+        let jdata = JSON.stringify(data.data);
+
+        console.log('preSubmit, jdata=' + jdata);
+
+        request.send('action=' + action + '&data=' + jdata);
+
+        let response = request.responseText;
+
+        console.log('preSubmit, response=' + response);
+
+        return true;
+    });
+
+
 </script>
 
 <div class="row">

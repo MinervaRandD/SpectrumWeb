@@ -58,17 +58,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 var fieldsDict = JsonConvert.DeserializeObject<Dictionary<string, string>>(str);
 
-                //if (childFieldList != null)
-                //{
-                //    foreach (FieldSpec childRowField in childFieldList)
-                //    {
-                //        if (fieldsDict.ContainsKey(childRowField.field))
-                //        {
-                //            fieldsDict.Remove(childRowField.field);
-                //        }
-                //    }
-                //}
-
                 classFullValueList.Add(fieldsDict.Values.ToList());
 
                 List<string> displayFieldValueList = WebPageGenerator.generateTableFieldValueList(fieldsDict, displayFieldList);
