@@ -47,21 +47,26 @@
                  ],
 
                 initComplete: function () {
-
-                    // Apply the search
                     this.api()
                         .columns()
                         .every(function () {
-                            var that = this;
+                            let column = this;
+                            let title = column.footer().textContent;
 
-                            $('input', this.footer()).on('keyup change clear', function () {
-                                if (that.search() !== this.value) {
-                                    that.search(this.value).draw();
+                            // Create input element
+                            let input = document.createElement('input');
+                            input.placeholder = title;
+                            column.footer().replaceChildren(input);
+
+                            // Event listener for user input
+                            input.addEventListener('keyup', () => {
+                                if (column.search() !== this.value) {
+                                    column.search(input.value).draw();
                                 }
                             });
                         });
-
                 },
+
                 scrollX: false,
                 scrollY: true,
                 fixedColumns: false,
@@ -125,7 +130,7 @@
             var ihtml = '<input type="text" id=' + "Filter" + title.toString() + ' placeholder="Filter ' + title + '" />';
             //var ihtml = '<input type="text" placeholder="Filter ' + title + '" />';
             $(this).html(ihtml);
-            // console.log(this);
+            console.log(this);
         });
     }
 
@@ -135,7 +140,7 @@
 
         setupClickResponses();
 
-        setupFooters();
+        //setupFooters();
     }
     )
 
