@@ -83,10 +83,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
  
                 string styleStr = "'text-align:center;";
 
-                if (fieldSpec.fieldWidth.HasValue)
-                {
-                    styleStr += "width:" + fieldSpec.fieldWidth.Value.ToString() + "px;";
-                }
+                //if (fieldSpec.fieldWidth.HasValue)
+                //{
+                //    styleStr += "width:" + fieldSpec.fieldWidth.Value.ToString() + "px;";
+                //}
 
                 styleStr += "'";
 
@@ -107,12 +107,15 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             foreach (FieldSpec fieldSpec in fieldList)
             {
-                //if (isChildRow(fieldSpec, childFieldList))
-                //{
-                //    continue;
-                //}
+                if (fieldSpec.description == "E<br/>d<br/>i<br/>t")
+                {
+                    rtrnValue += "<th></th>\n";
+                }
 
-                rtrnValue += "<th id='" + fieldSpec.label + "Footer'>" + fieldSpec.description + "</th>\n";
+                else
+                {
+                    rtrnValue += "<th>" + fieldSpec.description.Replace("<br/>"," ") + "</th>\n";
+                }
             }
 
             //if (childFieldList != null)
@@ -180,8 +183,12 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             return rtrnValue;
         }
 
+        static int totlTablWidthInPx = 0;
+
         internal static string generateColumnDefs(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList)
         {
+            totlTablWidthInPx = 0;
+
             string rtrnValue = "columnDefs:\n[\n";
 
             int target = 0;
@@ -189,6 +196,9 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             if (childFieldList != null)
             {
                 rtrnValue += "    { \"width\": \"16px\", \"targets\": 0 },\n";
+
+                totlTablWidthInPx += 16;
+
                 target++;
             }
 
@@ -204,10 +214,14 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 string width = fieldSpec.fieldWidth.Value.ToString() + "px";
 
                 rtrnValue += "    { \"width\": \"" + width + "\", \"targets\": " + target.ToString() + "},\n";
+                rtrnValue += "{ searchPanes: { header: '" + fieldSpec.description.Replace("<br/>", " ") + "'}, \"targets\": " + target.ToString() + "},\n";
+
+                totlTablWidthInPx += fieldSpec.fieldWidth.Value;
 
                 target++;
             }
 
+            
             rtrnValue += "],\n";
 
             return rtrnValue;
@@ -385,24 +399,26 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
         internal static int? generateTableWidth(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList = null)
         {
-            int totalWidth = 0;
+            //int totalWidth = 0;
 
-            foreach (FieldSpec field in displayFieldList)
-            {
-                if (field.fieldWidth == null)
-                {
-                    return null;
-                }
+            //foreach (FieldSpec field in displayFieldList)
+            //{
+            //    if (field.fieldWidth == null)
+            //    {
+            //        return null;
+            //    }
 
-                if (ControllerCommon.isChildRow(field, childFieldList))
-                {
-                    continue;
-                }
+            //    //if (ControllerCommon.isChildRow(field, childFieldList))
+            //    //{
+            //    //    continue;
+            //    //}
 
-                totalWidth += field.fieldWidth.Value;
-            }
+            //    totalWidth += field.fieldWidth.Value;
 
-            return totalWidth;
+            //    Console.WriteLine(field.fieldWidth.Value.ToString());
+            //}
+
+            return totlTablWidthInPx + 30;
         }
 
     }
