@@ -19,7 +19,7 @@ public partial class AtaChapActyReliabilityMonitoring
 
     public short? NbrReliabPoint { get; set; }
 
-    public DateTime? ReliabDate { get; set; }
+    public DateOnly? ReliabDate { get; set; }
 
     public double? CmpRelUprLim { get; set; }
 
@@ -43,9 +43,9 @@ public partial class AtaChapActyReliabilityMonitoring
 
     public string? TimeValue { get; set; }
 
-    public DateTime? DateSet1 { get; set; }
+    public DateOnly? DateSet1 { get; set; }
 
-    public DateTime? DateSet2 { get; set; }
+    public DateOnly? DateSet2 { get; set; }
 
     public string? ETopsSignific { get; set; }
 

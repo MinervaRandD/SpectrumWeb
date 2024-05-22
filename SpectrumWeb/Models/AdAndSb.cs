@@ -27,15 +27,15 @@ public partial class AdAndSb
 
     public bool? AlertYN { get; set; }
 
-    public DateTime? DateEntered { get; set; }
+    public DateOnly? DateEntered { get; set; }
 
-    public DateTime? DateComplete { get; set; }
+    public DateOnly? DateComplete { get; set; }
 
     public string? Description { get; set; }
 
     public string? Resolution { get; set; }
 
-    public DateTime? ComplianceDate { get; set; }
+    public DateOnly? ComplianceDate { get; set; }
 
     public string? AtaChap { get; set; }
 
@@ -59,7 +59,7 @@ public partial class AdAndSb
 
     public string? ComplyChain3 { get; set; }
 
-    public DateTime? DateIssued { get; set; }
+    public DateOnly? DateIssued { get; set; }
 
     public double? PerformEveryHour { get; set; }
 
@@ -77,5 +77,5 @@ public partial class AdAndSb
 
     public string? TerminateReason { get; set; }
 
-    public DateTime? DateTerminated { get; set; }
+    public DateOnly? DateTerminated { get; set; }
 }

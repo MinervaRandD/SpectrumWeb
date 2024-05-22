@@ -17,7 +17,7 @@ public partial class GuaranteeWarranty
 
     public string? SerialNmbr { get; set; }
 
-    public DateTime? DateReceived { get; set; }
+    public DateOnly? DateReceived { get; set; }
 
     public double? HoursGuaranteed { get; set; }
 

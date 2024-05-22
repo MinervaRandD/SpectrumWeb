@@ -13,7 +13,7 @@ public partial class InspectionResult
 
     public string? InspectLocation { get; set; }
 
-    public DateTime? InspectDate { get; set; }
+    public DateOnly? InspectDate { get; set; }
 
     public int? PackageNmbr { get; set; }
 
@@ -39,7 +39,7 @@ public partial class InspectionResult
 
     public bool? Reset { get; set; }
 
-    public DateTime? DeferDate { get; set; }
+    public DateOnly? DeferDate { get; set; }
 
     public string? DeferReason { get; set; }
 

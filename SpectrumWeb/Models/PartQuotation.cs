@@ -13,7 +13,7 @@ public partial class PartQuotation
 
     public string? VendorKey { get; set; }
 
-    public DateTime? DateKey { get; set; }
+    public DateOnly? DateKey { get; set; }
 
     public string? RefNmbrKey { get; set; }
 

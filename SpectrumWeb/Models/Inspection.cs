@@ -53,7 +53,7 @@ public partial class Inspection
 
     public short? WorkPackages { get; set; }
 
-    public DateTime? ComplDate { get; set; }
+    public DateOnly? ComplDate { get; set; }
 
     public string? PartNmbr1 { get; set; }
 

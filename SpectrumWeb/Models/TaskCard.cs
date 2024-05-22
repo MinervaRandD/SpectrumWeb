@@ -19,9 +19,9 @@ public partial class TaskCard
 
     public string? SeqNmbr { get; set; }
 
-    public DateTime? IssueDate { get; set; }
+    public DateOnly? IssueDate { get; set; }
 
-    public DateTime? RevisionDate { get; set; }
+    public DateOnly? RevisionDate { get; set; }
 
     public string? AcftType { get; set; }
 

@@ -15,7 +15,7 @@ public partial class MaintHistOfIssuesToAc
 
     public int? VendorBatch { get; set; }
 
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     public int? IssueNumber { get; set; }
 

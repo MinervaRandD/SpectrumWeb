@@ -71,5 +71,5 @@ public partial class AcTypeInspect
 
     public string? AdTerminated { get; set; }
 
-    public DateTime? HardDate { get; set; }
+    public DateOnly? HardDate { get; set; }
 }

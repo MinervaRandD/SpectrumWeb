@@ -9,7 +9,7 @@ public partial class PartsRqstIssued
 
     public string PkTransactionId { get; set; } = null!;
 
-    public DateTime? DateOfIssue { get; set; }
+    public DateOnly? DateOfIssue { get; set; }
 
     public int? IssueNumber { get; set; }
 
@@ -45,7 +45,7 @@ public partial class PartsRqstIssued
 
     public double? AccountNumber { get; set; }
 
-    public DateTime? DateReturned { get; set; }
+    public DateOnly? DateReturned { get; set; }
 
     public int? ReturnNmbr { get; set; }
 

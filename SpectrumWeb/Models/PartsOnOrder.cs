@@ -31,7 +31,7 @@ public partial class PartsOnOrder
 
     public string? OrderPer { get; set; }
 
-    public DateTime? OrderDate { get; set; }
+    public DateOnly? OrderDate { get; set; }
 
     public string? Status { get; set; }
 
@@ -43,11 +43,11 @@ public partial class PartsOnOrder
 
     public double? QuotedAmnt { get; set; }
 
-    public DateTime? DateDue { get; set; }
+    public DateOnly? DateDue { get; set; }
 
     public int? QtyReceived { get; set; }
 
-    public DateTime? DateReceived { get; set; }
+    public DateOnly? DateReceived { get; set; }
 
     public double? InvoicedAmnt { get; set; }
 

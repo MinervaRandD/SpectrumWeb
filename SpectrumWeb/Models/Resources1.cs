@@ -25,9 +25,9 @@ public partial class Resources1
 
     public short? OverrideMaxCyc { get; set; }
 
-    public DateTime? DateOrdered { get; set; }
+    public DateOnly? DateOrdered { get; set; }
 
-    public DateTime? DateReceived { get; set; }
+    public DateOnly? DateReceived { get; set; }
 
     public double? PurchasePrice { get; set; }
 
@@ -65,7 +65,7 @@ public partial class Resources1
 
     public bool? BorrowLoanFlag { get; set; }
 
-    public DateTime? DateInstIssued { get; set; }
+    public DateOnly? DateInstIssued { get; set; }
 
     public string? TailNmbr { get; set; }
 
@@ -91,7 +91,7 @@ public partial class Resources1
 
     public short? RepairTagNmbrPt2 { get; set; }
 
-    public DateTime? RepairDate { get; set; }
+    public DateOnly? RepairDate { get; set; }
 
     public string? Ref { get; set; }
 
@@ -99,7 +99,7 @@ public partial class Resources1
 
     public bool? TypeAdSb { get; set; }
 
-    public DateTime? AdSbDueDate { get; set; }
+    public DateOnly? AdSbDueDate { get; set; }
 
     public short? MfrBatchLotNmbr { get; set; }
 
@@ -131,7 +131,7 @@ public partial class Resources1
 
     public string? KnownUnkTsn { get; set; }
 
-    public DateTime? AdSbUpdateFlg { get; set; }
+    public DateOnly? AdSbUpdateFlg { get; set; }
 
     public short? AtaParagraph { get; set; }
 
@@ -139,7 +139,7 @@ public partial class Resources1
 
     public double? OverrideMaxHrs { get; set; }
 
-    public DateTime? LastInspecDate { get; set; }
+    public DateOnly? LastInspecDate { get; set; }
 
     public double? CyclsTso { get; set; }
 
@@ -149,7 +149,7 @@ public partial class Resources1
 
     public short? OverrideMaxDay { get; set; }
 
-    public DateTime? UpdateCalendar { get; set; }
+    public DateOnly? UpdateCalendar { get; set; }
 
     public double? CummRprCost { get; set; }
 
@@ -159,5 +159,5 @@ public partial class Resources1
 
     public int? HigherAssmMvmt { get; set; }
 
-    public DateTime? DateFittedKae { get; set; }
+    public DateOnly? DateFittedKae { get; set; }
 }

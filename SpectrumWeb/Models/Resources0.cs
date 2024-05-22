@@ -45,7 +45,7 @@ public partial class Resources0
 
     public double? TwelveMoStaticUse { get; set; }
 
-    public DateTime? DateUpdated { get; set; }
+    public DateOnly? DateUpdated { get; set; }
 
     public string? RemovalInspec { get; set; }
 
@@ -137,7 +137,7 @@ public partial class Resources0
 
     public int? NumberOfSpares { get; set; }
 
-    public DateTime? LastInventDate { get; set; }
+    public DateOnly? LastInventDate { get; set; }
 
     public double? AvgReprLeadTm { get; set; }
 
@@ -163,9 +163,9 @@ public partial class Resources0
 
     public bool? UseAtaOnRlbil { get; set; }
 
-    public DateTime? LastIssueDate { get; set; }
+    public DateOnly? LastIssueDate { get; set; }
 
-    public DateTime? LastRecvdDate { get; set; }
+    public DateOnly? LastRecvdDate { get; set; }
 
     public double? LifeLimitHrs { get; set; }
 

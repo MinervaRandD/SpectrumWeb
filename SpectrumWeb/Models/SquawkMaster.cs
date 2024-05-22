@@ -17,13 +17,13 @@ public partial class SquawkMaster
 
     public string? Description { get; set; }
 
-    public DateTime? DateReceived { get; set; }
+    public DateOnly? DateReceived { get; set; }
 
     public int? ReportedBy { get; set; }
 
-    public DateTime? DateDeferred { get; set; }
+    public DateOnly? DateDeferred { get; set; }
 
-    public DateTime? DateComp { get; set; }
+    public DateOnly? DateComp { get; set; }
 
     public short? FlightLogNmbr { get; set; }
 

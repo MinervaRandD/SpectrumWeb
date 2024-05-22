@@ -15,9 +15,9 @@ public partial class AcMaster
 
     public string? Description { get; set; }
 
-    public DateTime? DateAcquired { get; set; }
+    public DateOnly? DateAcquired { get; set; }
 
-    public DateTime? DateDispDuDef { get; set; }
+    public DateOnly? DateDispDuDef { get; set; }
 
     public int? DaysInService { get; set; }
 
@@ -31,7 +31,7 @@ public partial class AcMaster
 
     public string? AcIdnt { get; set; }
 
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     public double? Hours { get; set; }
 

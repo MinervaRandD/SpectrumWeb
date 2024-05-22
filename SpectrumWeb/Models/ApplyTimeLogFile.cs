@@ -11,7 +11,7 @@ public partial class ApplyTimeLogFile
 
     public string TailNmbr { get; set; } = null!;
 
-    public DateTime DateApplied { get; set; }
+    public DateOnly DateApplied { get; set; }
 
     public short? FltNmbr { get; set; }
 
@@ -43,7 +43,7 @@ public partial class ApplyTimeLogFile
 
     public bool? AFAdjusted { get; set; }
 
-    public DateTime? UpdatedByUtil { get; set; }
+    public DateOnly? UpdatedByUtil { get; set; }
 
     public bool? FromBulkLoad { get; set; }
 }

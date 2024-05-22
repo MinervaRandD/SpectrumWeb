@@ -57,13 +57,13 @@ public partial class PartsMaster
 
     public double? AvgReprLeadTm { get; set; }
 
-    public DateTime? LastInventDate { get; set; }
+    public DateOnly? LastInventDate { get; set; }
 
     public short? PhyCycleNmbr { get; set; }
 
-    public DateTime? LastIssueDate { get; set; }
+    public DateOnly? LastIssueDate { get; set; }
 
-    public DateTime? LastRecvdDate { get; set; }
+    public DateOnly? LastRecvdDate { get; set; }
 
     public double? GLAcctNbr { get; set; }
 
@@ -91,7 +91,7 @@ public partial class PartsMaster
 
     public double? TwelveMoStaticUse { get; set; }
 
-    public DateTime? DateUpdated { get; set; }
+    public DateOnly? DateUpdated { get; set; }
 
     public string? IssTypeInUse { get; set; }
 }

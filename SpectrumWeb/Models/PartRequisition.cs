@@ -19,11 +19,11 @@ public partial class PartRequisition
 
     public string? Tskey { get; set; }
 
-    public DateTime? DateEntered { get; set; }
+    public DateOnly? DateEntered { get; set; }
 
-    public DateTime? DateOrdered { get; set; }
+    public DateOnly? DateOrdered { get; set; }
 
-    public DateTime? DateLastModif { get; set; }
+    public DateOnly? DateLastModif { get; set; }
 
     public string? Warehouse { get; set; }
 
@@ -31,11 +31,11 @@ public partial class PartRequisition
 
     public string? TailNmbr { get; set; }
 
-    public DateTime? DateRequired { get; set; }
+    public DateOnly? DateRequired { get; set; }
 
-    public DateTime? LatestReqDate { get; set; }
+    public DateOnly? LatestReqDate { get; set; }
 
-    public DateTime? DateCancelled { get; set; }
+    public DateOnly? DateCancelled { get; set; }
 
     public short? NbrOfRecords { get; set; }
 

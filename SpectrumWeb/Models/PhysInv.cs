@@ -55,7 +55,7 @@ public partial class PhysInv
 
     public short? QtyInSuspense2 { get; set; }
 
-    public DateTime? CardUpdated { get; set; }
+    public DateOnly? CardUpdated { get; set; }
 
     public string? Remarks { get; set; }
 
@@ -69,7 +69,7 @@ public partial class PhysInv
 
     public string? WsidLoaded { get; set; }
 
-    public DateTime? DateLoaded { get; set; }
+    public DateOnly? DateLoaded { get; set; }
 
     public int? TimeLoaded { get; set; }
 

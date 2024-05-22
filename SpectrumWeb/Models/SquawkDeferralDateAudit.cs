@@ -11,9 +11,9 @@ public partial class SquawkDeferralDateAudit
 
     public string? SquawkNumber { get; set; }
 
-    public DateTime? DateDispDuDef { get; set; }
+    public DateOnly? DateDispDuDef { get; set; }
 
-    public DateTime? DateComp { get; set; }
+    public DateOnly? DateComp { get; set; }
 
     public string? Sauser { get; set; }
 
@@ -21,13 +21,13 @@ public partial class SquawkDeferralDateAudit
 
     public int? Satime { get; set; }
 
-    public DateTime? Sadate { get; set; }
+    public DateOnly? Sadate { get; set; }
 
     public string? DmiType { get; set; }
 
     public string? DmiNumber { get; set; }
 
-    public DateTime? NewDate { get; set; }
+    public DateOnly? NewDate { get; set; }
 
     public int? NewDataComp { get; set; }
 

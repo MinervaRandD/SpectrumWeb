@@ -23,7 +23,7 @@ public partial class InspectionsByPartNmbr
 
     public bool? ResetToZero { get; set; }
 
-    public DateTime? LastAppliedOnDate { get; set; }
+    public DateOnly? LastAppliedOnDate { get; set; }
 
     public int? HoursCurr { get; set; }
 
@@ -45,7 +45,7 @@ public partial class InspectionsByPartNmbr
 
     public short? PerformedTimes { get; set; }
 
-    public DateTime? LastPerformedOn { get; set; }
+    public DateOnly? LastPerformedOn { get; set; }
 
     public int? CurrWorkPckgNmbr { get; set; }
 

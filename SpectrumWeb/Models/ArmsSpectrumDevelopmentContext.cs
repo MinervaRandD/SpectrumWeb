@@ -100,7 +100,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
     public virtual DbSet<WarehouseMaster> WarehouseMasters { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see https://go.microsoft.com/fwlink/?LinkId=723263.
         => optionsBuilder.UseSqlServer("Server=localhost\\SQLExpress;Database=ArmsSpectrumDevelopment;Trusted_Connection=true;TrustServerCertificate=True;");
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -131,15 +131,9 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CheckForRemvl).HasColumnName("check_for_remvl");
             entity.Property(e => e.CoachSeats).HasColumnName("coach_seats");
             entity.Property(e => e.Cycles).HasColumnName("cycles");
-            entity.Property(e => e.Date)
-                .HasColumnType("date")
-                .HasColumnName("date");
-            entity.Property(e => e.DateAcquired)
-                .HasColumnType("date")
-                .HasColumnName("date_acquired");
-            entity.Property(e => e.DateDispDuDef)
-                .HasColumnType("date")
-                .HasColumnName("date_disp_du_def");
+            entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.DateAcquired).HasColumnName("date_acquired");
+            entity.Property(e => e.DateDispDuDef).HasColumnName("date_disp_du_def");
             entity.Property(e => e.DaysInService).HasColumnName("days_in_service");
             entity.Property(e => e.DaysOutOfSvc).HasColumnName("days_out_of_svc");
             entity.Property(e => e.Description)
@@ -205,9 +199,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.EarlyCycWindow).HasColumnName("early_cyc_window");
             entity.Property(e => e.EarlyHrsWindow).HasColumnName("early_hrs_window");
             entity.Property(e => e.EarlyWksWindow).HasColumnName("early_wks_window");
-            entity.Property(e => e.HardDate)
-                .HasColumnType("date")
-                .HasColumnName("hard_date");
+            entity.Property(e => e.HardDate).HasColumnName("hard_date");
             entity.Property(e => e.InspectName)
                 .HasMaxLength(26)
                 .IsUnicode(false)
@@ -382,9 +374,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("ata_chap");
             entity.Property(e => e.BridgeToInspec).HasColumnName("bridge_to_inspec");
-            entity.Property(e => e.ComplianceDate)
-                .HasColumnType("date")
-                .HasColumnName("compliance_date");
+            entity.Property(e => e.ComplianceDate).HasColumnName("compliance_date");
             entity.Property(e => e.ComplyChain1)
                 .HasMaxLength(23)
                 .IsUnicode(false)
@@ -398,18 +388,10 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("comply_chain_3");
             entity.Property(e => e.ComplyYN).HasColumnName("comply_y_n");
-            entity.Property(e => e.DateComplete)
-                .HasColumnType("date")
-                .HasColumnName("date_complete");
-            entity.Property(e => e.DateEntered)
-                .HasColumnType("date")
-                .HasColumnName("date_entered");
-            entity.Property(e => e.DateIssued)
-                .HasColumnType("date")
-                .HasColumnName("date_issued");
-            entity.Property(e => e.DateTerminated)
-                .HasColumnType("date")
-                .HasColumnName("date_terminated");
+            entity.Property(e => e.DateComplete).HasColumnName("date_complete");
+            entity.Property(e => e.DateEntered).HasColumnName("date_entered");
+            entity.Property(e => e.DateIssued).HasColumnName("date_issued");
+            entity.Property(e => e.DateTerminated).HasColumnName("date_terminated");
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");
@@ -488,9 +470,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.AFCycAfter).HasColumnName("a_f_cyc_after");
             entity.Property(e => e.AFHoursAfter).HasColumnName("a_f_hours_after");
             entity.Property(e => e.AFWksAfter).HasColumnName("a_f_wks_after");
-            entity.Property(e => e.DateApplied)
-                .HasColumnType("date")
-                .HasColumnName("date_applied");
+            entity.Property(e => e.DateApplied).HasColumnName("date_applied");
             entity.Property(e => e.FltNmbr).HasColumnName("flt_nmbr");
             entity.Property(e => e.FromBulkLoad).HasColumnName("from_bulk_load");
             entity.Property(e => e.LegNmbr).HasColumnName("leg_nmbr");
@@ -507,9 +487,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(8)
                 .IsUnicode(false)
                 .HasColumnName("tail_nmbr");
-            entity.Property(e => e.UpdatedByUtil)
-                .HasColumnType("date")
-                .HasColumnName("updated_by_util");
+            entity.Property(e => e.UpdatedByUtil).HasColumnName("updated_by_util");
         });
 
         modelBuilder.Entity<AtaChapActyReliabilityMonitoring>(entity =>
@@ -534,12 +512,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CmpGrphLowLim).HasColumnName("cmp_grph_low_lim");
             entity.Property(e => e.CmpRelLowLim).HasColumnName("cmp_rel_low_lim");
             entity.Property(e => e.CmpRelUprLim).HasColumnName("cmp_rel_upr_lim");
-            entity.Property(e => e.DateSet1)
-                .HasColumnType("date")
-                .HasColumnName("date_set1");
-            entity.Property(e => e.DateSet2)
-                .HasColumnType("date")
-                .HasColumnName("date_set2");
+            entity.Property(e => e.DateSet1).HasColumnName("date_set1");
+            entity.Property(e => e.DateSet2).HasColumnName("date_set2");
             entity.Property(e => e.ETopsSignific)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -563,9 +537,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(41)
                 .IsUnicode(false)
                 .HasColumnName("part_number");
-            entity.Property(e => e.ReliabDate)
-                .HasColumnType("date")
-                .HasColumnName("reliab_date");
+            entity.Property(e => e.ReliabDate).HasColumnName("reliab_date");
             entity.Property(e => e.ReliabilityData)
                 .HasMaxLength(80)
                 .IsUnicode(false)
@@ -812,9 +784,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.ControlTag).HasColumnName("control_tag");
             entity.Property(e => e.CyclesGuaranteed).HasColumnName("cycles_guaranteed");
             entity.Property(e => e.CyclsAtInstall).HasColumnName("cycls_at_install");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("date")
-                .HasColumnName("date_received");
+            entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.ExchangedSerNmbr)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -859,9 +829,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.ControlTag).HasColumnName("control_tag");
             entity.Property(e => e.CyclesGuaranteed).HasColumnName("cycles_guaranteed");
             entity.Property(e => e.CyclsAtInstall).HasColumnName("cycls_at_install");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("date")
-                .HasColumnName("date_received");
+            entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.ExchangedSerNmbr)
                 .HasMaxLength(20)
                 .IsUnicode(false)
@@ -922,9 +890,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(8)
                 .IsUnicode(false)
                 .HasColumnName("acft_type");
-            entity.Property(e => e.ComplDate)
-                .HasColumnType("date")
-                .HasColumnName("compl_date");
+            entity.Property(e => e.ComplDate).HasColumnName("compl_date");
             entity.Property(e => e.Description)
                 .HasColumnType("text")
                 .HasColumnName("description");
@@ -1034,17 +1000,13 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CyclesBeforeReset).HasColumnName("cycles_before_reset");
             entity.Property(e => e.DaysAfterReset).HasColumnName("days_after_reset");
             entity.Property(e => e.DaysBeforeReset).HasColumnName("days_before_reset");
-            entity.Property(e => e.DeferDate)
-                .HasColumnType("date")
-                .HasColumnName("defer_date");
+            entity.Property(e => e.DeferDate).HasColumnName("defer_date");
             entity.Property(e => e.DeferReason)
                 .HasColumnType("text")
                 .HasColumnName("defer_reason");
             entity.Property(e => e.HoursAfterReset).HasColumnName("hours_after_reset");
             entity.Property(e => e.HoursBeforeReset).HasColumnName("hours_before_reset");
-            entity.Property(e => e.InspectDate)
-                .HasColumnType("date")
-                .HasColumnName("inspect_date");
+            entity.Property(e => e.InspectDate).HasColumnName("inspect_date");
             entity.Property(e => e.InspectLocation)
                 .HasMaxLength(6)
                 .IsUnicode(false)
@@ -1103,12 +1065,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(128)
                 .IsUnicode(false)
                 .HasColumnName("inspection_name");
-            entity.Property(e => e.LastAppliedOnDate)
-                .HasColumnType("date")
-                .HasColumnName("last_applied_on_date");
-            entity.Property(e => e.LastPerformedOn)
-                .HasColumnType("date")
-                .HasColumnName("last_performed_on");
+            entity.Property(e => e.LastAppliedOnDate).HasColumnName("last_applied_on_date");
+            entity.Property(e => e.LastPerformedOn).HasColumnName("last_performed_on");
             entity.Property(e => e.PartNmbr)
                 .HasMaxLength(128)
                 .IsUnicode(false)
@@ -1158,12 +1116,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(128)
                 .IsUnicode(false)
                 .HasColumnName("inspection_name");
-            entity.Property(e => e.LastAppliedOnDate)
-                .HasColumnType("date")
-                .HasColumnName("last_applied_on_date");
-            entity.Property(e => e.LastPerformedOn)
-                .HasColumnType("date")
-                .HasColumnName("last_performed_on");
+            entity.Property(e => e.LastAppliedOnDate).HasColumnName("last_applied_on_date");
+            entity.Property(e => e.LastPerformedOn).HasColumnName("last_performed_on");
             entity.Property(e => e.PerformedTimes).HasColumnName("performed_times");
             entity.Property(e => e.ResetToZero).HasColumnName("reset_to_zero");
             entity.Property(e => e.TailNmbr)
@@ -1194,9 +1148,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CyclsTbo).HasColumnName("cycls_tbo");
             entity.Property(e => e.CyclsThisInst).HasColumnName("cycls_this_inst");
             entity.Property(e => e.CyclsTso).HasColumnName("cycls_tso");
-            entity.Property(e => e.Date)
-                .HasColumnType("date")
-                .HasColumnName("date");
+            entity.Property(e => e.Date).HasColumnName("date");
             entity.Property(e => e.HoursAtIntsall).HasColumnName("hours_at_intsall");
             entity.Property(e => e.HoursSinceNew).HasColumnName("hours_since_new");
             entity.Property(e => e.HoursTbo).HasColumnName("hours_tbo");
@@ -1252,12 +1204,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CyclsTbo).HasColumnName("cycls_tbo");
             entity.Property(e => e.CyclsThisInst).HasColumnName("cycls_this_inst");
             entity.Property(e => e.CyclsTso).HasColumnName("cycls_tso");
-            entity.Property(e => e.Date)
-                .HasColumnType("date")
-                .HasColumnName("date");
-            entity.Property(e => e.DateInstalled)
-                .HasColumnType("date")
-                .HasColumnName("date_installed");
+            entity.Property(e => e.Date).HasColumnName("date");
+            entity.Property(e => e.DateInstalled).HasColumnName("date_installed");
             entity.Property(e => e.HoursAtIntsall).HasColumnName("hours_at_intsall");
             entity.Property(e => e.HoursSinceNew).HasColumnName("hours_since_new");
             entity.Property(e => e.HoursTbo).HasColumnName("hours_tbo");
@@ -1373,9 +1321,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("currency_of_qt");
-            entity.Property(e => e.DateKey)
-                .HasColumnType("date")
-                .HasColumnName("date_key");
+            entity.Property(e => e.DateKey).HasColumnName("date_key");
             entity.Property(e => e.KeyPartNumber)
                 .HasMaxLength(15)
                 .IsUnicode(false)
@@ -1439,25 +1385,13 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("completed_y_p");
-            entity.Property(e => e.DateCancelled)
-                .HasColumnType("date")
-                .HasColumnName("date_cancelled");
-            entity.Property(e => e.DateEntered)
-                .HasColumnType("date")
-                .HasColumnName("date_entered");
-            entity.Property(e => e.DateLastModif)
-                .HasColumnType("date")
-                .HasColumnName("date_last_modif");
-            entity.Property(e => e.DateOrdered)
-                .HasColumnType("date")
-                .HasColumnName("date_ordered");
-            entity.Property(e => e.DateRequired)
-                .HasColumnType("date")
-                .HasColumnName("date_required");
+            entity.Property(e => e.DateCancelled).HasColumnName("date_cancelled");
+            entity.Property(e => e.DateEntered).HasColumnName("date_entered");
+            entity.Property(e => e.DateLastModif).HasColumnName("date_last_modif");
+            entity.Property(e => e.DateOrdered).HasColumnName("date_ordered");
+            entity.Property(e => e.DateRequired).HasColumnName("date_required");
             entity.Property(e => e.DetailSeqNmbr).HasColumnName("detail_seq_nmbr");
-            entity.Property(e => e.LatestReqDate)
-                .HasColumnType("date")
-                .HasColumnName("latest_req_date");
+            entity.Property(e => e.LatestReqDate).HasColumnName("latest_req_date");
             entity.Property(e => e.NbrOfRecords).HasColumnName("nbr_of_records");
             entity.Property(e => e.Number).HasColumnName("number");
             entity.Property(e => e.PickedYN)
@@ -1511,12 +1445,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("pk_transaction_id");
-            entity.Property(e => e.DateCancelled)
-                .HasColumnType("date")
-                .HasColumnName("date_cancelled");
-            entity.Property(e => e.OrderDate)
-                .HasColumnType("date")
-                .HasColumnName("order_date");
+            entity.Property(e => e.DateCancelled).HasColumnName("date_cancelled");
+            entity.Property(e => e.OrderDate).HasColumnName("order_date");
             entity.Property(e => e.OrderWhse)
                 .HasMaxLength(5)
                 .IsUnicode(false)
@@ -1562,9 +1492,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("current_po_type");
             entity.Property(e => e.CurrentPrice).HasColumnName("current__price");
-            entity.Property(e => e.DateUpdated)
-                .HasColumnType("date")
-                .HasColumnName("date_updated");
+            entity.Property(e => e.DateUpdated).HasColumnName("date_updated");
             entity.Property(e => e.ExtraDta)
                 .HasMaxLength(27)
                 .IsUnicode(false)
@@ -1575,21 +1503,15 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(26)
                 .IsUnicode(false)
                 .HasColumnName("iss_type_in_use");
-            entity.Property(e => e.LastInventDate)
-                .HasColumnType("date")
-                .HasColumnName("last_invent_date");
-            entity.Property(e => e.LastIssueDate)
-                .HasColumnType("date")
-                .HasColumnName("last_issue_date");
+            entity.Property(e => e.LastInventDate).HasColumnName("last_invent_date");
+            entity.Property(e => e.LastIssueDate).HasColumnName("last_issue_date");
             entity.Property(e => e.LastPoNmbr).HasColumnName("last_po_nmbr");
             entity.Property(e => e.LastPoType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("last_po_type");
             entity.Property(e => e.LastPrice).HasColumnName("last_price");
-            entity.Property(e => e.LastRecvdDate)
-                .HasColumnType("date")
-                .HasColumnName("last_recvd_date");
+            entity.Property(e => e.LastRecvdDate).HasColumnName("last_recvd_date");
             entity.Property(e => e.NotesOnPart)
                 .HasMaxLength(34)
                 .IsUnicode(false)
@@ -1712,9 +1634,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("current_po_type");
             entity.Property(e => e.CurrentPrice).HasColumnName("current__price");
-            entity.Property(e => e.DateUpdated)
-                .HasColumnType("date")
-                .HasColumnName("date_updated");
+            entity.Property(e => e.DateUpdated).HasColumnName("date_updated");
             entity.Property(e => e.ExtraDta)
                 .HasMaxLength(27)
                 .IsUnicode(false)
@@ -1725,21 +1645,15 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(26)
                 .IsUnicode(false)
                 .HasColumnName("iss_type_in_use");
-            entity.Property(e => e.LastInventDate)
-                .HasColumnType("date")
-                .HasColumnName("last_invent_date");
-            entity.Property(e => e.LastIssueDate)
-                .HasColumnType("date")
-                .HasColumnName("last_issue_date");
+            entity.Property(e => e.LastInventDate).HasColumnName("last_invent_date");
+            entity.Property(e => e.LastIssueDate).HasColumnName("last_issue_date");
             entity.Property(e => e.LastPoNmbr).HasColumnName("last_po_nmbr");
             entity.Property(e => e.LastPoType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("last_po_type");
             entity.Property(e => e.LastPrice).HasColumnName("last_price");
-            entity.Property(e => e.LastRecvdDate)
-                .HasColumnType("date")
-                .HasColumnName("last_recvd_date");
+            entity.Property(e => e.LastRecvdDate).HasColumnName("last_recvd_date");
             entity.Property(e => e.NotesOnPart)
                 .HasMaxLength(34)
                 .IsUnicode(false)
@@ -1874,12 +1788,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("currency_code");
-            entity.Property(e => e.DateDue)
-                .HasColumnType("date")
-                .HasColumnName("date_due");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("date")
-                .HasColumnName("date_received");
+            entity.Property(e => e.DateDue).HasColumnName("date_due");
+            entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.EnteredQuote)
                 .HasMaxLength(44)
                 .IsUnicode(false)
@@ -1904,9 +1814,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(9)
                 .IsUnicode(false)
                 .HasColumnName("no_charge");
-            entity.Property(e => e.OrderDate)
-                .HasColumnType("date")
-                .HasColumnName("order_date");
+            entity.Property(e => e.OrderDate).HasColumnName("order_date");
             entity.Property(e => e.OrderPer)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -1997,12 +1905,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(14)
                 .IsUnicode(false)
                 .HasColumnName("customer_id");
-            entity.Property(e => e.DateOfIssue)
-                .HasColumnType("date")
-                .HasColumnName("date_of_issue");
-            entity.Property(e => e.DateReturned)
-                .HasColumnType("date")
-                .HasColumnName("date_returned");
+            entity.Property(e => e.DateOfIssue).HasColumnName("date_of_issue");
+            entity.Property(e => e.DateReturned).HasColumnName("date_returned");
             entity.Property(e => e.InspecNmbr).HasColumnName("inspec_nmbr");
             entity.Property(e => e.IssueNumber).HasColumnName("issue_number");
             entity.Property(e => e.IssueType).HasColumnName("issue_type");
@@ -2110,9 +2014,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(7)
                 .IsUnicode(false)
                 .HasColumnName("bin_location");
-            entity.Property(e => e.CardUpdated)
-                .HasColumnType("date")
-                .HasColumnName("card_updated");
+            entity.Property(e => e.CardUpdated).HasColumnName("card_updated");
             entity.Property(e => e.CategoryType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -2130,9 +2032,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(30)
                 .IsUnicode(false)
                 .HasColumnName("cross_ref_1");
-            entity.Property(e => e.DateLoaded)
-                .HasColumnType("date")
-                .HasColumnName("date_loaded");
+            entity.Property(e => e.DateLoaded).HasColumnName("date_loaded");
             entity.Property(e => e.Description)
                 .HasMaxLength(34)
                 .IsUnicode(false)
@@ -2240,9 +2140,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("cyc_over_ride");
-            entity.Property(e => e.DateUpdated)
-                .HasColumnType("date")
-                .HasColumnName("date_updated");
+            entity.Property(e => e.DateUpdated).HasColumnName("date_updated");
             entity.Property(e => e.Description)
                 .HasMaxLength(34)
                 .IsUnicode(false)
@@ -2271,21 +2169,15 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(22)
                 .IsUnicode(false)
                 .HasColumnName("key_word");
-            entity.Property(e => e.LastInventDate)
-                .HasColumnType("date")
-                .HasColumnName("last_invent_date");
-            entity.Property(e => e.LastIssueDate)
-                .HasColumnType("date")
-                .HasColumnName("last_issue_date");
+            entity.Property(e => e.LastInventDate).HasColumnName("last_invent_date");
+            entity.Property(e => e.LastIssueDate).HasColumnName("last_issue_date");
             entity.Property(e => e.LastPoNmbr1).HasColumnName("last_po_nmbr1");
             entity.Property(e => e.LastPoType)
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("last_po_type");
             entity.Property(e => e.LastPrice).HasColumnName("last_price");
-            entity.Property(e => e.LastRecvdDate)
-                .HasColumnType("date")
-                .HasColumnName("last_recvd_date");
+            entity.Property(e => e.LastRecvdDate).HasColumnName("last_recvd_date");
             entity.Property(e => e.LastSerialNmbr).HasColumnName("last_serial_nmbr");
             entity.Property(e => e.LastSerialNmbr2).HasColumnName("last_serial_nmbr2");
             entity.Property(e => e.LifeLimitCycl).HasColumnName("life_limit_cycl");
@@ -2434,16 +2326,12 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(36)
                 .IsUnicode(false)
                 .HasColumnName("pk_transaction_id");
-            entity.Property(e => e.AdSbDueDate)
-                .HasColumnType("date")
-                .HasColumnName("ad_sb_due_date");
+            entity.Property(e => e.AdSbDueDate).HasColumnName("ad_sb_due_date");
             entity.Property(e => e.AdSbNumber)
                 .HasMaxLength(22)
                 .IsUnicode(false)
                 .HasColumnName("ad_sb_number");
-            entity.Property(e => e.AdSbUpdateFlg)
-                .HasColumnType("date")
-                .HasColumnName("ad_sb_update_flg");
+            entity.Property(e => e.AdSbUpdateFlg).HasColumnName("ad_sb_update_flg");
             entity.Property(e => e.AtaOfLastIssu).HasColumnName("ata_of_last_issu");
             entity.Property(e => e.AtaParagraph).HasColumnName("ata_paragraph");
             entity.Property(e => e.BinLocation)
@@ -2475,18 +2363,10 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.CyclsSinceNew).HasColumnName("cycls_since_new");
             entity.Property(e => e.CyclsTbo).HasColumnName("cycls_tbo");
             entity.Property(e => e.CyclsTso).HasColumnName("cycls_tso");
-            entity.Property(e => e.DateFittedKae)
-                .HasColumnType("date")
-                .HasColumnName("date_fitted_kae");
-            entity.Property(e => e.DateInstIssued)
-                .HasColumnType("date")
-                .HasColumnName("date_inst_issued");
-            entity.Property(e => e.DateOrdered)
-                .HasColumnType("date")
-                .HasColumnName("date_ordered");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("date")
-                .HasColumnName("date_received");
+            entity.Property(e => e.DateFittedKae).HasColumnName("date_fitted_kae");
+            entity.Property(e => e.DateInstIssued).HasColumnName("date_inst_issued");
+            entity.Property(e => e.DateOrdered).HasColumnName("date_ordered");
+            entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.HigherAssmMvmt).HasColumnName("higher_assm_mvmt");
             entity.Property(e => e.HourThisInstl).HasColumnName("hour_this_instl");
             entity.Property(e => e.HoursAtInstall).HasColumnName("hours_at_install");
@@ -2503,9 +2383,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("known_unk_tsn");
-            entity.Property(e => e.LastInspecDate)
-                .HasColumnType("date")
-                .HasColumnName("last_inspec_date");
+            entity.Property(e => e.LastInspecDate).HasColumnName("last_inspec_date");
             entity.Property(e => e.LastIssStatus)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -2554,9 +2432,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("ref");
             entity.Property(e => e.RefnmbrLinksFiles).HasColumnName("refnmbr_links_files");
-            entity.Property(e => e.RepairDate)
-                .HasColumnType("date")
-                .HasColumnName("repair_date");
+            entity.Property(e => e.RepairDate).HasColumnName("repair_date");
             entity.Property(e => e.RepairTagNmbrPt1)
                 .HasMaxLength(4)
                 .IsUnicode(false)
@@ -2588,9 +2464,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
             entity.Property(e => e.TsnAtLastRepr).HasColumnName("tsn_at_last_repr");
             entity.Property(e => e.TswAtLastRepr).HasColumnName("tsw_at_last_repr");
             entity.Property(e => e.TypeAdSb).HasColumnName("type_ad_sb");
-            entity.Property(e => e.UpdateCalendar)
-                .HasColumnType("date")
-                .HasColumnName("update_calendar");
+            entity.Property(e => e.UpdateCalendar).HasColumnName("update_calendar");
             entity.Property(e => e.WarrantyNumber)
                 .HasMaxLength(14)
                 .IsUnicode(false)
@@ -2624,12 +2498,8 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("cnx_chged");
-            entity.Property(e => e.DateComp)
-                .HasColumnType("date")
-                .HasColumnName("date_comp");
-            entity.Property(e => e.DateDispDuDef)
-                .HasColumnType("date")
-                .HasColumnName("date_disp_du_def");
+            entity.Property(e => e.DateComp).HasColumnName("date_comp");
+            entity.Property(e => e.DateDispDuDef).HasColumnName("date_disp_du_def");
             entity.Property(e => e.DelayChnged)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -2647,9 +2517,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .IsUnicode(false)
                 .HasColumnName("engine_pos_chged");
             entity.Property(e => e.NewDataComp).HasColumnName("new_data_comp");
-            entity.Property(e => e.NewDate)
-                .HasColumnType("date")
-                .HasColumnName("new_date");
+            entity.Property(e => e.NewDate).HasColumnName("new_date");
             entity.Property(e => e.NewDmiNumber)
                 .HasMaxLength(10)
                 .IsUnicode(false)
@@ -2662,9 +2530,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(3)
                 .IsUnicode(false)
                 .HasColumnName("part_list_chged");
-            entity.Property(e => e.Sadate)
-                .HasColumnType("date")
-                .HasColumnName("sadate");
+            entity.Property(e => e.Sadate).HasColumnName("sadate");
             entity.Property(e => e.Saprnt)
                 .HasMaxLength(3)
                 .IsUnicode(false)
@@ -2739,15 +2605,9 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(5)
                 .IsUnicode(false)
                 .HasColumnName("city");
-            entity.Property(e => e.DateComp)
-                .HasColumnType("date")
-                .HasColumnName("date_comp");
-            entity.Property(e => e.DateDeferred)
-                .HasColumnType("date")
-                .HasColumnName("date_deferred");
-            entity.Property(e => e.DateReceived)
-                .HasColumnType("date")
-                .HasColumnName("date_received");
+            entity.Property(e => e.DateComp).HasColumnName("date_comp");
+            entity.Property(e => e.DateDeferred).HasColumnName("date_deferred");
+            entity.Property(e => e.DateReceived).HasColumnName("date_received");
             entity.Property(e => e.DelayMinutes).HasColumnName("delay_minutes");
             entity.Property(e => e.DelayYN).HasColumnName("delay_y_n");
             entity.Property(e => e.Description)
@@ -2907,9 +2767,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasMaxLength(18)
                 .IsUnicode(false)
                 .HasColumnName("interval");
-            entity.Property(e => e.IssueDate)
-                .HasColumnType("date")
-                .HasColumnName("issue_date");
+            entity.Property(e => e.IssueDate).HasColumnName("issue_date");
             entity.Property(e => e.JobSummary)
                 .HasMaxLength(128)
                 .IsUnicode(false)
@@ -2931,9 +2789,7 @@ public partial class ArmsSpectrumDevelopmentContext : DbContext
                 .HasColumnType("text")
                 .HasColumnName("remarks");
             entity.Property(e => e.Revision).HasColumnName("revision");
-            entity.Property(e => e.RevisionDate)
-                .HasColumnType("date")
-                .HasColumnName("revision_date");
+            entity.Property(e => e.RevisionDate).HasColumnName("revision_date");
             entity.Property(e => e.Section)
                 .HasMaxLength(7)
                 .IsUnicode(false)

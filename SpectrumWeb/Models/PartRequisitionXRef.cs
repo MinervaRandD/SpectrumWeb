@@ -9,7 +9,7 @@ public partial class PartRequisitionXRef
 
     public string PkTransactionId { get; set; } = null!;
 
-    public DateTime? OrderDate { get; set; }
+    public DateOnly? OrderDate { get; set; }
 
     public string? OrderWhse { get; set; }
 
@@ -17,7 +17,7 @@ public partial class PartRequisitionXRef
 
     public int? SvcOrdNmbr { get; set; }
 
-    public DateTime? DateCancelled { get; set; }
+    public DateOnly? DateCancelled { get; set; }
 
     public string? TailNmbr { get; set; }
 

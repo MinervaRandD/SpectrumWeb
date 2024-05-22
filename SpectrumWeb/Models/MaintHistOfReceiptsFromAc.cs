@@ -13,7 +13,7 @@ public partial class MaintHistOfReceiptsFromAc
 
     public string? Part { get; set; }
 
-    public DateTime? Date { get; set; }
+    public DateOnly? Date { get; set; }
 
     public string? VoidRecFlag { get; set; }
 
@@ -61,7 +61,7 @@ public partial class MaintHistOfReceiptsFromAc
 
     public string? LocationOnAC { get; set; }
 
-    public DateTime? DateInstalled { get; set; }
+    public DateOnly? DateInstalled { get; set; }
 
     public double? OverrideAfHrs { get; set; }
 
