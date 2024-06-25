@@ -2,17 +2,22 @@
     ViewData["Title"] = "Home Page";
 }
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+<link rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous">
 <script>
 function loadIFrame(src){
     console.log(src);
     $('main').attr('src', src);
 }
 
-function setSideTabFormat(navBtn)
-{
-    $(".nav-vert").removeClass("sideTabActive");
-    $(navBtn).addClass("sideTabActive");
-}
+    function setSideTabFormat(navBtn) {
+        $(".nav-vert").removeClass("sideTabActive");
+        $(navBtn).addClass("sideTabActive");
+    }
 </script>
 
 <style>
@@ -34,25 +39,60 @@ function setSideTabFormat(navBtn)
         opacity: .6;
     }
 
+    form i {
+        margin-left: -30px;
+        cursor: pointer;
+    }
 </style>
 
-<h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
-<div class="row" style="margin-top:80px">
+
+<div id="basePage">
+    <div style="height:100px"></div>
+
+    <div class="container" style="text-align:center">
+        <h2 style="text-align:center;color:maroon">WELCOME TO SPECTRUM WEB </h2>
+        <div style="height:32px"></div>
+        <h2 style="text-align:center;color:maroon">Please Sign In</h2>
+        <<div style="height:32px"></div>
+        <form>
+            <p>
+                <label>Username:</label>
+                <input type="text" name="userID" id="userID">
+            </p>
+            <p>
+                <label>Password:</label>
+                <input type="password" name="password" id="password" />
+                <i class="bi bi-eye-slash" id="togglePassword"></i>
+            </p>
+            
+        </form>
+        <div style="height:24px"></div>
+        <button style="color:maroon" class="btn btn-primary">
+            Sign In
+        </button>
+    </div>
+    
+</div>
+
+<script>
+
+
+    const togglePassword = document
+        .querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+</script>
+
+@* <h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2> *@
+@* <div class="row" style="margin-top:80px">
     <div class="col-1" style="width:90px;border-right:4px solid maroon;position:fixed;margin-top:60px">
-         @*<div class="dropdown" style="display:inline">
-              <button class="dropbtn" style="height:66px;width:82px;background-color:white">
-                <img src="~/Img/MenuIcon.png" style="height:40px;width:60px"/>
-              </button>
-              <div class="dropdown-content">
-                    <a href="/Admin/Admin" target="main">Admin</a>
-                    <a href="#">Accounting</a>
-                    <a href="/Maintenance/Maintenance" target="main">Maintenance</a>
-                    <a href="#">Flight Ops</a>
-                    <a href="#">Cargo</a>
-                    <a href="#">Reservations</a>
-                    <a href="#">Revenue</a>
-              </div>
-         </div>@*@
+         
 
         <ul style="float:right;margin-right:-20px">
             <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
@@ -64,23 +104,6 @@ function setSideTabFormat(navBtn)
             <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" onclick="setSideTabFormat(this)" href="#">Revenue</a></li>
         </ul>
 
-       @* <ul style="float:right;margin-right:-26px">
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="/Admin/Admin" target="main">Admin</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Accounting</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="/Maintenance/Maintenance" target="main">Maintenance</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Flight Ops</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Cargo</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert" href="#">Reservations</a></li>
-            <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" href="#">Revenue</a></li>
-        </ul>*@
-         @*<ul>
-             <li>
-                 <button class="vertnav" onclick="">Admin</button>
-             </li>
-             <li>
-                <button class="vertnav" onclick="">Accounting</button>
-             </li>
-         </ul>*@
     </div>
 
     <div class="col-11" style="margin-left:90px;position:fixed">
@@ -92,7 +115,7 @@ function setSideTabFormat(navBtn)
         </iframe>
 
     </div>
-</div>
+</div> *@
 
 
  <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -100,10 +123,4 @@ function setSideTabFormat(navBtn)
     <script src="~/js/site.js" asp-append-version="true"></script>
 
 
-<footer class="border-top footer text-muted" style="bottom:0;position:fixed;left:50%;transform: translate(-50%, 0)">
-        <div class="container">
-            &copy; 2024 - Minerva Research and Development, LLC. All rights reserved.
-        </div>
-    </footer>
-   
     
