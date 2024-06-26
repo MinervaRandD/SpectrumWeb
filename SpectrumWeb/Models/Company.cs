@@ -5,7 +5,7 @@ namespace SpectrumWeb.Models;
 
 public partial class Company
 {
-    public string PkRecordId { get; set; } = null!;
+    public string PkCompanyId { get; set; } = null!;
 
     public string PkTransactionId { get; set; } = null!;
 

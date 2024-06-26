@@ -18,6 +18,39 @@ function loadIFrame(src){
         $(".nav-vert").removeClass("sideTabActive");
         $(navBtn).addClass("sideTabActive");
     }
+
+    function validateSignIn() { 
+
+        document.getElementById("errorMessage").style["display"] = "none";
+
+        console.log("at point 1");
+
+        var userId = document.getElementById('userId').value; 
+        var password = document.getElementById('password').value;
+
+        var loginXMLRequest = new XMLHttpRequest();
+
+        loginXMLRequest.open("POST", "/Admin/SignIn", false);
+
+        loginXMLRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+
+        loginXMLRequest.send("userId=" + userId + "&password=" + password);
+
+        var response = loginXMLRequest.responseText;
+
+        console.log(response);
+
+        if (response != "SUCCESS") {
+            document.getElementById("errorMessage").style["display"] = "inline";
+        }
+
+        else {
+            document.getElementById("signinForm").style["display"] = "none";
+            document.getElementById("basePage").style["display"] = "block";
+        }
+    }
+
 </script>
 
 <style>
@@ -46,18 +79,18 @@ function loadIFrame(src){
 </style>
 
 
-<div id="basePage">
+<div id="signinForm">
     <div style="height:100px"></div>
 
     <div class="container" style="text-align:center">
         <h2 style="text-align:center;color:maroon">WELCOME TO SPECTRUM WEB </h2>
         <div style="height:32px"></div>
         <h2 style="text-align:center;color:maroon">Please Sign In</h2>
-        <<div style="height:32px"></div>
+        <div style="height:32px"></div>
         <form>
             <p>
                 <label>Username:</label>
-                <input type="text" name="userID" id="userID">
+                <input type="text" name="userId" id="userId">
             </p>
             <p>
                 <label>Password:</label>
@@ -67,9 +100,11 @@ function loadIFrame(src){
             
         </form>
         <div style="height:24px"></div>
-        <button style="color:maroon" class="btn btn-primary">
+        <button onclick="validateSignIn()" style="color:maroon;border-color:maroon;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
             Sign In
         </button>
+        <div style="height:24px"></div>
+        <div id="errorMessage" class="alert alert-danger" style="width:256px;font-weight:bold;display:none">Invalid ID or password!</div>
     </div>
     
 </div>
@@ -89,34 +124,35 @@ function loadIFrame(src){
     });
 </script>
 
-@* <h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2> *@
-@* <div class="row" style="margin-top:80px">
-    <div class="col-1" style="width:90px;border-right:4px solid maroon;position:fixed;margin-top:60px">
+<div id="basePage" style="display:none">
+    <h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
+    <div class="row" style="margin-top:80px">
+        <div class="col-1" style="width:90px;border-right:4px solid maroon;position:fixed;margin-top:60px">
          
 
-        <ul style="float:right;margin-right:-20px">
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Accounting</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Maintenance/Maintenance" target="main"><div style="margin:-14px">Maint &amp;<br />Eng</div></a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Flight Ops</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Cargo</a></li>
-            <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Reservations</a></li>
-            <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" onclick="setSideTabFormat(this)" href="#">Revenue</a></li>
-        </ul>
+            <ul style="float:right;margin-right:-20px">
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Accounting</a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Maintenance/Maintenance" target="main"><div style="margin:-14px">Maint &amp;<br />Eng</div></a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Flight Ops</a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Cargo</a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Reservations</a></li>
+                <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" onclick="setSideTabFormat(this)" href="#">Revenue</a></li>
+            </ul>
 
-    </div>
+        </div>
 
-    <div class="col-11" style="margin-left:90px;position:fixed">
+        <div class="col-11" style="margin-left:90px;position:fixed">
 
-        <iframe id="main" name="main" style="width:100%;min-height:1024px;height:100%;position:fixed">
+            <iframe id="main" name="main" style="width:100%;min-height:1024px;height:100%;position:fixed">
             
            
 
-        </iframe>
+            </iframe>
 
+        </div>
     </div>
-</div> *@
-
+</div>
 
  <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

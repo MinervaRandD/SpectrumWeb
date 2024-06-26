@@ -5,7 +5,7 @@ namespace SpectrumWeb.Models;
 
 public partial class User
 {
-    public string PkRecordId { get; set; } = null!;
+    public string PkUserId { get; set; } = null!;
 
     public string PkTransactionId { get; set; } = null!;
 
@@ -15,11 +15,17 @@ public partial class User
 
     public string? MiddleName { get; set; }
 
+    public string? Title { get; set; }
+
+    public string UserId { get; set; } = null!;
+
+    public string Password { get; set; } = null!;
+
     public string? CompanyId { get; set; }
 
     public string Role { get; set; } = null!;
 
-    public string? JobTitle { get; set; }
+    public string Permissions { get; set; } = null!;
 
     public string? Email { get; set; }
 

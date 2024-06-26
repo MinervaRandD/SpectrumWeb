@@ -303,8 +303,8 @@ namespace SpectrumWeb.Controllers.Maintenance
                                 ,s.AtaChapAndSub
                                 ,s.City
                                 ,s.TypeCode
-                                ,s.PartNumber01
-                                ,s.SerialNumber01
+                                ,s.PartNumbers
+                                ,s.SerialNumbers
                                 ,s.WhoFixed
                                 ,s.FirstInspector
                                 ,s.EtopsSignificant

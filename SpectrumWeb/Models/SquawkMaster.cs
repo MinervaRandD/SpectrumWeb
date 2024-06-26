@@ -99,35 +99,11 @@ public partial class SquawkMaster
 
     public int? SecondInspector { get; set; }
 
-    public string? PartNumber01 { get; set; }
+    public string? PartNumbers { get; set; }
 
-    public string? PartNumber02 { get; set; }
+    public string? Warehouses { get; set; }
 
-    public string? PartNumber03 { get; set; }
-
-    public string? PartNumber04 { get; set; }
-
-    public string? PartNumber05 { get; set; }
-
-    public string? Warehouse01 { get; set; }
-
-    public string? Warehouse02 { get; set; }
-
-    public string? Warehouse03 { get; set; }
-
-    public string? Warehouse04 { get; set; }
-
-    public string? Warehouse05 { get; set; }
-
-    public string? SerialNumber01 { get; set; }
-
-    public string? SerialNumber02 { get; set; }
-
-    public string? SerialNumber03 { get; set; }
-
-    public string? SerialNumber04 { get; set; }
-
-    public string? SerialNumber05 { get; set; }
+    public string? SerialNumbers { get; set; }
 
     public string? Resolution { get; set; }
 }
