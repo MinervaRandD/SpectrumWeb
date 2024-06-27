@@ -1,5 +1,5 @@
 using SpectrumWeb.Models;
-
+using Microsoft.AspNetCore.Mvc;
 // Version 032
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,6 +8,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<ArmsSpectrumDevelopmentContext>();
+
+builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -29,5 +31,7 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.UseSession();
 
 app.Run();

@@ -50,5 +50,14 @@ namespace Utilities
 
             return randDate.ToString("yyyy-MM-dd");
         }
+
+        public static byte[] GenerateSessionId()
+        {
+            string guid = System.Guid.NewGuid().ToString();
+
+            byte[] sessionId = Encoding.ASCII.GetBytes(guid);
+
+            return sessionId;
+        }
     }
 }

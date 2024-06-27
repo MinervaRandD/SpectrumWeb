@@ -1,14 +1,15 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<link rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-<link rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-      crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+        crossorigin="anonymous">
 <script>
+
 function loadIFrame(src){
     console.log(src);
     $('main').attr('src', src);
@@ -76,12 +77,19 @@ function loadIFrame(src){
         margin-left: -30px;
         cursor: pointer;
     }
+
+    body {
+        background-image: url("Img/BackgroundImage2.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+
 </style>
 
 
 <div id="signinForm">
-    <div style="height:100px"></div>
-
+   
     <div class="container" style="text-align:center">
         <h2 style="text-align:center;color:maroon">WELCOME TO SPECTRUM WEB </h2>
         <div style="height:32px"></div>
@@ -106,7 +114,6 @@ function loadIFrame(src){
         <div style="height:24px"></div>
         <div id="errorMessage" class="alert alert-danger" style="width:256px;font-weight:bold;display:none">Invalid ID or password!</div>
     </div>
-    
 </div>
 
 <script>

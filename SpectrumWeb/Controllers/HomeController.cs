@@ -15,6 +15,29 @@ namespace SpectrumWeb.Controllers
 
         public IActionResult Index()
         {
+            var session = HttpContext.Session;
+
+            if (session == null)
+            {
+                ViewBag.SessionId = string.Empty;
+                ViewBag.HasSignedIn = false;
+            }
+
+            else
+            {
+                ViewBag.SessionId = session.Id;
+
+                if (session.Get("HasSignedIn") != null)
+                {
+                    ViewBag.HasSignedIn = true;
+                }
+
+                else
+                {
+                    ViewBag.HasSignedIn = false;
+                }
+            }
+
             return View();
         }
 

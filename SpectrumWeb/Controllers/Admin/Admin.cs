@@ -4,6 +4,7 @@ using SpectrumWeb.Models;
 using SpectrumWeb.Controllers.ControllerCommon;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Data.SqlClient;
+using Utilities;
 
 namespace SpectrumWeb.Controllers.Admin
 {
@@ -43,6 +44,10 @@ namespace SpectrumWeb.Controllers.Admin
 
             if (rslt.HasRows)
             {
+                var session = HttpContext.Session;
+
+                session.Set("HasSignedIn", new byte[1] { 1 });
+
                 return "SUCCESS";
             }
 

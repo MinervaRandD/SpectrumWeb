@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWeb\\Utilities\\Utilities.csproj": {}
+    "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWebProject\\Utilities\\Utilities.csproj": {}
   },
   "projects": {
-    "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWeb\\Utilities\\Utilities.csproj": {
+    "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWebProject\\Utilities\\Utilities.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWeb\\Utilities\\Utilities.csproj",
+        "projectUniqueName": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWebProject\\Utilities\\Utilities.csproj",
         "projectName": "Utilities",
-        "projectPath": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWeb\\Utilities\\Utilities.csproj",
+        "projectPath": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWebProject\\Utilities\\Utilities.csproj",
         "packagesPath": "C:\\Users\\Marc Diamond\\.nuget\\packages\\",
-        "outputPath": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWeb\\Utilities\\obj\\",
+        "outputPath": "C:\\Minerva Research and Development\\Projects\\Arms-Spectrum\\Base System\\SpectrumWebProject\\Utilities\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
