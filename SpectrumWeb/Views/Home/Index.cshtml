@@ -60,31 +60,29 @@
 <div id="mainPage">
 
 </div>
-<div style="display:none">
-    <div class="container" style="text-align:center">
-        <h2 style="text-align:center;color:darkblue">WELCOME TO SPECTRUM WEB </h2>
-        <div style="height:32px"></div>
-        <h2 style="text-align:center;color:darkblue">Please Sign In</h2>
-        <div style="height:32px"></div>
-        <form>
-            <p>
-                <label>Username:</label>
-                <input type="text" name="userId" id="userId">
-            </p>
-            <p>
-                <label>Password:</label>
-                <input type="password" name="password" id="password" />
-                <i class="bi bi-eye-slash" id="togglePassword"></i>
-            </p>
-            
-        </form>
-        <div style="height:24px"></div>
-        <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
-            Sign In
-        </button>
-        <div style="height:24px"></div>
-        <div id="errorMessage" class="alert alert-danger" style="width:256px;font-weight:bold;display:none">Invalid ID or password!</div>
-    </div>
+
+<div popover id="signinForm" style="position:absolute;border-radius:16px;border-color:darkblue;width:512px;margin-top:120px">
+    <h2 style="color:darkblue">Sign In</h2>
+    <hr>
+    <form>
+        <p>
+            <label>Username:</label>
+            <input type="text" name="userId" id="userId">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" name="password" id="password" />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+        </p>
+
+    </form>
+    <div style="height:24px"></div>
+    <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
+        Submit
+    </button>
+    <div style="height:24px"></div>
+    <div id="errorMessage" class="alert alert-danger" style="width:256px;font-weight:bold;display:none">Invalid ID or password!</div>
+
 </div>
 
 <div id="basePage" style="display:none">
@@ -126,8 +124,6 @@
 
         document.getElementById("errorMessage").style["display"] = "none";
 
-        console.log("at point 1");
-
         var userId = document.getElementById('userId').value;
         var password = document.getElementById('password').value;
 
@@ -145,12 +141,11 @@
         console.log(response);
 
         if (response != "SUCCESS") {
-            document.getElementById("errorMessage").style["display"] = "inline";
+            alert("Invalid id or password!")
         }
 
         else {
-            document.getElementById("signinForm").style["display"] = "none";
-            document.getElementById("basePage").style["display"] = "block";
+            
         }
     }
 
