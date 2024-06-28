@@ -29,20 +29,20 @@
         }
 
         label {
-            color:maroon;
+            color:darkblue;
             font:large;
             font-weight:bold;
         }
 
         input {
-            color:maroon;
+            color:darkblue;
             border:solid;
-            border-color:maroon;
+            border-color:darkblue;
             border-width:2px;
         }
 
         td{
-            color:maroon;
+            color:darkblue;
             font:large;
         }
 
@@ -50,13 +50,13 @@
             display:flex;
             align-items:center;
             font-size:16px;
-            color:maroon;
+            color:darkblue;
         }
     </style>
 </head>
 
 <body>
-     <h2  style="color:maroon;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
+     <h2  style="color:darkblue;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
             Squawk Details
     </h2>
 
@@ -74,7 +74,7 @@
 
             <div style="margin:32px;display:inline-block;">
             
-                <table style="color:maroon;font-size:16px;">
+                <table style="color:darkblue;font-size:16px;">
 
                     @Html.Raw(ControllerCommon.trFunc("typeCode", "text", "Type Code", sm.TypeCode))
                     @Html.Raw(ControllerCommon.trFunc("tailNmbr", "text", "Tail Nmbr", sm.TailNmbr))
@@ -123,7 +123,7 @@
                 </table>
             </div>
             <div style="display:inline-block;margin:32px;vertical-align:top">
-                <table style="color:maroon;font-size:16px;">
+                <table style="color:darkblue;font-size:16px;">
                    +
                      <tr>
                         <td> <label for="flightLogNmbr">Flight Log Nmbr: </label></td>
@@ -161,7 +161,7 @@
                 </table>
             </div>
             <div style="display:inline-block;margin:32px;vertical-align:top">
-                <table style="color:maroon;font-size:16px;">
+                <table style="color:darkblue;font-size:16px;">
                     @Html.Raw(ControllerCommon.trFunc("approach", "bool", "Approach", sm.Approach))
                     @Html.Raw(ControllerCommon.trFunc("landing", "bool", "Landing", sm.Landing))
                     @Html.Raw(ControllerCommon.trFunc("approach", "bool", "Approach", sm.Approach))
@@ -179,12 +179,12 @@
         </div>
 
         <div style="display:block;margin:auto">
-                <h6 style="width:100%;color:maroon;" align="center">-- terms --</h6>
+                <h6 style="width:100%;color:darkblue;" align="center">-- terms --</h6>
                 <textarea style="align-content:center;width:80%;" rows="4" name="terms" id="terms" form="guaranteeWarrantyForm">
                     @sm.Description
                 </textarea>
                 <div style="height:16px"></div>
-                <h6 style="width:100%;color:maroon;" align="center">-- Notes --</h6>
+                <h6 style="width:100%;color:darkblue;" align="center">-- Notes --</h6>
                 <textarea style="align-content:center;width:80%;" rows="4" name="notes" id="notes" form="guaranteeWarrantyForm">
                     @sm.Resolution
                 </textarea>

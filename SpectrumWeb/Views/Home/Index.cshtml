@@ -10,65 +10,33 @@
         crossorigin="anonymous">
 <script>
 
-function loadIFrame(src){
-    console.log(src);
-    $('main').attr('src', src);
-}
+    function loadIFrame(src){
+        console.log(src);
+        $('main').attr('src', src);
+        }
 
     function setSideTabFormat(navBtn) {
         $(".nav-vert").removeClass("sideTabActive");
         $(navBtn).addClass("sideTabActive");
     }
 
-    function validateSignIn() { 
-
-        document.getElementById("errorMessage").style["display"] = "none";
-
-        console.log("at point 1");
-
-        var userId = document.getElementById('userId').value; 
-        var password = document.getElementById('password').value;
-
-        var loginXMLRequest = new XMLHttpRequest();
-
-        loginXMLRequest.open("POST", "/Admin/SignIn", false);
-
-        loginXMLRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-
-        loginXMLRequest.send("userId=" + userId + "&password=" + password);
-
-        var response = loginXMLRequest.responseText;
-
-        console.log(response);
-
-        if (response != "SUCCESS") {
-            document.getElementById("errorMessage").style["display"] = "inline";
-        }
-
-        else {
-            document.getElementById("signinForm").style["display"] = "none";
-            document.getElementById("basePage").style["display"] = "block";
-        }
-    }
-
 </script>
 
 <style>
    .sideTabActive {
-       background-color: maroon;
+       background-color: darkblue;
        color:white;
    }
 
     .sideTab {
         background-color: white
-        color: maroon;
+        color: darkblue;
         border:solid;
-        border-color:maroon;
+        border-color:darkblue;
     }
 
      .sideTab:hover {
-        background-color: maroon;
+        background-color: darkblue;
         color: white;
         opacity: .6;
     }
@@ -78,22 +46,25 @@ function loadIFrame(src){
         cursor: pointer;
     }
 
-    body {
-        background-image: url("Img/BackgroundImage2.jpg");
+    #mainPage {
+        background-image: url("Img/BackgroundImage3.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
+        height:2096px;
+ 
     }
 
 </style>
 
+<div id="mainPage">
 
-<div id="signinForm">
-   
+</div>
+<div style="display:none">
     <div class="container" style="text-align:center">
-        <h2 style="text-align:center;color:maroon">WELCOME TO SPECTRUM WEB </h2>
+        <h2 style="text-align:center;color:darkblue">WELCOME TO SPECTRUM WEB </h2>
         <div style="height:32px"></div>
-        <h2 style="text-align:center;color:maroon">Please Sign In</h2>
+        <h2 style="text-align:center;color:darkblue">Please Sign In</h2>
         <div style="height:32px"></div>
         <form>
             <p>
@@ -108,7 +79,7 @@ function loadIFrame(src){
             
         </form>
         <div style="height:24px"></div>
-        <button onclick="validateSignIn()" style="color:maroon;border-color:maroon;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
+        <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
             Sign In
         </button>
         <div style="height:24px"></div>
@@ -116,25 +87,10 @@ function loadIFrame(src){
     </div>
 </div>
 
-<script>
-
-
-    const togglePassword = document
-        .querySelector('#togglePassword');
-    const password = document.querySelector('#password');
-    togglePassword.addEventListener('click', function (e) {
-        // toggle the type attribute
-        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
-        password.setAttribute('type', type);
-        // toggle the eye slash icon
-        this.classList.toggle('fa-eye-slash');
-    });
-</script>
-
 <div id="basePage" style="display:none">
-    <h2 id="main_header" style="margin:auto;text-align:center;color:maroon;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
+    <h2 id="main_header" style="margin:auto;text-align:center;color:darkblue;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
     <div class="row" style="margin-top:80px">
-        <div class="col-1" style="width:90px;border-right:4px solid maroon;position:fixed;margin-top:60px">
+        <div class="col-1" style="width:90px;border-right:4px solid darkblue;position:fixed;margin-top:60px">
          
 
             <ul style="float:right;margin-right:-20px">
@@ -161,9 +117,52 @@ function loadIFrame(src){
     </div>
 </div>
 
- <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+<script src="~/js/site.js" asp-append-version="true"></script>
+
+<script>
+      function validateSignIn() {
+
+        document.getElementById("errorMessage").style["display"] = "none";
+
+        console.log("at point 1");
+
+        var userId = document.getElementById('userId').value;
+        var password = document.getElementById('password').value;
+
+        var loginXMLRequest = new XMLHttpRequest();
+
+        loginXMLRequest.open("POST", "/Admin/SignIn", false);
+
+        loginXMLRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
 
-    
+        loginXMLRequest.send("userId=" + userId + "&password=" + password);
+
+        var response = loginXMLRequest.responseText;
+
+        console.log(response);
+
+        if (response != "SUCCESS") {
+            document.getElementById("errorMessage").style["display"] = "inline";
+        }
+
+        else {
+            document.getElementById("signinForm").style["display"] = "none";
+            document.getElementById("basePage").style["display"] = "block";
+        }
+    }
+
+
+    const togglePassword = document
+        .querySelector('#togglePassword');
+    const password = document.querySelector('#password');
+    togglePassword.addEventListener('click', function (e) {
+        // toggle the type attribute
+        const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+        password.setAttribute('type', type);
+        // toggle the eye slash icon
+        this.classList.toggle('fa-eye-slash');
+    });
+ </script>

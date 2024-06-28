@@ -52,7 +52,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             "<style>"
             , "  table.childTable td, table.childTable th {"
             , "    border:solid;"
-            , "    border-color:maroon;"
+            , "    border-color:darkblue;"
             , "    border-width:2px;"
             , "  }"
             , "  table.childTable th {"
@@ -143,9 +143,9 @@ namespace SpectrumWeb.Controllers.Maintenance
 
             rtrnValu = "<div id='overlay' style='display:block'>\n"
                      + "    <div style='height:256px'></div>\n"
-                     + "    <div style='width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:maroon;border-radius:32px'>\n"
-                     + "        <div style='display:inline-block;width:93%'><h4 style='text-align:center;color:maroon;margin:auto'>Select Guarantees and Warranties</h4></div>\n"
-                     + "        <div style='display:inline-block;width:24px'><button onclick='hideFilter()' class='btn btn-outline-primary' style='border-color:maroon;border-width:2px;color:maroon;margin-top:2px;font:bolder'>X</button></div>\n"
+                     + "    <div style='width:1024px;height:512px;margin:auto;background-color:rgba(253,253,253,0.95);border:solid;border-width:thick;border-color:darkblue;border-radius:32px'>\n"
+                     + "        <div style='display:inline-block;width:93%'><h4 style='text-align:center;color:darkblue;margin:auto'>Select Guarantees and Warranties</h4></div>\n"
+                     + "        <div style='display:inline-block;width:24px'><button onclick='hideFilter()' class='btn btn-outline-primary' style='border-color:darkblue;border-width:2px;color:darkblue;margin-top:2px;font:bolder'>X</button></div>\n"
                      + "        <div style='height:24px'></div>\n"
                      + "        <div style='margin:auto'>\n"
                      + partNmbrFilter
