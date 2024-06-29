@@ -154,12 +154,14 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     {
                         if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><img src='/Img/EditIcon.png' style='width:24px;height:24px;'/></td>\n";
+                            //rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><img src='/Img/EditIcon.png' style='width:24px;height:24px;'/></td>\n";
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><button style='background: url(\"/Img/EditIcon.png\");width:24px;height:24px;'></button></td>\n";
                         }
 
                         else
                         {
-                            rtrnValue += "    <td class='detailsCell'><img src='/Img/EditIcon.png'/></td>\n";
+                            //rtrnValue += "    <td class='detailsCell'><img src='/Img/EditIcon.png'/></td>\n";
+                            rtrnValue += "    <td class='detailsCell'>class='detailsCell'><button style='background: url(\"/Img/EditIcon.png\");width:24px;height:24px;'></button></td>\n";
                         }
                     }
 
