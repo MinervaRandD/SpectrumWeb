@@ -22,5 +22,12 @@ namespace SpectrumWeb.Controllers
         {
             return View();
         }
+
+
+
+        public string Maintenance1()
+        {
+            return "Hello there sailor.";
+        }
     }
 }

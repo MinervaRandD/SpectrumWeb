@@ -46,73 +46,73 @@
         cursor: pointer;
     }
 
-    #mainPage {
+    #startupMainPage {
         background-image: url("Img/BackgroundImage3.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-size: 100% 100%;
         height:2096px;
- 
     }
 
+    #engineeringPanel {
+        background-image: url("Img/Engineering.png");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: 100% 100%;
+    }
+   
 </style>
 
-<div id="mainPage">
+<div id="startupMainPage" style="display:none">
 
 </div>
 
-<div popover id="signinForm" style="position:absolute;border-radius:16px;border-color:darkblue;width:512px;margin-top:120px">
-    <h2 style="color:darkblue">Sign In</h2>
-    <hr>
-    <form>
-        <p>
-            <label>Username:</label>
-            <input type="text" name="userId" id="userId">
-        </p>
-        <p>
-            <label>Password:</label>
-            <input type="password" name="password" id="password" />
-            <i class="bi bi-eye-slash" id="togglePassword"></i>
-        </p>
-
-    </form>
-    <div style="height:24px"></div>
-    <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:128px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
-        Submit
-    </button>
-    <div style="height:24px"></div>
-    <div id="errorMessage" class="alert alert-danger" style="width:256px;font-weight:bold;display:none">Invalid ID or password!</div>
-
-</div>
-
-<div id="basePage" style="display:none">
-    <h2 id="main_header" style="margin:auto;text-align:center;color:darkblue;top:0;position:fixed;left:50%;transform: translate(-50%, 0)">SPECTRUM-WEB</h2>
+<div id="mainPage" style="display:block">
     <div class="row" style="margin-top:80px">
         <div class="col-1" style="width:90px;border-right:4px solid darkblue;position:fixed;margin-top:60px">
-         
-
             <ul style="float:right;margin-right:-20px">
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Accounting</a></li>
-                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Maintenance/Maintenance" target="main"><div style="margin:-14px">Maint &amp;<br />Eng</div></a></li>
+                <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Maintenance/Maintenance1" target="main"><div style="margin:-14px">Maint &amp;<br />Eng</div></a></li>
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Flight Ops</a></li>
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Cargo</a></li>
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Reservations</a></li>
                 <li style="transform:rotate(270deg);margin-bottom:64px"><a class="nav-vert" onclick="setSideTabFormat(this)" href="#">Revenue</a></li>
             </ul>
-
         </div>
 
-        <div class="col-11" style="margin-left:90px;position:fixed">
-
+        <div id="engineeringPanel" class="col-11" style="margin-left:90px;position:fixed;">
             <iframe id="main" name="main" style="width:100%;min-height:1024px;height:100%;position:fixed">
-            
-           
-
             </iframe>
 
         </div>
     </div>
+
+</div>
+
+<div popover id="signinForm"  style="position:absolute;border-radius:16px;border-color:darkblue;width:512px;margin-top:120px">
+    <h2 style="color:darkblue">Sign In</h2>
+    <hr>
+    <form>
+        <p>
+            <label>Username:</label>
+            <input type="text" onclick="clearSigninErrorMessage()" name="userId" id="userId">
+        </p>
+        <p>
+            <label>Password:</label>
+            <input type="password" onclick="clearSigninErrorMessage()" name="password" id="password" />
+            <i class="bi bi-eye-slash" id="togglePassword"></i>
+        </p>
+
+    </form>
+    <div style="height:12px"></div>
+    <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:256px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
+        Submit
+    </button>
+    <div style="height:18px;"></div>
+    <div id="signinErrorMessage" style="margin-left:24px;display:none;color:red;font-weight:bolder;font-size:larger">Invalid User ID or Password</div>
+    
+
 </div>
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -120,9 +120,15 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 <script>
+    
+    function clearSigninErrorMessage()
+    {
+        document.getElementById('signinErrorMessage').style.display = 'none';
+    }
+   
       function validateSignIn() {
 
-        document.getElementById("errorMessage").style["display"] = "none";
+        document.getElementById('signinErrorMessage').style.display = "none";
 
         var userId = document.getElementById('userId').value;
         var password = document.getElementById('password').value;
@@ -133,22 +139,28 @@
 
         loginXMLRequest.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-
         loginXMLRequest.send("userId=" + userId + "&password=" + password);
 
         var response = loginXMLRequest.responseText;
 
-        console.log(response);
-
         if (response != "SUCCESS") {
-            alert("Invalid id or password!")
+            console.log("failure.");
+            document.getElementById('signinErrorMessage').style.display = "block";
         }
 
         else {
-            
+            loadMainPage();
         }
     }
 
+    function loadMainPage()
+    {
+       
+
+        document.getElementById('startupMainPage').style.display = 'none';
+        document.getElementById('mainPage').style.display = 'block';
+   
+    }
 
     const togglePassword = document
         .querySelector('#togglePassword');
