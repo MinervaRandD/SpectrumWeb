@@ -154,7 +154,6 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                     {
                         if (fieldJustify != null)
                         {
-                            //rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><img src='/Img/EditIcon.png' style='width:24px;height:24px;'/></td>\n";
                             rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><button style='background: url(\"/Img/EditIcon.png\");width:24px;height:24px;'></button></td>\n";
                         }
 
@@ -401,24 +400,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
         internal static int? generateTableWidth(List<FieldSpec> displayFieldList, List<FieldSpec> childFieldList = null)
         {
-            //int totalWidth = 0;
-
-            //foreach (FieldSpec field in displayFieldList)
-            //{
-            //    if (field.fieldWidth == null)
-            //    {
-            //        return null;
-            //    }
-
-            //    //if (ControllerCommon.isChildRow(field, childFieldList))
-            //    //{
-            //    //    continue;
-            //    //}
-
-            //    totalWidth += field.fieldWidth.Value;
-
-            //    Console.WriteLine(field.fieldWidth.Value.ToString());
-            //}
+            
 
             return totlTablWidthInPx + 30;
         }
