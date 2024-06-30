@@ -142,7 +142,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 if (childFieldList != null)
                 {
-                    rtrnValue += "<td></td>\n";
+                    rtrnValue += "    <td></td>\n";
                 }
 
                 for (int i = 1; i < fieldValueList.Count; i++)
@@ -158,40 +158,52 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                         string? transferUrl = fieldSpec.transferUrl;
 
                         string? id = fieldValueList[0];
-                        
+
+                        rtrnValue += "    <td";
+
                         if (fieldJustify != null)
                         {
-                            //rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>"
-                            //    + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(" + transferUrl + "?id=" + id + ");'>"
-                            //    +    "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
-                            //    + "</button></td>\n";
-
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>"
-                               + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(\"" + transferUrl + "?id=" + id + "\");'>"
-                               + "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
-                               + "</button></td>\n";
+                            rtrnValue += " style = 'text-align:" + fieldJustify + ";";
                         }
 
-                        else
+                        rtrnValue += ">"
+                            + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(\"" + transferUrl + "?id=" + id + "\");'>"
+                            + "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
+                            + "</button></td>\n";
+                    }
+
+
+                    else if (fieldSpec.transferUrl != null)
+                    {
+                        string? transferUrl = fieldSpec.transferUrl;
+
+                        string? id = fieldValueList[i];
+
+                        rtrnValue += "    <td";
+
+                        if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td>"
-                                + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(" + transferUrl + "?id=" + id + ");'>"
-                                + "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
-                                + "</button></td>\n";
+                            rtrnValue += " style = 'text-align:" + fieldJustify + ";'";
                         }
+
+                        rtrnValue += ">"
+                            + "<button ondblclick='window.open(\"" + transferUrl + "?id=" + id + "\");'>"
+                            + id
+                            + "</button></td>\n";
+
                     }
 
                     else
                     {
+                        rtrnValue += "    <td";
+
                         if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>" + fieldValueList[i] + "</td>\n";
+                            rtrnValue += " style = 'text-align:" + fieldJustify + ";'";
                         }
 
-                        else
-                        {
-                            rtrnValue += "    <td>" + fieldValueList[i] + "</td>\n";
-                        }
+                        rtrnValue += ">" + fieldValueList[i] + "</td>\n";
+                        
                     }
                 }
 

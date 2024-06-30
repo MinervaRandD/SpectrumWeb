@@ -46,25 +46,40 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("TwelveMoStaticUse", "Twelve Mos Stat Use", "TwelveMoStaticUse")
         };
 
-        public IActionResult Parts()
+        public IActionResult Parts(string? id=null)
         {
             
             List<PartsMaster> classList = context.PartsMasters.ToList();
 
-            return (new GenericTableController()).GenericTableGenerator(
-                displayFieldList
-                , "Parts"
-                , classList.Select(e => (object)e).ToList());
+
+            GenericTableGeneratorParms tblGenParms = new GenericTableGeneratorParms()
+            {
+                DisplayFieldList = displayFieldList,
+                Title = "Parts",
+                ClassList = classList.Select(e => (object)e).ToList(),
+                InitSearchValue = id,
+                InitSearchTitle = (id != null ? "PartNumber" : null)
+            };
+
+
+            return (new GenericTableController()).GenericTableGenerator(tblGenParms);
+          
         }
 
-        public IActionResult PartsMaster()
+        public IActionResult PartsMaster(string? id=null)
         {
             List<PartsMaster> classList = context.PartsMasters.ToList();
 
-            return (new GenericTableController()).GenericTableGenerator(
-                displayFieldList
-                , "Parts"
-                , classList.Select(e => (object)e).ToList());
+            GenericTableGeneratorParms tblGenParms = new GenericTableGeneratorParms()
+            {
+                DisplayFieldList = displayFieldList,
+                Title = "Parts",
+                ClassList = classList.Select(e => (object)e).ToList(),
+                InitSearchValue = id,
+                InitSearchTitle = (id != null ? "Part Nmbr" : null)
+            };
+
+            return (new GenericTableController()).GenericTableGenerator(tblGenParms);
         }
 
         List<FieldSpec> PartsOnGuaranteeWarrantyDisplayFieldList = new List<FieldSpec>()

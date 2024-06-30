@@ -24,7 +24,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, null, "details", "/Warranties/WarranteeDetailView")
            , new FieldSpec("Revision", "Rev", "Revision", "right", 20)
             ,new FieldSpec("Number", "Number", "Number", "center", 30)
-            ,new FieldSpec("PartNumber", "Part<br/>Number", "PartNumber", "center", 120)
+            ,new FieldSpec("PartNumber", "Part<br/>Number", "PartNumber", "center", 120, null, "text", "/Parts/PartsMaster")
             ,new FieldSpec("SerialNmbr", "Serial<br/>Number", "SerialNmbr", "center", 120)
             ,new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, null, "date")
             ,new FieldSpec("HoursGuaranteed", "Hours<br/>Guaranteed", "HoursGuaranteed", "right", 80, null, "#,##0.0")

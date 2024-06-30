@@ -19,5 +19,9 @@
         public string? CustomForm { get; set; } = null;
 
         public string? Overlay { get; set; } = null;
+
+        public string? InitSearchValue { get; set; } = null;
+
+        public string? InitSearchTitle { get; set; } = null;
     }
 }

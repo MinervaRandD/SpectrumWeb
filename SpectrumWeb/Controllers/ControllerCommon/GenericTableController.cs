@@ -153,7 +153,10 @@ namespace SpectrumWeb.Controllers.ControllerCommon
                 ViewBag.Overlay = "''";
 
             }
-            //ViewBag.ClassDefnScript = "<script type='text/javascript' language='javascript' src='/local/" + classDefnFileName + ".js'></script >";
+
+            ViewBag.InitSearchTitle = tblGenParms.InitSearchTitle;
+
+            ViewBag.InitSearchValue = tblGenParms.InitSearchValue;
 
             return View("~/Views/Maintenance/GenericTable.cshtml");
         }
