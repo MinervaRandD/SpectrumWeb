@@ -7,22 +7,12 @@
 
     if (string.IsNullOrEmpty(initSearchTitle))
     {
-        initSearchTitle = "''";
-    }
-
-    else
-    {
-        initSearchTitle = "'" + initSearchTitle + "'";
+        initSearchTitle = "";
     }
 
     if (string.IsNullOrEmpty(initSearchValue))
     {
         initSearchValue = "''";
-    }
-
-    else
-    {
-        initSearchValue = "'" + initSearchValue + "'";
     }
 }
 
@@ -81,6 +71,14 @@
                  ],
 
                 initComplete: function () {
+                    let initSearchTitle = '@initSearchTitle';
+
+                    let initSearchValue = '@initSearchValue';
+
+                    
+                    console.log('initSearchTitle=' + initSearchTitle);
+                    console.log('initSearchValue=' + initSearchValue);
+
                     this.api()
                         .columns()
                         .every(function () {
@@ -89,21 +87,25 @@
 
 
                             let title = column.footer().textContent;
-                        
+
+                            console.log('title=' + title);
 
                             if (title != "Edit" && title.length > 0) {
 
                                 // Create input element
                                 let input = document.createElement('input');
 
-                                // if (title == @initSearchTitle) {
-                                //     input.placeholder = @initSearchValue;
-                                //     column.search(input.value).draw();
-                                // }
 
-                                // else {
+                                if (title == initSearchTitle) {
+                                    console.log("Match Found.");
+                                    input.placeholder = initSearchValue;
+                                    input.value = initSearchValue;
+                                    column.search(initSearchValue).draw();
+                                }
+
+                                else {
                                     input.placeholder = title;
-                                // }                               
+                                }                               
                                 
                                 
                                 column.footer().replaceChildren(input);
