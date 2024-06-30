@@ -32,7 +32,9 @@ namespace SpectrumWeb.Controllers.Admin
                 return "FAILURE";
             }
 
-            var sqlCon = new SqlConnection("Server=.\\SQLExpress;Database=ArmsSpectrumDevelopment;Trusted_Connection=Yes;TrustServerCertificate=True");
+            string connectionString = SystemSettings.ConnectionString;
+
+            var sqlCon = new SqlConnection(connectionString);
 
             sqlCon.Open();
 

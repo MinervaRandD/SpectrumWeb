@@ -1,5 +1,8 @@
 using SpectrumWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Identity.Client;
+using Utilities;
+
 // Version 032
 
 var builder = WebApplication.CreateBuilder(args);
@@ -33,5 +36,7 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.UseSession();
+
+SystemSettings.SetSqlServerName();
 
 app.Run();

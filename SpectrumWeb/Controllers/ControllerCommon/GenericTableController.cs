@@ -25,34 +25,30 @@ namespace SpectrumWeb.Controllers.ControllerCommon
             , string customForm = null
             )
         {
-            return GenericTableGenerator(
-                "/GenericTable/GenericUpdater"
-                , displayFieldList
-                , title
-                , classList
-                , childFieldList
-                , childFieldFormater
-                , customForm);
+            GenericTableGeneratorParms tblGenParms = new GenericTableGeneratorParms()
+            {
+                UpdaterURL = "/GenericTable/GenericUpdater",
+                DisplayFieldList = displayFieldList,
+                Title = title,
+                ClassList = classList,
+                ChildFieldList = childFieldList,
+                ChildFieldFormatter = childFieldFormater,
+                CustomForm = customForm
+            };
+
+            return GenericTableGenerator(tblGenParms);
+                
         }
 
-        public IActionResult GenericTableGenerator(
-          string updaterURL
-        , List<FieldSpec> displayFieldList
-        , string title
-        , List<object> classList
-        , List<FieldSpec> childFieldList = null
-        , string? childFieldFormatter = null
-        , string? detailsUrl = null
-        , string? customForm = null
-        , string? overlay = null)
+        public IActionResult GenericTableGenerator(GenericTableGeneratorParms tblGenParms)
         {
-            ViewBag.Title = title;
+            ViewBag.Title = tblGenParms.Title;
 
             List<List<string>> classFullValueList = new List<List<string>>();
 
             List<List<string>> classDisplayValueListWithRecordId = new List<List<string>>();
 
-            foreach (object instance in classList)
+            foreach (object instance in tblGenParms.ClassList)
             {
                 string str = JsonConvert.SerializeObject(instance);
 
@@ -60,43 +56,39 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 classFullValueList.Add(fieldsDict.Values.ToList());
 
-                List<string> displayFieldValueList = WebPageGenerator.generateTableFieldValueList(fieldsDict, displayFieldList);
+                List<string> displayFieldValueList = WebPageGenerator.generateTableFieldValueList(fieldsDict, tblGenParms.DisplayFieldList);
 
                 classDisplayValueListWithRecordId.Add(displayFieldValueList);
             }
 
-            string tableFields = WebPageGenerator.generateTableFields(displayFieldList, childFieldList);
+            string tableFields = WebPageGenerator.generateTableFields(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.TableFields = tableFields;
 
-            string tableColumns = WebPageGenerator.generateTableColumns(displayFieldList, childFieldList);
+            string tableColumns = WebPageGenerator.generateTableColumns(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.TableColumns = tableColumns;
 
-            string tableHeader = WebPageGenerator.generateTableHeader(displayFieldList, childFieldList);
+            string tableHeader = WebPageGenerator.generateTableHeader(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.TableHeader = tableHeader;
 
-            string tableFooter = WebPageGenerator.generateTableFooter(displayFieldList, childFieldList);
+            string tableFooter = WebPageGenerator.generateTableFooter(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.TableFooter = tableFooter;
 
-            string classTableBody = WebPageGenerator.generateTableBody(classDisplayValueListWithRecordId, displayFieldList, childFieldList);
+            string classTableBody = WebPageGenerator.generateTableBody(classDisplayValueListWithRecordId, tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.ClassTableBody = classTableBody;
 
-            //string tableBodyBuilder = WebPageGenerator.generateTableBodyBuilder(displayFieldList, "PkRecordId", childFieldList);
-
-            //ViewBag.TableBodyBuilder = tableBodyBuilder;
-
-            string childRows = WebPageGenerator.generateChildRows(childFieldList);
+            string childRows = WebPageGenerator.generateChildRows(tblGenParms.ChildFieldList);
 
             ViewBag.ChildRows = childRows;
 
-            if (customForm != null)
+            if (tblGenParms.CustomForm != null)
             {
                 ViewBag.TemplateSpec = "template: '#customForm',";
-                ViewBag.TemplateDiv = customForm;
+                ViewBag.TemplateDiv = tblGenParms.CustomForm;
             }
 
             else
@@ -107,12 +99,12 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.ChildFieldFormatter = "''";
 
-            if (!string.IsNullOrEmpty(childFieldFormatter))
+            if (!string.IsNullOrEmpty(tblGenParms.ChildFieldFormatter))
             {
-                ViewBag.ChildFieldFormatter = childFieldFormatter;
+                ViewBag.ChildFieldFormatter = tblGenParms.ChildFieldFormatter;
             }
 
-            string columnDefs = WebPageGenerator.generateColumnDefs(displayFieldList, childFieldList);
+            string columnDefs = WebPageGenerator.generateColumnDefs(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             ViewBag.ColumnDefs = columnDefs;
 
@@ -129,7 +121,7 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             //ViewBag.ClassMapInitializer = classMapInitializer;
 
-            int? totalTableWidth = WebPageGenerator.generateTableWidth(displayFieldList, childFieldList);
+            int? totalTableWidth = WebPageGenerator.generateTableWidth(tblGenParms.DisplayFieldList, tblGenParms.ChildFieldList);
 
             if (totalTableWidth != null)
             {
@@ -143,17 +135,17 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             string detailsUrlStr = "null";
 
-            if (detailsUrl != null)
+            if (tblGenParms.DetailsUrl != null)
             {
 
-                detailsUrlStr = "'" + detailsUrl + "'";
+                detailsUrlStr = "'" + tblGenParms.DetailsUrl + "'";
             }
 
             ViewBag.DetailsUrl = detailsUrlStr;
 
-            if (overlay != null)
+            if (tblGenParms.Overlay != null)
             {
-                ViewBag.Overlay = overlay;
+                ViewBag.Overlay = tblGenParms.Overlay;
             }
 
             else

@@ -111,16 +111,20 @@ namespace SpectrumWeb.Controllers.Maintenance
                 }
             }
 
-            return (new GenericTableController()).GenericTableGenerator(
-                 "/GenericTable/GenericUpdater"
-                , displayFieldList
-                , title()
-                , classList.Select(e => (object)e).ToList()
-                , childFieldList
-                , warrantiesChildFieldFormatter
-                , "WarranteeDetailView"
-                , null
-                , overlay());
+            GenericTableGeneratorParms tblGenParms = new GenericTableGeneratorParms()
+            {
+                UpdaterURL = "/GenericTable/GenericUpdater",
+                DisplayFieldList = displayFieldList,
+                Title = title(),
+                ClassList = classList.Select(e => (object)e).ToList(),
+                ChildFieldList = childFieldList,
+                ChildFieldFormatter = warrantiesChildFieldFormatter,
+                DetailsUrl = "WarranteeDetailView",
+                Overlay = overlay()
+            };
+
+            return (new GenericTableController()).GenericTableGenerator(tblGenParms);
+                 
         }
 
 

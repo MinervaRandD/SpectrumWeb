@@ -16,6 +16,10 @@
 
         public short? fieldHeight { get; set; } = null;
 
+        public string? selectUrl { get; set; } = null;
+
+        public string? transferUrl { get; set; } = null;
+
         public FieldSpec(
             string label
             ,string description

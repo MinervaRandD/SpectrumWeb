@@ -1,14 +1,14 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
+
+    string themeForegroundColor = Utilities.SystemSettings.ThemeForegroundColor;
+    string backgroundColor = Utilities.SystemSettings.ThemeBackgroundColor;
 }
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-    <link rel="stylesheet"
-        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-        crossorigin="anonymous">
+  
 <script>
+    <link rel="stylesheet" href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" >
+    <link rel="stylesheet" href = "https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+    <link rel="stylesheet"  href = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity = "sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin = "anonymous" >
 
     function loadIFrame(src){
         console.log(src);
@@ -24,19 +24,19 @@
 
 <style>
    .sideTabActive {
-       background-color: darkblue;
+       background-color: @themeForegroundColor;
        color:white;
    }
 
     .sideTab {
         background-color: white
-        color: darkblue;
+        color: @themeForegroundColor;
         border:solid;
-        border-color:darkblue;
+        border-color:@themeForegroundColor;
     }
 
      .sideTab:hover {
-        background-color: darkblue;
+        background-color: @themeForegroundColor;
         color: white;
         opacity: .6;
     }
@@ -69,7 +69,7 @@
 
 <div id="mainPage" style="display:block;position:absolute;top:0px;background-color:wheat;">
     <div class="row">
-        <div class="col-1" style="width:90px;border-right:4px solid darkblue;position:fixed;margin-top:60px">
+        <div class="col-1" style="width:90px;border-right:4px solid @themeForegroundColor;position:fixed;margin-top:60px">
             <ul style="float:right;margin-right:-20px">
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="/Admin/Admin" target="main">Admin</a></li>
                 <li style="transform:rotate(270deg);"><a class="nav-vert sideTab" onclick="setSideTabFormat(this)" href="#">Accounting</a></li>
@@ -90,8 +90,8 @@
 
 </div>
 
-<div popover id="signinForm"  style="position:absolute;border-radius:16px;border-color:darkblue;width:512px;margin-top:120px">
-    <h2 style="color:darkblue">Sign In</h2>
+<div popover id="signinForm"  style="position:absolute;border-radius:16px;border-color:@themeForegroundColor;width:512px;margin-top:120px">
+    <h2 style="color:@themeForegroundColor">Sign In</h2>
     <hr>
     <form>
         <p>
@@ -106,7 +106,7 @@
 
     </form>
     <div style="height:12px"></div>
-    <button onclick="validateSignIn()" style="color:darkblue;border-color:darkblue;border-width:2px;border-radius:4pt;width:256px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
+    <button onclick="validateSignIn()" style="color:@themeForegroundColor;border-color:@themeForegroundColor;border-width:2px;border-radius:4pt;width:256px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
         Submit
     </button>
     <div style="height:18px;"></div>
