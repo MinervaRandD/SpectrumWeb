@@ -26,10 +26,10 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("InspectionName", "Inspection Name", "InspectionName", "left", 160),
                 new FieldSpec("Description", "Description", "Description", "left", 240),
                 new FieldSpec("AcftType", "Acft Type", "AcftType", "center", 60),
-                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 52, "bool"),
-                new FieldSpec("IncludeOnTaskCard", "Include On Task Card", "IncludeOnTaskCard", "center", 40, "bool"),
-                new FieldSpec("OneTimeInspection", "One Time Inspect", "OneTimeInspection", "center", 40, "bool"),
-                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 40, "bool"),
+                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 52, null, "bool"),
+                new FieldSpec("IncludeOnTaskCard", "Include On Task Card", "IncludeOnTaskCard", "center", 40, null, "bool"),
+                new FieldSpec("OneTimeInspection", "One Time Inspect", "OneTimeInspection", "center", 40, null, "bool"),
+                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 40, null, "bool"),
                 new FieldSpec("PerfEveryHours", "Perf Every Hours", "PerfEveryHours", "right", 52),
                 new FieldSpec("PerfEveryCycles", "Perf Every Cycles", "PerfEveryCycles", "right", 52),
                 new FieldSpec("PerfEveryDays", "Perf Every Days", "PerfEveryDays", "right", 52),
@@ -46,7 +46,7 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("ThreshCycles", "Thresh Cycles", "ThreshCycles", "right", 52),
                 new FieldSpec("ThreshDays", "Thresh Days", "ThreshDays", "right", 52),
                 new FieldSpec("WorkPackages", "Work Packages", "WorkPackages", "right", 52),
-                new FieldSpec("ComplDate", "Compl Date", "ComplDate", "center", 100, "date"),
+                new FieldSpec("ComplDate", "Compl Date", "ComplDate", "center", 100, null, "date"),
                 new FieldSpec("PartNmbr1", "Part 1", "PartNmbr1", "center", 160),
                 new FieldSpec("PartNmbr2", "Part 2", "PartNmbr2", "center", 160),
                 new FieldSpec("PartNmbr3", "Part 3", "PartNmbr3", "center", 160)
@@ -105,7 +105,7 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("Description", "Description", "Description", "left", 240),
                 new FieldSpec("AircraftType", "Acft Type", "AircraftType", "center", 60),
                 new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 60),
-                new FieldSpec("LastPerformedOn", "Last Perfor On", "LastPerformedOn", "center", 80, "date"),
+                new FieldSpec("LastPerformedOn", "Last Perfor On", "LastPerformedOn", "center", 80, null, "date"),
                 new FieldSpec("HoursCurr", "Hours Curr", "HoursCurr", "right", 50),
                 new FieldSpec("CyclesCurr", "Cycles Curr", "CyclesCurr", "right", 50),
                 new FieldSpec("DaysCurr", "Days Curr", "DaysCurr", "right", 50),
@@ -116,11 +116,11 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("CyclesCurrAirframe", "Cycles Curr Airframe", "CyclesCurrAirframe", "right", 50),
                 new FieldSpec("DaysCurrAirframe", "Days Curr Airframe", "DaysCurrAirframe", "right", 50),
                 new FieldSpec("PerformedTimes", "Performed Times", "PerformedTimes", "right", 50),
-                new FieldSpec("LastAppliedOnDate", "Last Applied On", "LastAppliedOnDate", "center", 80, "date"),
+                new FieldSpec("LastAppliedOnDate", "Last Applied On", "LastAppliedOnDate", "center", 80, null, "date"),
                 new FieldSpec("CurrWorkPckgNmbr", "Curr Work Pckg Nmbr", "CurrWorkPckgNmbr", "right", 50),
-                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 48, "bool"),
+                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 48, null, "bool"),
                 new FieldSpec("DaysToAccomplish", "Days To Accomplish", "DaysToAccomplish", "right", 50),
-                new FieldSpec("TerminateInspection", "Terminate Inspect", "TerminateInspection", "center", 48, "bool")
+                new FieldSpec("TerminateInspection", "Terminate Inspect", "TerminateInspection", "center", 48, null, "bool")
             };
 
         public IActionResult InspectsByTailNmbr()
@@ -175,7 +175,7 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("PartNmbr", "Part Nmbr", "PartNmbr", "left", 120),
                 new FieldSpec("SerialNmbr", "Serial Nmbr", "SerialNmbr", "left", 120),
                 new FieldSpec("AcftType", "Acft Type", "AcftType", "center", 60),
-                new FieldSpec("LastAppliedOnDate", "Last Applied On", "LastAppliedOnDate", "center", 80, "date"),
+                new FieldSpec("LastAppliedOnDate", "Last Applied On", "LastAppliedOnDate", "center", 80, null, "date"),
                 new FieldSpec("HoursCurr", "Hours Curr", "HoursCurr", "right", 50),
                 new FieldSpec("CyclesCurr", "Cycles Curr", "CyclesCurr", "right", 50),
                 new FieldSpec("DaysCurr", "Days Curr", "DaysCurr", "right", 50),
@@ -186,11 +186,11 @@ namespace SpectrumWeb.Controllers.Maintenance.Inspections
                 new FieldSpec("CyclesOverride", "Cycles Override", "CyclesOverride", "right", 50),
                 new FieldSpec("DaysOverride", "Days Override", "DaysOverride", "right", 50),
                 new FieldSpec("PerformedTimes", "Performed Times", "PerformedTimes", "right", 50),
-                new FieldSpec("LastPerformedOn", "Last Performed On", "LastPerformedOn", "center", 80, "date"),
+                new FieldSpec("LastPerformedOn", "Last Performed On", "LastPerformedOn", "center", 80, null, "date"),
                 new FieldSpec("CurrWorkPckgNmbr", "Curr Work Pckg Nmbr", "CurrWorkPckgNmbr", "right", 50),
-                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 48, "bool"),
+                new FieldSpec("ResetToZero", "Reset To Zero", "ResetToZero", "center", 48, null, "bool"),
                 new FieldSpec("DaysToAccomplish", "Days To Accomplish", "DaysToAccomplish", "right", 50),
-                new FieldSpec("TerminateInspection", "Terminate Inspect", "TerminateInspection", "center", 48, "bool")
+                new FieldSpec("TerminateInspection", "Terminate Inspect", "TerminateInspection", "center", 48, null, "bool")
             };
 
         public IActionResult InspectsByPartNmbr()

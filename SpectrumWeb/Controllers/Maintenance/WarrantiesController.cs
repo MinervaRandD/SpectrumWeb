@@ -21,13 +21,13 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         private static List<FieldSpec> displayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details")
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, null, "details", "/Warranties/WarranteeDetailView")
            , new FieldSpec("Revision", "Rev", "Revision", "right", 20)
             ,new FieldSpec("Number", "Number", "Number", "center", 30)
             ,new FieldSpec("PartNumber", "Part<br/>Number", "PartNumber", "center", 120)
             ,new FieldSpec("SerialNmbr", "Serial<br/>Number", "SerialNmbr", "center", 120)
-            ,new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, "date")
-            ,new FieldSpec("HoursGuaranteed", "Hours<br/>Guaranteed", "HoursGuaranteed", "right", 80, "#,##0.0")
+            ,new FieldSpec("DateReceived", "Date<br/>Received", "DateReceived", "center", 80, null, "date")
+            ,new FieldSpec("HoursGuaranteed", "Hours<br/>Guaranteed", "HoursGuaranteed", "right", 80, null, "#,##0.0")
             ,new FieldSpec("CyclesGuaranteed", "Cycles<br/>Guaranteed", "CyclesGuaranteed", "right", 80)
             ,new FieldSpec("WeeksGuaranteed", "Weeks<br/>Guaranteed", "WeeksGuaranteed", "right", 80)
             ,new FieldSpec("HoursAtInstall", "Hours At<br/>Install", "HoursAtInstall", "right", 80)
@@ -43,8 +43,8 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         private static List<FieldSpec> childFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Terms", "Terms", "Terms", "Left", 500, "text", 24)
-            ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, "text", 128)
+            new FieldSpec("Terms", "Terms", "Terms", "Left", 500, 24, "text")
+            ,new FieldSpec("Notes", "Notes", "Notes", "Left", 500, 128, "text")
         };
 
         static List<string> warrantiesChildDisplayFieldList = new List<string>()

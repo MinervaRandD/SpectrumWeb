@@ -25,21 +25,21 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("ModNmbr", "Mod<br/>Nmbr", "ModNmbr", "center", 30),
             new FieldSpec("AircraftType", "Acft<br/>Type", "AircraftType", "center", 40),
             new FieldSpec("PartNumber", "Part Nmbr", "PartNumber", "center", 84),
-            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 30, "bool"),
+            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 30, null, "bool"),
             new FieldSpec("VendorNumber", "Vendor<br/>Nmbr", "VendorNumber", "center", 64),
-            new FieldSpec("DateIssued", "Issued<br/>Date", "DateIssued", "center", 68, "date"),
-            new FieldSpec("DateEntered", "Date<br/>Entered", "DateEntered", "center", 68, "date"),
-            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 68, "date"),
-            new FieldSpec("DateComplete", "Date<br/>Completed", "DateComplete", "center", 68, "date"),
+            new FieldSpec("DateIssued", "Issued<br/>Date", "DateIssued", "center", 68, null, "date"),
+            new FieldSpec("DateEntered", "Date<br/>Entered", "DateEntered", "center", 68, null, "date"),
+            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 68, null, "date"),
+            new FieldSpec("DateComplete", "Date<br/>Completed", "DateComplete", "center", 68, null, "date"),
             new FieldSpec("AtaChap", "Ata<br/>Chap", "AtaChap", "center", 50),
             new FieldSpec("ApplyToSerNmbr", "From<br/>Serial<br/>Nmbr","ApplyToSerNmbr", "center",80),
             new FieldSpec("ThruSerNmbr", "Thru<br/>Serial<br/>Nmbr","ThruSerNmbr", "center", 80),
             new FieldSpec("Description", "Description", "Description", "left", 256),
             new FieldSpec("Resolution", "Prob<br/>Resol", "Resolution", "left", 256), // Needs to be added
-            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 30, "bool"),
-            new FieldSpec("BridgeToInspec", "Bridge<br/>To<br/>Inspect", "BridgeToInspec", "center", 30, "bool"),
-            new FieldSpec("InclInInspec", "Incl<br/>In<br/>Inspec", "InclInInspec", "center", 30, "bool"),
-            new FieldSpec("OneTimeInspec", "One<br/>Time<br/>Inspec", "OneTimeInspec", "center", 30, "bool"),
+            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 30, null, "bool"),
+            new FieldSpec("BridgeToInspec", "Bridge<br/>To<br/>Inspect", "BridgeToInspec", "center", 30, null, "bool"),
+            new FieldSpec("InclInInspec", "Incl<br/>In<br/>Inspec", "InclInInspec", "center", 30, null, "bool"),
+            new FieldSpec("OneTimeInspec", "One<br/>Time<br/>Inspec", "OneTimeInspec", "center", 30, null, "bool"),
             new FieldSpec("PerformEveryHour", "Perform<br/>Every<br/>Hour", "PerformEveryHour", "center", 48),
             new FieldSpec("PerformEveryCycle", "Perform<br/>Every<br/>Cycle", "PerformEveryCycle", "center", 48),
             new FieldSpec("PerformEveryDay", "Perform<br/>Every<br/>Day", "PerformEveryDay", "center", 48),
@@ -51,9 +51,9 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("ComplyChain1", "Cmply<br/>Chain<br/>1", "ComplyChain1", "center", 52),
             new FieldSpec("ComplyChain2", "Cmply<br/>Chain<br/>2", "ComplyChain2", "center", 52),
             new FieldSpec("ComplyChain3", "Cmply<br/>Chain<br/>3", "ComplyChain3", "center", 52),
-            new FieldSpec("Terminate", "Terminate", "Terminate", "center", 30, "bool"),
+            new FieldSpec("Terminate", "Terminate", "Terminate", "center", 30, null, "bool"),
             new FieldSpec("TerminateReason", "Terminate<br/>Reason", "TerminateReason", "left", 128),
-            new FieldSpec("DateTerminated", "Date<br/>Term", "DateTerminated", "center", 80, "date")
+            new FieldSpec("DateTerminated", "Date<br/>Term", "DateTerminated", "center", 80, null, "date")
         };
 
         List<FieldSpec> adsbChildDisplayFieldList = new List<FieldSpec>()
@@ -61,7 +61,7 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("Description", "Description", "Description", "left", 256),
             new FieldSpec("Resolution", "Prob<br/>Resol", "Resolution", "left", 256), // Needs to be added
             new FieldSpec("TerminateReason", "Terminate<br/>Reason", "TerminateReason", "left", 128),
-            new FieldSpec("DateTerminated", "Date<br/>Term", "DateTerminated", "center", 80, "date")
+            new FieldSpec("DateTerminated", "Date<br/>Term", "DateTerminated", "center", 80, null, "date")
         };
 
         private string adsbChildFieldFormatter =
@@ -98,10 +98,10 @@ namespace SpectrumWeb.Controllers.Maintenance
         List<FieldSpec> complianceDisplayFieldList = new List<FieldSpec>()
         {
             new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 48),
-            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 80, "date"),
+            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 80, null, "date"),
             new FieldSpec("Status", "Status", "Status", "center", 80),
-            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 48, "bool"),
-            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 48, "bool"),
+            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 48, null, "bool"),
+            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 48, null, "bool"),
             new FieldSpec("AircraftType", "Acft<br/>Type", "AircraftType", "center", 48),
             new FieldSpec("PartNumber", "Part Nmbr", "PartNumber", "center", 80),
             new FieldSpec("Description", "Description", "Description", "left", 256),
@@ -133,14 +133,14 @@ namespace SpectrumWeb.Controllers.Maintenance
         {
             new FieldSpec("Number", "Squawk Nmbr", "Number", "center", 80),
             new FieldSpec("RevisionNmbr", "Rev Nmbr", "RevisionNmbr", "center", 80),
-            new FieldSpec("DateIssued", "Issued<br/>Date", "DateIssued", "center", 80, "date"),
-            new FieldSpec("DateEntered", "Date<br/>Entered", "DateEntered", "center", 80, "date"),
-            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 80, "date"),
+            new FieldSpec("DateIssued", "Issued<br/>Date", "DateIssued", "center", 80, null, "date"),
+            new FieldSpec("DateEntered", "Date<br/>Entered", "DateEntered", "center", 80, null, "date"),
+            new FieldSpec("ComplianceDate", "Comply<br/>Date", "ComplianceDate", "center", 80, null, "date"),
             new FieldSpec("TypeCode", "Type<br/>Code", "TypeCode", "center", 48),
             new FieldSpec("Status", "Status", "Status", "center", 80),
-            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 48, "bool"),
+            new FieldSpec("ComplyYN", "Comply<br/>(Y/N)", "ComplyYN", "center", 48, null, "bool"),
             new FieldSpec("VendorNumber", "Vend Nmbr", "VendorNumber", "center", 48),
-            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 48, "bool"),
+            new FieldSpec("AlertYN", "Alert<br/>(Y/N)", "AlertYN", "center", 48, null, "bool"),
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "center", 48),
             new FieldSpec("AircraftType", "Acft<br/>Type", "AircraftType", "center", 48),
             new FieldSpec("ACModNmbr", "Acft Mod Nmbr", "ACModNmbr", "center", 60),

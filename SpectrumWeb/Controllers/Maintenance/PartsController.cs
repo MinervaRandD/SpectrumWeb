@@ -69,10 +69,10 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> PartsOnGuaranteeWarrantyDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Expendable", "Expendable", "Expendable", "center", 60, "bool"),
-            new FieldSpec("Rotable", "Rotable", "Rotable", "center", 40, "bool"),
-            new FieldSpec("Repairable", "Repairable", "Repairable","center", 40, "bool"),
-            new FieldSpec("PartNumber", "Part Nmbr", "PartNumber","center", 120, "bool"),
+            new FieldSpec("Expendable", "Expendable", "Expendable", "center", 60, null, "bool"),
+            new FieldSpec("Rotable", "Rotable", "Rotable", "center", 40, null, "bool"),
+            new FieldSpec("Repairable", "Repairable", "Repairable","center", 40, null, "bool"),
+            new FieldSpec("PartNumber", "Part Nmbr", "PartNumber","center", 120, null, "bool"),
             new FieldSpec("PartType", "Part Type", "PartType","center", 60),
             new FieldSpec("AircraftType", "A/C Type", "AircraftType","center", 60),
             new FieldSpec("Warehouse", "Warehouse", "Warehouse","center", 60),
@@ -139,8 +139,8 @@ namespace SpectrumWeb.Controllers.Maintenance
             new FieldSpec("AtaChapCode", "ATA Chapter", "AtaChapCode", "center", 60),
             new FieldSpec("AtaSubCode", "ATA Sub Chap", "AtaSubCode", "center", 60),
             new FieldSpec("AtaParCode", "ATA Par Code", "AtaParCode", "center", 60),
-            new FieldSpec("OnAcft", "On Acft", "OnAcft", "center", 48, "bool"),
-            new FieldSpec("DueDate", "Due Date", "DueDate", "center", 90, "date")
+            new FieldSpec("OnAcft", "On Acft", "OnAcft", "center", 48, null, "bool"),
+            new FieldSpec("DueDate", "Due Date", "DueDate", "center", 90, null, "date")
         };
 
         //***************************************************//
@@ -230,7 +230,7 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> CompRemovalsDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("SchedRemoveYN", "Scheduled", "SchedRemoveYN", "center", 60, "bool"),
+            new FieldSpec("SchedRemoveYN", "Scheduled", "SchedRemoveYN", "center", 60, null, "bool"),
             new FieldSpec("TailNmbr", "Tail Nmbr", "TailNmbr", "left", 120),
             new FieldSpec("AircraftType", "Acft Type", "AircraftType", "left", 120),
             new FieldSpec("AtaOfRemoval", "ATA Chapter", "AtaOfRemoval", "center", 80),

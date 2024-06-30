@@ -19,16 +19,16 @@ namespace SpectrumWeb.Controllers.Maintenance
 
         List<FieldSpec> taskCardsDisplayFieldList = new List<FieldSpec>()
         {
-            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, "details"),
+            new FieldSpec("Details", "E<br/>d<br/>i<br/>t", "Details", "center", 20, null, "details"),
             new FieldSpec("Revision", "Rev", "Revision", "center", 20),
             new FieldSpec("TaskId", "Task<br/>Id", "TaskId", "left", 60),
             new FieldSpec("PackageNmbr", "Pkg<br/>Nmbr", "PackageNmbr", "center", 60),
-            new FieldSpec("OneTimeCard", "One<br/>Time<br/>Card", "OneTimeCard", "center", 30, "bool"),
+            new FieldSpec("OneTimeCard", "One<br/>Time<br/>Card", "OneTimeCard", "center", 30, null, "bool"),
             new FieldSpec("SeqNmbr", "Seqn<br/>Nmbr", "SeqNmbr", "center", 36),
-            new FieldSpec("IssueDate", "Issue<br/>Date", "IssueDate", "center", 68, "date"),
-            new FieldSpec("RevisionDate", "Revision<br/>Date", "RevisionDate", "center", 68, "date"),
-            new FieldSpec("AcftType", "Acft<br/>Type", "AcftType", "center", 64, "selectable"),
-            new FieldSpec("AirframeNmbr","Airframe<br/>Nmbr", "AirframeNmbr", "center", 80, "selectable"),
+            new FieldSpec("IssueDate", "Issue<br/>Date", "IssueDate", "center", 68, null, "date"),
+            new FieldSpec("RevisionDate", "Revision<br/>Date", "RevisionDate", "center", 68, null, "date"),
+            new FieldSpec("AcftType", "Acft<br/>Type", "AcftType", "center", 64, null, "selectable"),
+            new FieldSpec("AirframeNmbr","Airframe<br/>Nmbr", "AirframeNmbr", "center", 80, null, "selectable"),
             new FieldSpec("SrcRef", "Source<br/>Ref", "SrcRef", "left", 160),
             new FieldSpec("Category", "Cat", "Category", "center", 30),
             new FieldSpec("CheckName", "Check<br/>Name", "CheckName", "center", 60),

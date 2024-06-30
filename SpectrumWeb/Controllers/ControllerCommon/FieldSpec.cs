@@ -16,8 +16,6 @@
 
         public short? fieldHeight { get; set; } = null;
 
-        public string? selectUrl { get; set; } = null;
-
         public string? transferUrl { get; set; } = null;
 
         public FieldSpec(
@@ -26,8 +24,9 @@
             ,string field
             ,string? fieldJustify = null
             ,short? fieldWidth = null
-            ,string? fieldType = "text"
-            ,short? fieldHeight= null
+            , short? fieldHeight = null
+            , string? fieldType = "text"
+            , string? transferUrl = null
             )
         {
             this.label = label;
@@ -43,6 +42,8 @@
             this.fieldType = fieldType;
 
             this.fieldHeight = fieldHeight;
+
+            this.transferUrl = transferUrl;
         } 
     }
 }

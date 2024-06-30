@@ -147,21 +147,37 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
                 for (int i = 1; i < fieldValueList.Count; i++)
                 {
-                   
-                    string? fieldJustify = fieldSpecList[i - 1].fieldJustify;
+
+                    FieldSpec fieldSpec = fieldSpecList[i - 1];
+
+                    string? fieldJustify = fieldSpec.fieldJustify;
 
 
-                    if (fieldSpecList[i - 1].fieldType == "details")
+                    if (fieldSpec.fieldType == "details")
                     {
+                        string? transferUrl = fieldSpec.transferUrl;
+
+                        string? id = fieldValueList[0];
+                        
                         if (fieldJustify != null)
                         {
-                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";' class='detailsCell'><button style='background: url(\"/Img/EditIcon.png\");width:24px;height:24px;'></button></td>\n";
+                            //rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>"
+                            //    + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(" + transferUrl + "?id=" + id + ");'>"
+                            //    +    "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
+                            //    + "</button></td>\n";
+
+                            rtrnValue += "    <td style='text-align:" + fieldJustify + ";'>"
+                               + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(\"" + transferUrl + "?id=" + id + "\");'>"
+                               + "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
+                               + "</button></td>\n";
                         }
 
                         else
                         {
-                            //rtrnValue += "    <td class='detailsCell'><img src='/Img/EditIcon.png'/></td>\n";
-                            rtrnValue += "    <td class='detailsCell'>class='detailsCell'><button style='background: url(\"/Img/EditIcon.png\");width:24px;height:24px;'></button></td>\n";
+                            rtrnValue += "    <td>"
+                                + "<button style='width:24px;height:24px;border:none' ondblclick='window.open(" + transferUrl + "?id=" + id + ");'>"
+                                + "<img src='/Img/EditIcon.png' style='height:24px;width:24px'>"
+                                + "</button></td>\n";
                         }
                     }
 
