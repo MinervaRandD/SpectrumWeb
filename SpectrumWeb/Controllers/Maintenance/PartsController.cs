@@ -82,6 +82,29 @@ namespace SpectrumWeb.Controllers.Maintenance
             return (new GenericTableController()).GenericTableGenerator(tblGenParms);
         }
 
+
+        public IActionResult PartsMasterDetailView(string id, string idType)
+        {
+
+            Models.PartsMaster? data = null;
+
+            if (idType == "PartNmbr")
+            {
+                data = context.PartsMasters.Where(g => g.PartNumber == id).FirstOrDefault();
+            }
+
+            else if (idType == "RecordId")
+            {
+                data = context.PartsMasters.Where(g => g.PkRecordId == id).FirstOrDefault();
+            }
+            
+            ViewBag.Id = "'" + id + "'";
+            ViewBag.Data = data;
+
+
+            return View("~/Views/Maintenance/PartsMasterDetailView.cshtml");
+        }
+
         List<FieldSpec> PartsOnGuaranteeWarrantyDisplayFieldList = new List<FieldSpec>()
         {
             new FieldSpec("Expendable", "Expendable", "Expendable", "center", 60, null, "bool"),

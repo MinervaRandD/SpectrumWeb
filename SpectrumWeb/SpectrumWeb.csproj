@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <Content Remove="App.config" />
+    <Content Remove="Views\Maintenance\Maintenance\WarranteeDetailView.cshtml" />
     <Content Remove="Views\Maintenance\Squawks.cshtml" />
     <Content Remove="Views\Maintenance\Warranties.cshtml" />
   </ItemGroup>

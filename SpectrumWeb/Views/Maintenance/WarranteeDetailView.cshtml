@@ -5,6 +5,10 @@
     @using SpectrumWeb.Models;
     @model GuaranteeWarranty;
     GuaranteeWarranty gw = @ViewBag.Data;
+
+
+    string themeForegroundColor = Utilities.SystemSettings.ThemeForegroundColor;
+    string backgroundColor = Utilities.SystemSettings.ThemeBackgroundColor;
 }
 
 <!DOCTYPE html>
@@ -24,20 +28,20 @@
         }
 
         label {
-            color:darkblue;
+            color:@themeForegroundColor;
             font:large;
             font-weight:bold;
         }
 
         input {
-            color:darkblue;
+            color:@themeForegroundColor;
             border:solid;
-            border-color:darkblue;
+            border-color:@themeForegroundColor;
             border-width:2px;
         }
 
         td{
-            color:darkblue;
+            color:@themeForegroundColor;
             font:large;
         }
 
@@ -45,13 +49,25 @@
             display:flex;
             align-items:center;
             font-size:16px;
-            color:darkblue;
+            color:@themeForegroundColor;
         }
     </style>
+
+    <script>
+        function launchPartMasterDetail(id)
+        {
+            var urlString = "\\Parts\\PartsMasterDetailView?id=" + id + "&idType=PartNmbr";
+
+            console.log(urlString);
+
+            window.open(urlString);
+        }
+
+    </script>
 </head>
 
 <body>
-     <h2  style="color:darkblue;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
+     <h2  style="color:@themeForegroundColor;margin-top:16px;margin-bottom:16px;margin-left:auto;margin-right:auto;margin-top:32px;width:100%;" align="center">
             Guarantee / Warranty Details
     </h2>
 
@@ -69,9 +85,9 @@
 
             <div style="margin:32px;display:inline-block;">
             
-                <table style="color:darkblue;font-size:16px;">
+                <table style="color:@themeForegroundColor;font-size:16px;">
                     <tr>
-                        <td><label for="partNmbr"><button>Part Nmbr:</button></label></td>
+                        <td><label for="partNmbr"><button onclick='launchPartMasterDetail("@gw.PartNumber")'>Part Number:</button></label></td>
                         <td><input type="text" id="partNmbr" name="partNmbr" value="@gw.PartNumber"/></td>
                     </tr>
                     <tr>
@@ -101,7 +117,7 @@
                 </table>
             </div>
             <div style="display:inline-block;margin:32px;vertical-align:top">
-                <table style="color:darkblue;font-size:16px;">
+                <table style="color:@themeForegroundColor;font-size:16px;">
                    
                      <tr>
                         <td> <label for="cyclesAtInstall">Cycles At Install: </label></td>
@@ -132,12 +148,12 @@
                 </table>
             </div>
             <div style="display:block;margin:auto">
-                <h6 style="width:100%;color:darkblue;" align="center">-- terms --</h6>
+                <h6 style="width:100%;color:@themeForegroundColor;" align="center">-- terms --</h6>
                 <textarea style="align-content:center;width:80%;" rows="4" name="terms" id="terms" form="guaranteeWarrantyForm">
                     @gw.Terms
                 </textarea>
                 <div style="height:16px"></div>
-                <h6 style="width:100%;color:darkblue;" align="center">-- Notes --</h6>
+                <h6 style="width:100%;color:@themeForegroundColor;" align="center">-- Notes --</h6>
                 <textarea style="align-content:center;width:80%;" rows="4" name="notes" id="notes" form="guaranteeWarrantyForm">
                     @gw.Notes
                 </textarea>
@@ -145,5 +161,6 @@
         </div>
        
     </form>
+
 </body>
 </html>
