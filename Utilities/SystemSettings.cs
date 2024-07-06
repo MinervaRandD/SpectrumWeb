@@ -16,6 +16,8 @@ namespace Utilities
 
         public static string SqlServerName { get; private set; } = "SQLExpress";
 
+        public static string OperatingStatus { get; private set; } = "Development";
+
         public static void SetSqlServerName()
         {
             string machineName = System.Environment.MachineName;

@@ -3,6 +3,23 @@
 
     string themeForegroundColor = Utilities.SystemSettings.ThemeForegroundColor;
     string backgroundColor = Utilities.SystemSettings.ThemeBackgroundColor;
+
+    string operationStatus = Utilities.SystemSettings.OperatingStatus;
+
+    string startupDisplay = string.Empty;
+    string mainDisplay = string.Empty;
+
+    if (operationStatus == "Production")
+    {
+        startupDisplay = "block";
+        mainDisplay = "none";
+    }
+
+    else
+    {
+        startupDisplay = "none";
+        mainDisplay = "block";
+    }
 }
   
 <script>
@@ -63,11 +80,11 @@
    
 </style>
 
-<div id="startupMainPage" style="display:none">
+<div id="startupMainPage" style="display:@startupDisplay">
 
 </div>
 
-<div id="mainPage" style="display:block;position:absolute;top:0px;background-color:wheat;">
+<div id="mainPage" style="display:@mainDisplay;position:absolute;top:0px;background-color:wheat;">
     <div class="row">
         <div class="col-1" style="width:90px;border-right:4px solid @themeForegroundColor;position:fixed;margin-top:60px">
             <ul style="float:right;margin-right:-20px">
