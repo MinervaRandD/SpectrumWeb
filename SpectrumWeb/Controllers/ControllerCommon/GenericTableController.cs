@@ -158,6 +158,8 @@ namespace SpectrumWeb.Controllers.ControllerCommon
 
             ViewBag.InitSearchValue = tblGenParms.InitSearchValue;
 
+            ViewBag.TableSetup = tblGenParms.TableSetup;
+
             return View("~/Views/Maintenance/GenericTable.cshtml");
         }
     }

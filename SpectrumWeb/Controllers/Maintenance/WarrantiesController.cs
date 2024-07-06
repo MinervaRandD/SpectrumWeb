@@ -87,6 +87,19 @@ namespace SpectrumWeb.Controllers.Maintenance
              "\"" + string.Join("\"\n + \"", warrantiesChildDisplayFieldList) + "\"";
 
 
+        string tableSetup =
+            @" <div id=""tableSetup"" style=""z-index:2;position:absolute;top:260px;background-color:white;width:2200px;height:2048px;"">
+            <div style=""text-align:center"">
+                <div style=""height:60px;""></div>
+                <h3 style=""text-align:center;color:@themeForegroundColor"">Prefilter Setup</h3>
+                <div style=""height:48px""></div>
+                <button
+                    onclick=""removeTableSetup()""
+                    style=""width:400px;height:48px;border-color:@themeForegroundColor;color:@themeForegroundColor;font-weight:bolder;font-size:larger;border-radius:12px;"">
+                        Continue
+                </button>
+            </div>
+        </div>";
 
         private string customForm = ControllerCommon.ControllerCommon.TwoPartCustomForm(displayFieldList.GetRange(1, displayFieldList.Count-1), childFieldList);
 
@@ -120,7 +133,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                 ChildFieldList = childFieldList,
                 ChildFieldFormatter = warrantiesChildFieldFormatter,
                 DetailsUrl = "WarranteeDetailView",
-                //TableSetup = tableSetup
+                TableSetup = tableSetup
             };
 
             return (new GenericTableController()).GenericTableGenerator(tblGenParms);

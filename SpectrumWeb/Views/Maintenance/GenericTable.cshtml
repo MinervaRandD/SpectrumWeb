@@ -17,6 +17,13 @@
     {
         initSearchValue = "''";
     }
+
+    string tableSetup = "";
+
+    if (!string.IsNullOrEmpty(ViewBag.TableSetup))
+    {
+        tableSetup = ViewBag.TableSetup.Replace("@themeForegroundColor", themeForegroundColor).Replace("@themeBackgroundColor", themeBackgroundColor);
+    }
 }
 
 <style>
@@ -135,42 +142,6 @@
 
     function setupClickResponses() {
 
-        // table.on('dblclick', 'tbody tr td', function () {
-
-        //     // console.log("at point 1");
-
-        //     // console.log(this);
-
-        //     if ($(this).hasClass("detailsCell")) {
-        //         let detailsUrl = @Html.Raw(ViewBag.DetailsUrl) ;
-
-        //         if (detailsUrl) {
-
-        //             // let data = table.row(this).data();
-
-        //             let id = table.row(this).id();
-
-        //             let newWindow = window.open(detailsUrl + '?id=' + id);
-
-        //         }
-
-        //         return;
-        //     }
-        // }); 
-
-        // table.on('click', 'td.dt-control', function (e) {
-        //     // console.log("at point 2");
-        //     let tr = e.target.closest('tr');
-        //     let row = table.row(tr);
-        //     if (row.child.isShown()) {
-        //         // This row is already open - close it
-        //         row.child.hide();
-        //     }
-        //     else {
-        //         // Open this row
-        //         row.child(format(row.data())).show();
-        //     }
-        // });
     }
 
     function format(d) {
@@ -211,7 +182,7 @@
          <div id="tableDiv" style="z-index:1;position:absolute;position:fixed;top:0">
             <table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
                 <thead>
-                    <tr style="color:darkblue">
+                    <tr style="color:@themeForegroundColor">
                         @Html.Raw(@ViewBag.TableHeader)
                     </tr>
                 </thead>
@@ -228,19 +199,8 @@
             </table>
         </div>
 
-
-        <div id="tableSetup" style="z-index:2;position:absolute;top:260px;background-color:white;width:2200px;height:2048px;">
-            <div style="text-align:center">
-                <div style="height:60px;"></div>
-                <h3 style="text-align:center;color:@themeForegroundColor">Prefilter Setup</h3>
-                <div style="height:48px"></div>
-                <button
-                    onclick="removeTableSetup()"
-                    style="width:512px;height:48px;border:thick;border-color:@themeForegroundColor;color:@themeForegroundColor;font-weight:bolder;font-size:larger;border-radius:6px;">
-                        Continue
-                </button>
-            </div>
-        </div>
+        @Html.Raw(@tableSetup)
+       
     </div>
 </div>
 

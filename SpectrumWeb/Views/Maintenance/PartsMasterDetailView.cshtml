@@ -75,49 +75,111 @@
 
                 <table style="color:@themeForegroundColor;font-size:16px;">
                     <tr>
-                        <td><label for="rwitmx">Rwitmx</label></td>
+                        <td><label for="rwitmx">Rwitmx:</label></td>
                         <td><input type="text" id="rwitmx" name="rwitmx" value="@pm.Rwitmx" /></td>
                     </tr>
                     <tr>
                         <td><label for="warehouse">Warehouse: </label></td>
                         <td><input type="text" id="warehouse" name="warehouse" value="@pm.Warehouse" /></td>
                     </tr>
+                    <tr>
+                        <td><label for="partsDesignator">Rwitmx:</label></td>
+                        <td><input type="text" id="partsDesignator" name="partsDesignator" value="@pm.PartDesignator" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="qtyOutForRepr">Warehouse: </label></td>
+                        <td><input type="number" id="qtyOutForRepr" name="qtyOutForRepr" value="@pm.QtyOutForRepr" /></td>
+                    </tr>
+
+                    <tr>
+                        <td><label for="allotment">Allotment</label></td>
+                        <td><input type="number" id="allotment" name="allotment" value="@pm.Allotment" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="inSuspense">In Suspense: </label></td>
+                        <td><input type="number" id="inSuspense" name="inSuspense" value="@pm.InSuspense" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="orderQuantity">Order Qty:</label></td>
+                        <td><input type="number" id="orderQuantity" name="orderQuantity" value="@pm.OrderQuantity" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="renmbrLinksFiles">Ref Nmbr Links Files: </label></td>
+                        <td><input type="number" id="renmbrLinksFiles" name="renmbrLinksFiles" value="@pm.RefnmbrLinksFiles" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="nmbrOfSpares">Nmbr Spares: </label></td>
+                        <td><input type="number" id="nmbrOfSpares" name="nmbrOfSpares" value="@pm.NumberOfSpares" /></td>
+                    </tr>
                 </table>
             </div>
             <div style="display:inline-block;margin:32px;vertical-align:top">
                 <table style="color:@themeForegroundColor;font-size:16px;">
+                    <tr>
+                        <td><label for="vendor1">Vendor 1: </label></td>
+                        <td><input type="text" id="vendor1" name="vendor1" value="@pm.Vendor1" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="vendor2">Vendor 2: </label></td>
+                        <td><input type="text" id="vendor2" name="vendor2" value="@pm.Vendor2" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="vendor3">Vendor 3: </label></td>
+                        <td><input type="text" id="vendor3" name="vendor3" value="@pm.Vendor3" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="currPoNmbr">Curr PO Nmbr: </label></td>
+                        <td><input type="text" id="currPoNmbr" name="currPoNmbr" value="@pm.CurrentPoNmbr" /></td>
+                    </tr>
 
-                    @*  <tr>
-                    <td> <label for="cyclesAtInstall">Cycles At Install: </label></td>
-                    <td> <input type="number" id="cyclesAtInstall" name="cyclesAtInstall" value="@gw.CyclsAtInstall" /></td>
+                    <tr>
+                        <td><label for="currPoType">Curr PO Type: </label></td>
+                        <td><input type="text" id="currPoType" name="currPoType" value="@pm.CurrentPoType" /></td>
                     </tr>
                     <tr>
-                    <td> <label for="weeksAtInstall">Weeks At Install: </label></td>
-                    <td> <input type="number" id="weeksAtInstall" name="weeksAtInstall" value="@gw.WeeksAtInstall" /></td>
+                        <td><label for="lastPoNmbr">Last PO Nmbr: </label></td>
+                        <td><input type="text" id="lastPoNmbr" name="lastPoNmbr" value="@pm.LastPoNmbr" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lastPoType">Last PO Type: </label></td>
+                        <td><input type="text" id="lastPoType" name="lastPoType" value="@pm.LastPoType" /></td>
                     </tr>
 
                     <tr>
-                    <td> <label for="exchangedSerNmbr">Exchange Serial Nmbr: </label></td>
-                    <td> <input type="text" id="exchangedSerNmbr" name="exchangedSerNmbr" value="@gw.ExchangedSerNmbr" /></td>
+                        <td><label for="avgVendLeadTm">Avg Vend Lead Tm: </label></td>
+                        <td><input type="number" id="avgVendLeadTm" name="avgVendLeadTm" value="@pm.AvgVendLeadTm" /></td>
                     </tr>
                     <tr>
-                    <td> <label for="controlTag">Control Tag: </label></td>
-                    <td> <input type="text" id="controlTag" name="controlTag" value="@gw.ControlTag" /></td>
+                        <td><label for="avgRepairTm">Avg Repair Tm: </label></td>
+                        <td><input type="number" id="avgRepairTm" name="avgRepairTm" value="@pm.AvgReprLeadTm" /></td>
                     </tr>
-                    <tr>
-                    <td><label for="vendorNmbr">Vendor Nmbr: </label></td>
-                    <td><input type="text" id="vendorNmbr" name="vendorNmbr" value="@gw.VendorNumber" /></td>
-                    </tr>
-                    <tr>
-                    <td><label for="ataChap">ATA Chapter: </label></td>
-                    <td><input type="text" id="ataChap" name="ataChap" value="@gw.AtaChap" /></td>
-                    </tr> *@
+                   
 
                 </table>
             </div>
 
-        </div>
+            <div style="display:inline-block;margin:32px;vertical-align:top">
+                <table style="color:@themeForegroundColor;font-size:16px;">
+                    <tr>
+                        <td><label for="currPrice">Curr Price: </label></td>
+                        <td><input type="number" id="currPrice" name="currPrice" value="@pm.CurrentPrice" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="lastPrice">Last Price: </label></td>
+                        <td><input type="number" id="lastPrice" name="lastPrice" value="@pm.LastPrice" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="avePrice">Ave Price: </label></td>
+                        <td><input type="number" id="avePrice" name="avePrice" value="@pm.AveragePrice" /></td>
+                    </tr>
+                    <tr>
+                        <td><label for="prcBrkAvail">Ave Price: </label></td>
+                        <td><input type="number" id="prcBrkAvail" name="prcBrkAvail" value="@pm.PrcBreakAvail" /></td>
+                    </tr>
+                </table>
+            </div>
 
+        </div>
     </form>
 </body>
 </html>
