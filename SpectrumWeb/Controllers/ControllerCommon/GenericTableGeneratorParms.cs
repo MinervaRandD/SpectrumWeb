@@ -23,5 +23,7 @@
         public string? InitSearchValue { get; set; } = null;
 
         public string? InitSearchTitle { get; set; } = null;
+
+        public string? TableSetup {  get; set; } = null;
     }
 }

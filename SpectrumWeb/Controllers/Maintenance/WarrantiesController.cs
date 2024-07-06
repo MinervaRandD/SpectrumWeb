@@ -120,7 +120,7 @@ namespace SpectrumWeb.Controllers.Maintenance
                 ChildFieldList = childFieldList,
                 ChildFieldFormatter = warrantiesChildFieldFormatter,
                 DetailsUrl = "WarranteeDetailView",
-                Overlay = overlay()
+                //TableSetup = tableSetup
             };
 
             return (new GenericTableController()).GenericTableGenerator(tblGenParms);

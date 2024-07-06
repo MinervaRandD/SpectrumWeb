@@ -5,6 +5,9 @@
 
     string initSearchValue = ViewBag.InitSearchValue ;
 
+    string themeForegroundColor = Utilities.SystemSettings.ThemeForegroundColor;
+    string themeBackgroundColor = Utilities.SystemSettings.ThemeBackgroundColor;
+
     if (string.IsNullOrEmpty(initSearchTitle))
     {
         initSearchTitle = "";
@@ -192,7 +195,9 @@
     }
     )
 
-
+    function removeTableSetup() { 
+        document.getElementById('tableSetup').style.display = "none";
+    }
        
 
 </script>
@@ -203,7 +208,7 @@
     <div class="col-1" style="width:32px"></div>
 
     <div class="col-11" >
-         <div id="tableDiv" style="z-index:1;position:absolute;top:0">
+         <div id="tableDiv" style="z-index:1;position:absolute;position:fixed;top:0">
             <table id="classTable" class="table table-striped table-bordered table-hover" style="table-layout:fixed;float:left;@ViewBag.TableWidth">
                 <thead>
                     <tr style="color:darkblue">
@@ -223,7 +228,19 @@
             </table>
         </div>
 
-        <div id="tableSetup" style="z-index:2;position:absolute;top:320;background-color:white"></div>
+
+        <div id="tableSetup" style="z-index:2;position:absolute;top:260px;background-color:white;width:2200px;height:2048px;">
+            <div style="text-align:center">
+                <div style="height:60px;"></div>
+                <h3 style="text-align:center;color:@themeForegroundColor">Prefilter Setup</h3>
+                <div style="height:48px"></div>
+                <button
+                    onclick="removeTableSetup()"
+                    style="width:512px;height:48px;border:thick;border-color:@themeForegroundColor;color:@themeForegroundColor;font-weight:bolder;font-size:larger;border-radius:6px;">
+                        Continue
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 
