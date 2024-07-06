@@ -141,11 +141,12 @@
 <script src="~/js/site.js" asp-append-version="true"></script>
 
 <script>
-    
-    function clearSigninErrorMessage()
-    {
+
+    function clearSigninErrorMessage() {
         document.getElementById('signinErrorMessage').style.display = 'none';
     }
+
+
    
       function validateSignIn() {
 
@@ -170,14 +171,16 @@
         }
 
         else {
+            closeSigninForm();
+            document.getElementById('signinButton').remove();
             loadMainPage();
         }
     }
 
-    function closeSigninForm() { 
-        console.log("close login");
-        $('#signinForm').popover('hide');
+    function closeSigninForm() {
+        document.getElementById('signinForm').style.display = "none";
     }
+
     function loadMainPage()
     {
        

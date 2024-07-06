@@ -206,6 +206,11 @@
                 style: style
               })
         }
+
+        function showSigninForm() { 
+            document.getElementById('signinForm').style.display = "block";
+            document.getElementById('signinErrorMessage').style.display = "none";
+        }
     </script>
 </head>
 <body>
@@ -221,7 +226,7 @@
             </h2>
         </div>
         <div class="col-2" style="text-align:center;">
-            <button id="signinButton" popovertarget="signinForm">
+            <button id="signinButton" popovertarget="signinForm" onclick="showSigninForm()">
                 Sign In
             </button>
         </div>
