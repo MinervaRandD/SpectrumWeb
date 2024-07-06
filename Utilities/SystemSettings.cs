@@ -16,7 +16,7 @@ namespace Utilities
 
         public static string SqlServerName { get; private set; } = "SQLExpress";
 
-        public static string OperatingStatus { get; private set; } = "Development";
+        public static string OperatingStatus { get; private set; } = "Production";
 
         public static void SetSqlServerName()
         {

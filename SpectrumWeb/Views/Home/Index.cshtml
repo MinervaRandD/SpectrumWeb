@@ -126,6 +126,10 @@
     <button onclick="validateSignIn()" style="color:@themeForegroundColor;border-color:@themeForegroundColor;border-width:2px;border-radius:4pt;width:256px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
         Submit
     </button>
+    <div style="height:16px"></div>
+    <button onclick="closeSigninForm()" style="color:@themeForegroundColor;border-color:@themeForegroundColor;border-width:2px;border-radius:4pt;width:256px;height:40px;margin-left:80px;font-size:larger;font-weight:bold">
+        Cancel
+    </button>
     <div style="height:18px;"></div>
     <div id="signinErrorMessage" style="margin-left:24px;display:none;color:red;font-weight:bolder;font-size:larger">Invalid User ID or Password</div>
     
@@ -170,6 +174,10 @@
         }
     }
 
+    function closeSigninForm() { 
+        console.log("close login");
+        $('#signinForm').popover('hide');
+    }
     function loadMainPage()
     {
        
