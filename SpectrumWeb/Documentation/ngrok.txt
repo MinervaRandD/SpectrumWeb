@@ -1,0 +1,1 @@
+﻿ngrok http --domain SpectrumWeb.Ngrok.App https://localhost:7178
